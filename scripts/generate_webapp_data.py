@@ -8,14 +8,14 @@ import sys, os, json
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 # Import the webapp data builder
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "webapp", "api"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "docs", "api"))
 from data import build_data
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def main():
     data = build_data()
-    output = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE, "webapp", "api", "data.json")
+    output = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BASE, "docs", "api", "data.json")
     output = output.replace("--output=", "")
     
     os.makedirs(os.path.dirname(output), exist_ok=True)

@@ -18,7 +18,7 @@ __pycache__/
 .pytest_cache/
 
 # Dati generati dal webapp (rigenerato ad ogni run)
-webapp/api/data.json
+docs/api/data.json
 
 # Ambiente
 .venv/
