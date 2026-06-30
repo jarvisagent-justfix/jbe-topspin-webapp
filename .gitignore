@@ -17,8 +17,7 @@ __pycache__/
 *.pyo
 .pytest_cache/
 
-# Dati generati dal webapp (rigenerato ad ogni run)
-docs/api/data.json
+# Dati generati dal webapp (rigenerato ad ogni run — incluso per GitHub Pages)
 
 # Ambiente
 .venv/
