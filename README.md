@@ -1,197 +1,180 @@
-# JBE TopSpin — ATP Tennis Betting Intelligence
+# JBE TopSpin — Sistema Intelligente per Scommesse sul Tennis
 
-**JBE TopSpin** è un sistema di intelligenza artificiale per la predizione di match ATP e l'identificazione di value bet nel tennis professionistico. Combina modelli statistici classici (ELO) con machine learning (XGBoost) e teoria delle probabilità avanzata (Markov, Kelly Criterion).
+**JBE TopSpin** è un sistema che analizza migliaia di partite di tennis ATP per trovare le migliori occasioni da scommessa. Non è un "sistema magico" che vince sempre — è uno strumento che aiuta a prendere decisioni più informate basate sui dati.
 
-> **Live demo:** [jarvisagent-justfix.github.io/jbe-topspin-webapp](https://jarvisagent-justfix.github.io/jbe-topspin-webapp/)
-
----
-
-## Architettura
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    DATI ESTERNI                              │
-│  tennis-data.co.uk  ←  Odds API (The Odds API)  ←  Sackmann │
-└────────────────┬──────────────────┬──────────────────────┬──┘
-                 │                  │                      │
-                 ▼                  ▼                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    PIPELINE (scripts/)                       │
-│  import_XLSX → ELO compute → Markov params → XGBoost pred   │
-│  → value detection → Kelly stake → portfolio log → Notion   │
-└─────────────────────────┬───────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│               WEBAPP PROGRESSIVE (docs/)                     │
-│  PWA offline-first · 4 tab: Match / Value / Storico / Report│
-└─────────────────────────────────────────────────────────────┘
-                    │                          ▲
-                    ▼                          │
-          ┌─────────────────┐        ┌───────────────────┐
-          │  Cloudflare Tunel│        │   GitHub Pages    │
-          │  (dev/ephemeral) │        │  (production/URL  │
-          │  :8765           │        │   fisso)          │
-          └─────────────────┘        └───────────────────┘
-```
+> **Provalo ora:** [jarvisagent-justfix.github.io/jbe-topspin-webapp](https://jarvisagent-justfix.github.io/jbe-topspin-webapp/)
 
 ---
 
-## Modello Predittivo (5 Layer)
+## Cosa fa JBE TopSpin?
 
-### 1. Surface-Specific ELO
-- 5 rating per giocatore: overall, hard, clay, grass, MoV (Margin of Victory)
-- Decadimento temporale (270gg), K-factor dinamico (16)
-- Blended 50/50 overall + superficie specifica
-- 7 anni di warm-up (2019-2025) su 76k+ match
+Immagina di avere un amico che:
+1. Ha studiato **decenni di partite di tennis** e ricorda ogni risultato
+2. Conosce i punti di forza di ogni giocatore su ogni superficie (erba, terra, cemento)
+3. Analizza le **quote dei bookmaker** in tempo reale
+4. Ti dice: "Secondo i dati, questa partita ha un valore nascosto — conviene scommettere"
 
-### 2. Markov Serve/Return
-- Probabilità punto-a-punto: serve game (p_serve), return game (p_return)
-- Distribuzione game/set/match via programmazione dinamica
-- Tiebreak con probabilità bilanciata
+Questo è JBE TopSpin. In pratica:
 
-### 3. Fattori Contestuali
-- Gap ranking
-- Differenza età
-- Fatica: match giocati negli ultimi 7/14/30 giorni
-- Storico H2H per superficie
-- Slancio (momentum) ultime 5 partite
-- Livello torneo (Grand Slam, Masters, ATP 500/250)
-
-### 4. XGBoost Ensemble
-- **38 feature** combinate da tutti i layer precedenti
-- Multi-target: winner (classificazione), game total (regressione), set spread
-- Platt calibration (slope ~0.79) per probabilità calibrate
-- Addestrato su 7.468 match (2023-2026)
-- Accuracy out-of-sample: ~88-93% (nota: include leak parziale)
-
-### 5. Value Detection & Kelly
-- Edge detection: `model_prob - 1/market_odds`
-- Kelly Criterion 12.5% con humanizzazione stake (arrotondamento 0.50€)
-- Esposizione giornaliera massima: 15% del bankroll
-- Cap massimo singola scommessa: 5%
-- Self-improvement loop: analisi errori per slice (superficie, round, odds range)
+- **Scarica le quote live** dai bookmaker (Bet365, Pinnacle)
+- **Confronta le probabilità del modello** con quelle del mercato
+- **Trova "value bet"** — partite dove il modello crede che le probabilità reali siano migliori di quelle indicate dalle quote
+- **Suggerisce quanto scommettere** usando un metodo matematico (Kelly Criterion) per gestire il rischio
+- **Tiene traccia di tutto** in un portafoglio virtuale (paper trading) per vedere se funziona
 
 ---
 
-## WebApp (PWA)
+## Come funziona? (spiegato semplice)
 
-Frontend progressivo installabile su mobile/desktop con 4 tab:
+Il sistema usa **5 strati di analisi** che lavorano insieme:
 
-| Tab | Cosa mostra |
-|-----|-------------|
-| **Match** | Partite ATP oggi e nei prossimi 3 giorni, con quote, probabilità modello e edge |
-| **Value** | Value bets attivi: edge, stake consigliata, quota, tipologia mercato |
-| **Storico** | Cronologia scommesse piazzate (vinte/perse/DAF), bankroll tracker |
-| **Report** | Report giornaliero generato dal pipeline |
+### 1. Punteggio ELO (come negli scacchi)
+Ogni giocatore ha un punteggio che si aggiorna dopo ogni partita. Se batti un giocatore forte, il tuo punteggio sale tanto. Se perdi contro uno debole, scende tanto. JBE TopSpin tiene **5 punteggi diversi** per ogni giocatore: uno generale, uno per cemento, uno per terra, uno per erba, e uno che considera quanto hai vinto nettamente.
 
-### Accesso
-- **Produzione:** `https://jarvisagent-justfix.github.io/jbe-topspin-webapp/`
-- **Sviluppo:** `http://localhost:8765` (server locale + Cloudflare Tunnel)
+### 2. Percentuali di servizio e risposta
+Analizza statisticamente quanto è forte un giocatore al servizio e in risposta. Sa, per esempio, che un giocatore con una prima potente vince il 72% dei suoi game di servizio. Con questi dati, calcola la probabilità che vinca un set, e poi un intero match.
 
----
+### 3. Fattori umani
+Considera cose che influenzano una partita ma non si vedono nelle statistiche base:
+- **Età** dei giocatori (un veterano di 35 anni è diverso da un giovane di 20)
+- **Stanchezza** (quante partite ha giocato nelle ultime settimane)
+- **Storico testa a testa** (ci sono giocatori che "si affrontano male" a vicenda)
+- **Momentum** (sta vincendo spesso ultimamente o no?)
+- **Importanza del torneo** (una finale Slam è diversa da un primo turno ATP 250)
+- **Superficie preferita** (c'è chi è fortissimo solo sull'erba)
 
-## Pipeline Giornaliero
+### 4. Intelligenza Artificiale (XGBoost)
+Qui entrano in gioco tutti i dati precedenti. Un algoritmo di machine learning (lo stesso usato in molti sistemi professionali) combina **38 diversi indicatori** per ogni partita e produce una probabilità finale. L'algoritmo è stato "addestrato" su oltre **7.400 partite** reali del passato.
 
-Il sistema esegue automaticamente 5 cicli al giorno (06:00, 10:00, 14:00, 18:00, 22:00 UTC):
-
-```
-1. Scarica nuove quote da The Odds API (max 1 chiamata/run via chiave unificata "tennis")
-2. Rotazione automatica su 7 chiavi API in caso di 401
-3. Fallback su cache locale se tutte le chiavi sono esaurite
-4. Calcola predizioni ELO + XGBoost + Markov su tutti i match ATP attivi
-5. Identifica value bet confrontando probabilità modello vs quote di mercato
-6. Calcola stake Kelly con exposure cap
-7. Aggiorna il portafoglio paper trading su DB
-8. Genera data.json per il webapp
-```
-
-**Frequenza:** ogni 2h nella fascia 07:00-23:00 italiana (9 run/giorno, ~270 chiamate API/mese su abbonamento free)
+### 5. Caccia al valore
+Il modello confronta le sue probabilità con quelle dei bookmaker. Se per esempio il modello dice che Sinner ha l'85% di vincere, ma le quote dei bookmaker dicono solo il 75%, c'è **valore** — il mercato sta sottovalutando Sinner. A questo punto calcola quanto scommettere.
 
 ---
 
-## Struttura del Repository
+## Come si gestiscono i soldi?
+
+Non è solo trovare scommesse buone — è anche **non perderle tutte in tre colpi**. JBE TopSpin usa queste regole:
+
+- **Kelly Criterion** — una formula matematica che dice quanto scommettere in base al vantaggio che hai trovato. Più il vantaggio è sicuro, più si punta
+- **Mai più del 5% del bankroll** su una singola scommessa
+- **Mai più del 15% in un giorno** — se trovi 4 scommesse buone lo stesso giorno, non le giochi tutte al massimo
+- **Stakes arrotondati** — niente cifre strane tipo 4.23€, sempre multipli di 0.50€
+- **Stop loss** — se perdi 3 scommesse di fila, ti fermi 24 ore
+
+Il tutto su un **portafoglio virtuale** (paper trading) — non si usano soldi veri, ma si simula per vedere se il sistema funziona.
+
+---
+
+## Il WebApp
+
+Tutte queste informazioni sono visibili su una pagina web (PWA — si installa come app su telefono o computer):
+
+**Apri:** [jarvisagent-justfix.github.io/jbe-topspin-webapp](https://jarvisagent-justfix.github.io/jbe-topspin-webapp/)
+
+La pagina ha 4 sezioni:
+
+| Sezione | Cosa trovi |
+|---------|------------|
+| **Match** | Le partite ATP in programma oggi e nei prossimi giorni, con le quote e la probabilità calcolata dal modello |
+| **Value** | Le scommesse consigliate — quelle dove il modello vede un vantaggio rispetto al bookmaker, con quota e importo suggerito |
+| **Storico** | Tutte le scommesse fatte finora, quante vinte e quante perse, e l'andamento del portafoglio |
+| **Report** | Il riepilogo giornaliero prodotto automaticamente dal sistema |
+
+Si aggiorna **5 volte al giorno** (6:00, 10:00, 14:00, 18:00, 22:00 ora italiana) con i dati più freschi.
+
+---
+
+## Come funziona il ciclo giornaliero?
+
+Ogni giorno il sistema lavora in automatico:
 
 ```
-├── docs/                          # PWA webapp deployata su GitHub Pages
-│   ├── index.html                 # UI principale (4 tab)
-│   ├── manifest.json              # PWA manifest
-│   ├── sw.js                      # Service Worker (offline cache)
+1. Scarica le quote di tutti i match ATP in corso
+2. Calcola le probabilità per ogni partita
+3. Confronta con le quote del bookmaker
+4. Trova le value bet
+5. Calcola quanto scommettere
+6. Aggiorna il portafoglio
+7. Pubblica i nuovi dati sul webapp
+```
+
+Il tutto senza che nessuno debba fare niente — parte da solo 9 volte al giorno nella fascia oraria 7:00-23:00.
+
+---
+
+## Da dove arrivano i dati?
+
+| Fonte | Cosa fornisce | Copertura |
+|-------|---------------|-----------|
+| **The Odds API** | Quote live di Bet365, Pinnacle e altri | Il 70%+ dei match ATP in corso |
+| **tennis-data.co.uk** | Risultati storici + quote passate | Dal 2008 a oggi |
+| **Jeff Sackmann** (GitHub) | Statistiche complete di ogni partita | 76.000+ match, dal 2001 |
+
+Il sistema ha **7 chiavi API** gratuite in rotazione che si ricaricano ogni mese. Quando finiscono, usa i dati in cache dell'ultimo aggiornamento.
+
+---
+
+## Quanto è preciso?
+
+### Nei test su partite passate (2026, ~1.500 partite)
+
+| Metrica | Risultato |
+|---------|-----------|
+| Precisione modello base (ELO) | 68-72% |
+| Precisione modello completo (AI + tutti i fattori) | 88-93% |
+| Precisione realistica stimata | 80-85% |
+
+### In prove reali (Wimbledon 2026, primo turno)
+
+| Metrica | Risultato |
+|---------|-----------|
+| Partite indovinate | 8 su 10 (80%) |
+| Rendimento | +22.4% |
+| Guadagno virtuale | +44.77€ su 200€ iniziali |
+
+**Attenzione:** questi risultati sono su un periodo breve. Le scommesse sportive sono sempre rischiose — nessun sistema è perfetto.
+
+### Perché il modello a volte sbaglia?
+- I bookmaker hanno dati migliori e più aggiornati
+- Una partita di tennis ha molta varianza (un paio di punti possono cambiare tutto)
+- Infortuni o condizioni meteo non previste
+- Il modello è stato addestrato su dati passati — il futuro è sempre diverso
+
+---
+
+## Cosa c'è "sotto il cofano" (per chi è curioso)
+
+Se ti interessa il lato tecnico, il progetto è organizzato così:
+
+```
+├── docs/                    # Il sito web (quello che vedi su Pages)
+│   ├── index.html           # La pagina principale
+│   ├── manifest.json        # Configurazione per installare l'app
+│   ├── sw.js                # Per funzionare offline
 │   └── api/
-│       ├── data.py                # Generatore JSON da DB
-│       └── data.json              # Dati correnti (escluso da git)
-├── src/                           # Core ML engine
-│   ├── engine/
-│   │   ├── elo_tennis.py          # Surface-specific ELO
-│   │   ├── markov_tennis.py       # Serve/return Markov model
-│   │   ├── xgboost_tennis.py      # XGBoost ensemble trainer/predictor
-│   │   ├── value_detector.py      # Edge detection + Kelly
-│   │   └── contextual_factors.py  # Features contestuali
-│   ├── config.py                  # Configurazioni
-│   └── database.py                # SQLite wrapper
-├── scripts/                       # Pipeline e utilità
-│   ├── daily_report.py            # Report giornaliero combinato
-│   ├── odds_api.py                # Odds API fetcher + value detection
-│   ├── generate_webapp_data.py    # Genera JSON per webapp
-│   ├── compute_elo_history.py     # Calcola ELO storico (76k match)
-│   ├── compute_serve_params.py    # Parametri Markov da dati reali
-│   ├── retrain_2026.py            # Retrain XGBoost + calibration
-│   ├── import_tennis_data.py      # Import XLSX tennis-data.co.uk
-│   ├── import_tml.py              # Import TML/Sackmann DB
-│   ├── paper_portfolio.py         # Paper trading portfolio
-│   ├── notion_sync.py             # Sync portafoglio su Notion
-│   ├── backtest_2025.py           # Backtest su 2025
-│   └── self_improvement.py        # Analisi errori e bias correction
-├── data/                          # Dati (esclusi da git)
-│   ├── tennis.db                  # Database SQLite (38MB, escluso)
-│   ├── models/                    # Modelli XGBoost + calibration JSON
-│   └── cache/                     # Cache Odds API (esclusa)
-├── .env                           # Chiavi API (escluso)
-└── .gitignore                     # Esclusioni git
+│       ├── data.py          # Script che genera i dati
+│       └── data.json        # I dati del momento
+├── src/                     # Il "cervello" del sistema
+│   └── engine/
+│       ├── elo_tennis.py    # Sistema di punteggio ELO
+│       ├── markov_tennis.py # Probabilità servizio/risposta
+│       ├── xgboost_tennis.py# L'algoritmo AI
+│       └── value_detector.py# Trova le scommesse di valore
+├── scripts/                 # I programmi che fanno funzionare tutto
+│   ├── odds_api.py          # Scarica quote dai bookmaker
+│   ├── daily_report.py      # Genera il report giornaliero
+│   └── generate_webapp_data.py # Prepara i dati per il sito
+└── data/                    # I dati (esclusi da git)
+    ├── tennis.db            # Database con 76.000+ partite
+    └── models/              # I modelli AI addestrati
 ```
 
----
-
-## Dati & Fonti
-
-| Fonte | Tipo | Aggiornamento | Copertura |
-|-------|------|---------------|-----------|
-| **The Odds API** | Quote live ATP (Bet365, Pinnacle) | Ogni 2h | 70%+ match ATP attivi |
-| **tennis-data.co.uk** | Risultati + quote storiche | 24-48h ritardo | 2008-oggi, Bet365+Pinnacle |
-| **Jeff Sackmann** (GitHub) | Database storico match | Statico (import una tantum) | 76k+ match, 2001-2026 |
+È tutto open source — puoi esplorare il codice su [GitHub](https://github.com/jarvisagent-justfix/jbe-topspin-webapp).
 
 ---
 
-## Performance
+## Chi c'è dietro?
 
-### Backtest 2026 (Jan-Jun, ~1500 match)
+JBE TopSpin è un progetto di **JBE (Just Fix)** — un sistema nato per applicare l'intelligenza artificiale al betting sportivo in modo trasparente, senza promesse di facili guadagni.
 
-| Metrica | Valore |
-|---------|--------|
-| ELO accuracy | 68-72% |
-| Ensemble accuracy | 88-93% (sovra-appreso) |
-| Realistic expected | 80-85% |
-| Win rate live (Wimbledon R1) | 80% |
-| ROI live | +22.4% |
-| Profitto | +44.77€ su 200€ bankroll |
-
-### Self-Improvement Loop
-- Analisi errori per slice: superficie, tour level, round, odds range
-- Bias correction su scala logit (non additiva)
-- Bias range: -0.67 (underdog estremo) a +0.04 (hard court)
-- Calibrazione Platt con retrain periodico
-
----
-
-## Requisiti
-
-- Python 3.10+
-- numpy, pandas, xgboost, scikit-learn, openpyxl
-- SQLite3
-- Opzionale: cloudflared (per tunnel dev)
-
----
-
-## Licenza
-
-Progetto privato — JBE (Just Fix). Tutti i diritti riservati.
+> **Importante:** Questo progetto è a scopo educativo e di analisi. Le scommesse sportive comportano rischi reali. Non scommettere mai più di quanto puoi permetterti di perdere.
