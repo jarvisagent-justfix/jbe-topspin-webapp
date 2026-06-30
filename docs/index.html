@@ -33,6 +33,11 @@
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
       padding: var(--pad); margin: 10px;
     }
+    .api-alert {
+      background: #fff3cd; border: 1px solid #ffc107; color: #856404;
+      padding: 8px 12px; margin: 8px 10px; border-radius: 8px;
+      font-size: 13px; text-align: center; display: none;
+    }
     .stat-card {
       background: var(--card); border-radius: var(--radius); padding: 12px 8px;
       text-align: center;
@@ -128,14 +133,15 @@
 <body>
   <div class="header">
     <div>
-      <h1>JBE <span>TopSpin</span></h1>
+      <div class="title">JBE TopSpin</div>
       <div class="date" id="dateDisplay"></div>
     </div>
-    <div style="font-size:12px;color:var(--dim);text-align:right">
-      <div id="lastUpdate"></div>
-      <div style="font-size:10px;color:var(--dim);margin-top:2px" id="refreshBtn">🔄 aggiorna</div>
+    <div class="header-right">
+      <span id="lastUpdate"></span>
+      <span style="cursor:pointer" onclick="loadData()">🔄 aggiorna</span>
     </div>
   </div>
+  <div id="apiAlert" class="api-alert" style="display:none"></div>
 
   <!-- Quick stats -->
   <div class="stats-row" id="statsRow"></div>
@@ -203,6 +209,7 @@
       document.getElementById("lastUpdate").textContent = "🕐 " + now.toLocaleTimeString("it-IT", {hour:"2-digit",minute:"2-digit"});
 
       renderStats(data);
+      renderApiAlert(data);
       renderMatches(data);
       renderBets(data);
       renderHistory(data);
@@ -220,6 +227,18 @@
         <div class="stat-card"><div class="val green">${vb}</div><div class="lbl">Value Live</div></div>
       `;
       document.getElementById("statsRow").innerHTML = html;
+    }
+
+    // --- API Alert ---
+    function renderApiAlert(d) {
+      const el = document.getElementById("apiAlert");
+      if (!el) return;
+      if (d.api_status?.exhausted) {
+        el.style.display = "block";
+        el.textContent = "⚠️ API odds esaurite — dati non aggiornati dal " + (d.api_status.since || "?") + ". Le nuove chiavi si resettano il 1° del mese.";
+      } else {
+        el.style.display = "none";
+      }
     }
 
     // --- Matches ---

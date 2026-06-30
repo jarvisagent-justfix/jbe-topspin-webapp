@@ -93,6 +93,13 @@ def odds_api_request(endpoint: str, params: dict = None) -> Optional[dict]:
             req = urllib.request.Request(full_url, headers={"User-Agent": "JBE-TopSpin/1.0"})
             with urllib.request.urlopen(req, timeout=15) as resp:
                 raw = resp.read().decode()
+                # Chiave funzionante → cancella flag exhausted
+                try:
+                    exhausted_path = os.path.join(os.path.dirname(__file__), "..", "data", "cache", "api_exhausted.json")
+                    if os.path.exists(exhausted_path):
+                        os.remove(exhausted_path)
+                except Exception:
+                    pass
                 return json.loads(raw)
         except urllib.error.HTTPError as e:
             body = e.read().decode()
@@ -113,6 +120,19 @@ def odds_api_request(endpoint: str, params: dict = None) -> Optional[dict]:
             return None
     
     log("  -> Tutte le chiavi esaurite.")
+    # Scrive flag exhausted per l'alert nell'app
+    try:
+        exhausted_path = os.path.join(os.path.dirname(__file__), "..", "data", "cache", "api_exhausted.json")
+        os.makedirs(os.path.dirname(exhausted_path), exist_ok=True)
+        with open(exhausted_path, "w") as f:
+            json.dump({
+                "exhausted": True,
+                "since": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                "keys_tried": len(api_keys),
+                "last_cache": None
+            }, f)
+    except Exception:
+        pass
     return None
 
 

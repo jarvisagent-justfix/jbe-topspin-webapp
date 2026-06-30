@@ -356,10 +356,28 @@ def build_data():
 
     today = date.today().isoformat()
 
+    BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
     # Carica match dal DB storico
     matches_db_today = load_matches_today(db, days_lookback=0, days_ahead=0)
     matches_db_upcoming = load_matches_today(db, days_lookback=0, days_ahead=3)
     matches_db_recent = load_matches_today(db, days_lookback=2, days_ahead=0)
+
+    # Stato API keys
+    api_status = {"ok": True, "exhausted": False}
+    exhausted_path = os.path.join(BASE, "data", "cache", "api_exhausted.json")
+    if os.path.exists(exhausted_path):
+        try:
+            with open(exhausted_path) as f:
+                status = json.load(f)
+                api_status = {
+                    "ok": False,
+                    "exhausted": True,
+                    "since": status.get("since", "?"),
+                    "keys_tried": status.get("keys_tried", 0),
+                }
+        except Exception:
+            pass
 
     # Aggiunge match in arrivo dal paper_portfolio (Odds API, non ancora importati)
     portfolio_upcoming = load_portfolio_upcoming(db)
@@ -387,6 +405,7 @@ def build_data():
         "bet_history": load_bet_history(db, limit=50),
         "bankroll_history": load_bankroll_history(db),
         "last_report": load_last_report(db),
+        "api_status": api_status,
     }
     return data
 
