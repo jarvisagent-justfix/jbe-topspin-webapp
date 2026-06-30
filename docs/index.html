@@ -255,9 +255,18 @@
     function renderMatchCard(m, showResult) {
       const p1 = m.players?.p1 || {};
       const p2 = m.players?.p2 || {};
-      const hasOdds = m.odds?.best?.winner;
-      const p1prob = hasOdds ? Math.round((1 / m.odds.best.winner) / ((1/m.odds.best.winner)+(1/m.odds.best.loser)) * 100) : null;
-      const p2prob = hasOdds ? 100 - p1prob : null;
+      const hasOdds = m.odds?.best?.winner && m.odds?.best?.loser;
+      const hasModelProb = m.model_prob != null;
+      let p1prob = null;
+      let p2prob = null;
+      if (hasOdds) {
+        p1prob = Math.round((1 / m.odds.best.winner) / ((1/m.odds.best.winner)+(1/m.odds.best.loser)) * 100);
+        p2prob = 100 - p1prob;
+      } else if (hasModelProb && m.edge != null) {
+        // Match da Odds API: usa model_prob come prob del favorito
+        p1prob = Math.round(m.model_prob * 100);
+        p2prob = 100 - p1prob;
+      }
       const fav = p1prob >= p2prob ? "p1" : "p2";
 
       let resultHtml = "";
@@ -285,7 +294,7 @@
               <div class="rank">#${p2.rank || "?"} ${p2.country || ""}</div>
             </div>
           </div>
-          ${hasOdds ? `<div class="match-footer"><span>📊 ${m.odds.best.bookmaker}: ${m.odds.best.winner.toFixed(2)} / ${m.odds.best.loser.toFixed(2)}</span><span>${m.date}</span></div>` : `<div class="match-footer"><span>${m.date}</span></div>`}
+          ${hasOdds ? `<div class="match-footer"><span>📊 ${m.odds.best.bookmaker}: ${m.odds.best.winner.toFixed(2)} / ${m.odds.best.loser.toFixed(2)}</span><span>${m.date}</span></div>` : hasModelProb ? `<div class="match-footer"><span>🤖 Modello: ${p1prob}% vs ${p2prob}%</span><span>${m.date}</span></div>` : `<div class="match-footer"><span>${m.date}</span></div>`}
           ${resultHtml}
         </div>`;
     }
