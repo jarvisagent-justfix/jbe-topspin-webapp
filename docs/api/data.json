@@ -1,9 +1,290 @@
 {
-  "generated_at": "2026-06-30T21:07:35.329911",
+  "generated_at": "2026-06-30T21:10:16.640285",
   "date": "2026-06-30",
   "matches": {
     "today": [],
-    "upcoming": [],
+    "upcoming": [
+      {
+        "id": null,
+        "date": "2026-06-29",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Brandon Nakashima",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Jack Pinnington Jones",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 9.62,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.5919369540419909,
+        "edge": 0.4879868500918869,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-06-30",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Lorenzo Sonego",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Tomas Martin Etcheverry",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 3.62,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.5613395309344812,
+        "edge": 0.28509643701182924,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-06-30",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Corentin Moutet",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Marcos Giron",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 3.99,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.5613127627770689,
+        "edge": 0.3106861963610288,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-06-30",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Tallon Griekspoor",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "James Duckworth",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 2.8,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.5128129508225091,
+        "edge": 0.15567009367965196,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-06-30",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Dane Sweeny",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Grigor Dimitrov",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 4.17,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.5670945452075202,
+        "edge": 0.327286391730302,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-06-30",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Frances Tiafoe",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Terence Atmane",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 1.89,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.85385,
+        "edge": 0.3247494708994708,
+        "confidence": "MEDIUM",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-07-01",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Alex de Minaur",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Adrian Mannarino",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 1.3,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.9426345190606462,
+        "edge": 0.17340374982987705,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      },
+      {
+        "id": null,
+        "date": "2026-07-01",
+        "tournament": "ATP",
+        "surface": null,
+        "round": null,
+        "best_of": 3,
+        "tour_level": null,
+        "status": "upcoming",
+        "players": {
+          "p1": {
+            "name": "Arthur Fery",
+            "country": null,
+            "rank": null
+          },
+          "p2": {
+            "name": "Otto Virtanen",
+            "country": null,
+            "rank": null
+          }
+        },
+        "result": null,
+        "odds": {
+          "best": {
+            "winner": 2.2,
+            "loser": null,
+            "bookmaker": "Odds API"
+          },
+          "all": []
+        },
+        "model_prob": 0.5639127571285164,
+        "edge": 0.10936730258306188,
+        "confidence": "HIGH",
+        "source": "odds_api"
+      }
+    ],
     "recent": []
   },
   "value_bets": [

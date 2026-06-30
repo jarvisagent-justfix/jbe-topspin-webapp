@@ -100,6 +100,55 @@ def load_matches_today(db, days_lookback=1, days_ahead=3):
     return matches
 
 
+def load_portfolio_upcoming(db, days_ahead=7):
+    """Carica match in arrivo dal paper_portfolio (Odds API, non ancora importati in tennis_matches)."""
+    today = date.today()
+    end = (today + timedelta(days=days_ahead)).isoformat()
+    start = (today - timedelta(days=1)).isoformat()
+
+    rows = db.conn.execute("""
+        SELECT DISTINCT p.match_date, p.player1, p.player2, p.tournament,
+               p.market, p.odds, p.model_prob, p.edge, p.confidence
+        FROM paper_portfolio p
+        WHERE p.match_id IS NULL
+          AND p.match_date >= ? AND p.match_date <= ?
+          AND p.status = 'pending'
+        ORDER BY p.match_date ASC
+    """, (start, end)).fetchall()
+
+    matches = []
+    seen_keys = set()
+    for r in rows:
+        key = (r["match_date"], r["player1"], r["player2"])
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        matches.append({
+            "id": None,
+            "date": r["match_date"],
+            "tournament": r["tournament"] or "ATP",
+            "surface": None,
+            "round": None,
+            "best_of": 3,
+            "tour_level": None,
+            "status": "upcoming",
+            "players": {
+                "p1": {"name": r["player1"], "country": None, "rank": None},
+                "p2": {"name": r["player2"], "country": None, "rank": None},
+            },
+            "result": None,
+            "odds": {
+                "best": {"winner": r["odds"], "loser": None, "bookmaker": "Odds API"},
+                "all": []
+            },
+            "model_prob": r["model_prob"],
+            "edge": r["edge"],
+            "confidence": r["confidence"],
+            "source": "odds_api",
+        })
+    return matches
+
+
 def load_value_bets(db, days=2):
     """Carica value bets recenti dal paper portfolio."""
     today = date.today()
@@ -307,13 +356,31 @@ def build_data():
 
     today = date.today().isoformat()
 
+    # Carica match dal DB storico
+    matches_db_today = load_matches_today(db, days_lookback=0, days_ahead=0)
+    matches_db_upcoming = load_matches_today(db, days_lookback=0, days_ahead=3)
+    matches_db_recent = load_matches_today(db, days_lookback=2, days_ahead=0)
+
+    # Aggiunge match in arrivo dal paper_portfolio (Odds API, non ancora importati)
+    portfolio_upcoming = load_portfolio_upcoming(db)
+    merged_upcoming = matches_db_upcoming + portfolio_upcoming
+    # Evita duplicati per match con stessi giocatori e data
+    seen = set()
+    deduped = []
+    for m in merged_upcoming:
+        key = (m["date"], m["players"]["p1"]["name"], m["players"]["p2"]["name"])
+        if key not in seen:
+            seen.add(key)
+            deduped.append(m)
+    merged_upcoming = sorted(deduped, key=lambda x: x["date"])
+
     data = {
         "generated_at": datetime.now().isoformat(),
         "date": today,
         "matches": {
-            "today": load_matches_today(db, days_lookback=0, days_ahead=0),
-            "upcoming": load_matches_today(db, days_lookback=0, days_ahead=3),
-            "recent": load_matches_today(db, days_lookback=2, days_ahead=0),
+            "today": matches_db_today,
+            "upcoming": merged_upcoming,
+            "recent": matches_db_recent,
         },
         "value_bets": load_value_bets(db),
         "bankroll": load_bankroll_stats(db),
