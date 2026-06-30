@@ -1,0 +1,25 @@
+# Database (38MB, rigenerato dal pipeline)
+data/tennis.db
+data/paper_portfolio.db
+
+# Cache e import (dati temporanei)
+data/cache/
+data/import/
+data/delivery/
+data/output/
+
+# Secreti
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Dati generati dal webapp (rigenerato ad ogni run)
+webapp/api/data.json
+
+# Ambiente
+.venv/
+venv/

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <title>JBE TopSpin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a; --card: #1e293b; --card2: #334155;
+      --text: #f1f5f9; --dim: #94a3b8; --green: #22c55e; --red: #ef4444;
+      --amber: #f59e0b; --blue: #3b82f6; --radius: 12px; --pad: 14px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); color: var(--text); min-height: 100dvh;
+      -webkit-font-smoothing: antialiased; padding-bottom: 80px;
+    }
+    /* Header */
+    .header {
+      background: var(--card); padding: var(--pad); position: sticky; top: 0;
+      z-index: 10; border-bottom: 1px solid #334155;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .header h1 { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+    .header h1 span { color: var(--green); }
+    .header .date { font-size: 12px; color: var(--dim); }
+    /* Quick Stats */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+      padding: var(--pad); margin: 10px;
+    }
+    .stat-card {
+      background: var(--card); border-radius: var(--radius); padding: 12px 8px;
+      text-align: center;
+    }
+    .stat-card .val { font-size: 20px; font-weight: 700; }
+    .stat-card .val.green { color: var(--green); }
+    .stat-card .val.red { color: var(--red); }
+    .stat-card .val.amber { color: var(--amber); }
+    .stat-card .lbl { font-size: 10px; color: var(--dim); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+    /* Tab nav */
+    .tabs {
+      display: flex; margin: 0 10px 10px; gap: 4px;
+      background: var(--card); border-radius: var(--radius); padding: 4px;
+    }
+    .tab { flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; color: var(--dim); cursor: pointer;
+      transition: 0.2s; user-select: none; border: none; background: transparent;
+    }
+    .tab.active { background: var(--green); color: #0f172a; }
+    .tab:not(.active):hover { color: var(--text); }
+    /* Content panels */
+    .panel { display: none; }
+    .panel.active { display: block; }
+    /* Match list */
+    .match-list { padding: 0 10px; display: flex; flex-direction: column; gap: 8px; }
+    .match-card {
+      background: var(--card); border-radius: var(--radius); padding: var(--pad);
+    }
+    .match-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); margin-bottom: 6px; }
+    .match-players { display: flex; justify-content: space-between; align-items: center; }
+    .player { display: flex; flex-direction: column; }
+    .player .name { font-size: 15px; font-weight: 600; }
+    .player .rank { font-size: 11px; color: var(--dim); }
+    .player.fav .name { color: var(--green); }
+    .prob-badge {
+      background: var(--card2); padding: 4px 12px; border-radius: 20px;
+      font-size: 16px; font-weight: 800; color: var(--green);
+    }
+    .match-footer { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--dim); }
+    .match-result { margin-top: 6px; padding-top: 6px; border-top: 1px solid #334155; font-size: 13px; color: var(--dim); }
+    /* Value bets */
+    .bet-list { padding: 0 10px; display: flex; flex-direction: column; gap: 8px; }
+    .bet-card {
+      background: var(--card); border-radius: var(--radius); padding: var(--pad);
+      border-left: 4px solid var(--green);
+    }
+    .bet-card.low { border-left-color: var(--amber); }
+    .bet-card.pending { border-left-color: var(--dim); opacity: 0.7; }
+    .bet-card.won { border-left-color: var(--green); }
+    .bet-card.lost { border-left-color: var(--red); }
+    .bet-top { display: flex; justify-content: space-between; align-items: center; }
+    .bet-selection { font-weight: 700; font-size: 15px; }
+    .bet-odds { font-size: 13px; color: var(--dim); }
+    .bet-edge { font-size: 14px; font-weight: 700; color: var(--green); }
+    .bet-edge.negative { color: var(--red); }
+    .bet-details { display: flex; gap: 12px; margin-top: 6px; font-size: 12px; color: var(--dim); flex-wrap: wrap; }
+    .bet-details span { background: var(--card2); padding: 2px 8px; border-radius: 4px; }
+    .bet-profit { font-size: 14px; font-weight: 700; }
+    .bet-profit.won { color: var(--green); }
+    .bet-profit.lost { color: var(--red); }
+    .bet-profit.push { color: var(--amber); }
+    /* ELO rankings */
+    .elo-list { padding: 0 10px; }
+    .elo-row {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card); padding: 10px var(--pad);
+      border-bottom: 1px solid #1e293b;
+    }
+    .elo-row:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+    .elo-row:last-child { border-radius: 0 0 var(--radius) var(--radius); border-bottom: none; }
+    .elo-rank { font-size: 14px; font-weight: 700; color: var(--dim); min-width: 28px; }
+    .elo-rank.top3 { color: var(--amber); }
+    .elo-name { flex: 1; font-weight: 600; }
+    .elo-name .country { font-size: 11px; color: var(--dim); margin-left: 4px; }
+    .elo-score { font-weight: 700; color: var(--green); }
+    .elo-matches { font-size: 11px; color: var(--dim); }
+    /* Last report */
+    .report-box { margin: 0 10px; background: var(--card); border-radius: var(--radius); padding: var(--pad); }
+    .report-box pre { font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.5; white-space: pre-wrap; color: var(--dim); }
+    /* Loading / empty */
+    .empty { text-align: center; padding: 40px 20px; color: var(--dim); font-size: 14px; }
+    .loading { text-align: center; padding: 40px; }
+    .spinner { width: 32px; height: 32px; border: 3px solid var(--card2); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Bottom spacer */
+    .bottom-spacer { height: 20px; }
+    /* No matches banner */
+    .no-matches { text-align: center; padding: 30px 20px; color: var(--dim); }
+    .no-matches .icon { font-size: 40px; margin-bottom: 10px; }
+    .no-matches p { font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>JBE <span>TopSpin</span></h1>
+      <div class="date" id="dateDisplay"></div>
+    </div>
+    <div style="font-size:12px;color:var(--dim);text-align:right">
+      <div id="lastUpdate"></div>
+      <div style="font-size:10px;color:var(--dim);margin-top:2px" id="refreshBtn">🔄 aggiorna</div>
+    </div>
+  </div>
+
+  <!-- Quick stats -->
+  <div class="stats-row" id="statsRow"></div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" data-tab="matches">🎾 Match</button>
+    <button class="tab" data-tab="bets">💎 Value</button>
+    <button class="tab" data-tab="history">📜 Storico</button>
+    <button class="tab" data-tab="report">📋 Report</button>
+  </div>
+
+  <!-- Panels -->
+  <div class="panel active" id="panel-matches">
+    <div class="match-list" id="matchList"></div>
+  </div>
+  <div class="panel" id="panel-bets">
+    <div class="bet-list" id="betList"></div>
+  </div>
+  <div class="panel" id="panel-history">
+    <div style="padding:0 10px;display:flex;flex-direction:column;gap:8px">
+      <div class="stats-row" id="historyStats" style="margin:0;padding:0;grid-template-columns:repeat(3,1fr)"></div>
+      <div class="history-chart" id="historyChart"></div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </div>
+  <div class="panel" id="panel-report">
+    <div class="report-box" id="reportBox"></div>
+  </div>
+
+  <div class="bottom-spacer"></div>
+
+  <script>
+    const DATA_URL = "api/data.json";
+    let data = null;
+
+    // --- PWA Register ---
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    }
+
+    // --- Format helpers ---
+    const fmt = {};
+
+    function loadData() {
+      document.querySelectorAll(".loading, .empty").forEach(e => e.remove());
+      fetch(DATA_URL + "?t=" + Date.now())
+        .then(r => r.json())
+        .then(d => {
+          data = d;
+          render();
+        })
+        .catch(err => {
+          document.getElementById("matchList").innerHTML = `<div class="empty">❌ Errore caricamento dati</div>`;
+          console.error(err);
+        });
+    }
+
+    function render() {
+      if (!data) return;
+      const now = new Date();
+      document.getElementById("dateDisplay").textContent = now.toLocaleDateString("it-IT", {
+        weekday: "long", day: "numeric", month: "long", year: "numeric"
+      });
+      document.getElementById("lastUpdate").textContent = "🕐 " + now.toLocaleTimeString("it-IT", {hour:"2-digit",minute:"2-digit"});
+
+      renderStats(data);
+      renderMatches(data);
+      renderBets(data);
+      renderHistory(data);
+      renderReport(data);
+    }
+
+    // --- Stats ---
+    function renderStats(d) {
+      const b = d.bankroll || {};
+      const vb = (d.value_bets || []).filter(x => !x.resolved).length;
+      const html = `
+        <div class="stat-card"><div class="val ${b.current >= 200 ? 'green' : 'red'}">€${b.current?.toFixed(0) || 200}</div><div class="lbl">Bankroll</div></div>
+        <div class="stat-card"><div class="val ${b.win_rate >= 60 ? 'green' : b.win_rate >= 50 ? 'amber' : 'red'}">${b.win_rate || 0}%</div><div class="lbl">Win Rate</div></div>
+        <div class="stat-card"><div class="val ${b.pnl_30d >= 0 ? 'green' : 'red'}">€${b.pnl_30d?.toFixed(0) || 0}</div><div class="lbl">P&L 30gg</div></div>
+        <div class="stat-card"><div class="val green">${vb}</div><div class="lbl">Value Live</div></div>
+      `;
+      document.getElementById("statsRow").innerHTML = html;
+    }
+
+    // --- Matches ---
+    function renderMatches(d) {
+      const today = (d.matches?.today || []);
+      const upcoming = (d.matches?.upcoming || []);
+      const recent = (d.matches?.recent || []);
+
+      let html = "";
+
+      if (upcoming.length > 0) {
+        html += `<div style="padding:4px 10px;font-size:12px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">📅 In arrivo (${upcoming.length})</div>`;
+        upcoming.forEach(m => html += renderMatchCard(m, false));
+      }
+
+      if (today.length > 0) {
+        html += `<div style="padding:8px 10px 4px;font-size:12px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">🎾 Oggi</div>`;
+        today.forEach(m => html += renderMatchCard(m, false));
+      }
+
+      if (recent.length > 0) {
+        html += `<div style="padding:8px 10px 4px;font-size:12px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">📋 Recenti</div>`;
+        recent.forEach(m => html += renderMatchCard(m, true));
+      }
+
+      if (!html) {
+        html = `<div class="no-matches"><div class="icon">🎾</div><p>Nessun match disponibile per oggi.<br>I dati vengono aggiornati dal cron giornaliero.</p></div>`;
+      }
+
+      document.getElementById("matchList").innerHTML = html;
+    }
+
+    function renderMatchCard(m, showResult) {
+      const p1 = m.players?.p1 || {};
+      const p2 = m.players?.p2 || {};
+      const hasOdds = m.odds?.best?.winner;
+      const p1prob = hasOdds ? Math.round((1 / m.odds.best.winner) / ((1/m.odds.best.winner)+(1/m.odds.best.loser)) * 100) : null;
+      const p2prob = hasOdds ? 100 - p1prob : null;
+      const fav = p1prob >= p2prob ? "p1" : "p2";
+
+      let resultHtml = "";
+      if (showResult && m.result?.score) {
+        resultHtml = `<div class="match-result">${m.result.score} | ${m.result.w_sets}-${m.result.l_sets} sets</div>`;
+      }
+
+      const surfaceIcon = { "Hard": "🟦", "Clay": "🟧", "Grass": "🟩", "Carpet": "🟪" };
+      const levelLabel = { "G": "Grand Slam", "M": "Masters", "A": "ATP 500", "C": "Challenger", "F": "Finals" };
+
+      return `
+        <div class="match-card">
+          <div class="match-header">
+            <span>${surfaceIcon[m.surface] || "🎾"} ${m.tournament || ""}</span>
+            <span>${levelLabel[m.tour_level] || ""} · ${m.round || ""}</span>
+          </div>
+          <div class="match-players">
+            <div class="player ${fav === 'p1' ? 'fav' : ''}">
+              <div class="name">${p1.name || "?"}</div>
+              <div class="rank">#${p1.rank || "?"} ${p1.country || ""}</div>
+            </div>
+            ${hasOdds ? `<div class="prob-badge">${p1prob}%</div>` : `<div class="prob-badge" style="color:var(--dim)">vs</div>`}
+            <div class="player ${fav === 'p2' ? 'fav' : ''}" style="text-align:right">
+              <div class="name">${p2.name || "?"}</div>
+              <div class="rank">#${p2.rank || "?"} ${p2.country || ""}</div>
+            </div>
+          </div>
+          ${hasOdds ? `<div class="match-footer"><span>📊 ${m.odds.best.bookmaker}: ${m.odds.best.winner.toFixed(2)} / ${m.odds.best.loser.toFixed(2)}</span><span>${m.date}</span></div>` : `<div class="match-footer"><span>${m.date}</span></div>`}
+          ${resultHtml}
+        </div>`;
+    }
+
+    // --- Value Bets ---
+    function renderBets(d) {
+      const bets = d.value_bets || [];
+      if (!bets.length) {
+        document.getElementById("betList").innerHTML = `<div class="empty">💎 Nessuna value bet al momento</div>`;
+        return;
+      }
+
+      let html = bets.map(b => {
+        const profitClass = b.result > 0 ? "won" : b.result < 0 ? "lost" : b.result === 0 ? "push" : "";
+        const statusClass = b.resolved ? profitClass : "pending";
+        const edgePct = (b.edge * 100).toFixed(1);
+        const stakeStr = b.stake ? `€${b.stake.toFixed(2)}` : "";
+        const profitStr = b.result !== null && b.result !== undefined ? (b.result > 0 ? "+" : "") + b.result.toFixed(2) : "";
+        const modelPct = (b.model_prob * 100).toFixed(0);
+
+        return `
+          <div class="bet-card ${statusClass}">
+            <div class="bet-top">
+              <div>
+                <div class="bet-selection">${b.selection}</div>
+                <div class="bet-odds">@${b.odds?.toFixed(2)} · ${b.player1} vs ${b.player2}</div>
+              </div>
+              <div>
+                <div class="bet-edge ${edgePct < 0 ? 'negative' : ''}">+${edgePct}%</div>
+                <div style="font-size:10px;color:var(--dim);text-align:right">edge</div>
+              </div>
+            </div>
+            <div class="bet-details">
+              <span>📊 ${modelPct}% modello</span>
+              <span>${stakeStr}</span>
+              <span>${b.confidence}</span>
+              <span>${b.market}</span>
+              <span>${b.match_date}</span>
+            </div>
+            ${profitStr ? `<div style="margin-top:4px"><span class="bet-profit ${profitClass}">${profitStr} EUR</span></div>` : ""}
+          </div>`;
+      }).join("");
+
+      document.getElementById("betList").innerHTML = html;
+    }
+
+    // --- Storico Scommesse ---
+    function renderHistory(d) {
+      const bets = d.bet_history || [];
+      const bh = d.bankroll_history || [];
+      const b = d.bankroll || {};
+
+      // Stats header
+      document.getElementById("historyStats").innerHTML = `
+        <div class="stat-card"><div class="val ${b.pnl_30d >= 0 ? 'green' : 'red'}">€${(b.pnl_30d || 0).toFixed(0)}</div><div class="lbl">P&L 30gg</div></div>
+        <div class="stat-card"><div class="val ${b.win_rate >= 60 ? 'green' : b.win_rate >= 50 ? 'amber' : 'red'}">${b.win_rate || 0}%</div><div class="lbl">Win Rate</div></div>
+        <div class="stat-card"><div class="val">${b.total_bets || 0}</div><div class="lbl">Totali</div></div>
+      `;
+
+      // Bankroll chart (simple bar chart emoji-style)
+      let chartHtml = `<div style="background:var(--card);border-radius:var(--radius);padding:var(--pad);margin-bottom:4px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">📈 Bankroll Progress</div>`;
+      if (bh.length > 0) {
+        const maxVal = Math.max(...bh.map(d => d.bankroll), 200);
+        const minVal = Math.min(...bh.map(d => d.bankroll), 200);
+        const range = maxVal - minVal || 1;
+        bh.forEach(day => {
+          const pct = ((day.bankroll - minVal) / range * 100).toFixed(0);
+          const barColor = day.pnl >= 0 ? "var(--green)" : "var(--red)";
+          chartHtml += `
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px">
+              <span style="min-width:65px;color:var(--dim)">${day.date.slice(5)}</span>
+              <div style="flex:1;height:18px;background:var(--card2);border-radius:4px;overflow:hidden">
+                <div style="height:100%;width:${pct}%;background:${barColor};border-radius:4px;opacity:0.7"></div>
+              </div>
+              <span style="min-width:50px;text-align:right;font-weight:600;color:${barColor}">€${day.bankroll.toFixed(0)}</span>
+            </div>`;
+        });
+      } else {
+        chartHtml += `<div style="color:var(--dim);font-size:13px;text-align:center;padding:12px">€200.00 (bankroll iniziale)</div>`;
+      }
+      chartHtml += `</div>`;
+      document.getElementById("historyChart").innerHTML = chartHtml;
+
+      // Bet history list
+      if (!bets.length) {
+        document.getElementById("historyList").innerHTML = `<div class="empty">📜 Nessuna scommessa ancora</div>`;
+        return;
+      }
+
+      // Group by date
+      const grouped = {};
+      bets.forEach(b => {
+        const d = b.date;
+        if (!grouped[d]) grouped[d] = [];
+        grouped[d].push(b);
+      });
+
+      let html = "";
+      Object.entries(grouped).forEach(([date, dayBets]) => {
+        const dayPnl = dayBets.reduce((s, b) => s + (b.profit || 0), 0);
+        const dayWins = dayBets.filter(b => b.status === "won").length;
+        const dayLoss = dayBets.filter(b => b.status === "lost").length;
+        html += `<div style="font-size:12px;color:var(--dim);font-weight:600;padding:6px 0 2px;text-transform:uppercase;letter-spacing:0.5px">
+          📅 ${date} · ${dayWins}W ${dayLoss}L · <span style="color:${dayPnl >= 0 ? 'var(--green)' : 'var(--red)'}">${dayPnl >= 0 ? '+' : ''}€${dayPnl.toFixed(2)}</span>
+        </div>`;
+        dayBets.forEach(b => {
+          const profitClass = b.status === "won" ? "won" : b.status === "lost" ? "lost" : "push";
+          const edgePct = (b.edge * 100).toFixed(1);
+          const modelPct = (b.model_prob * 100).toFixed(0);
+          const stakeStr = b.stake ? `€${b.stake.toFixed(2)}` : "";
+          const profitStr = b.profit !== null && b.profit !== undefined ? (b.profit > 0 ? "+" : "") + b.profit.toFixed(2) : "";
+          html += `
+            <div class="bet-card ${profitClass}" style="margin-bottom:6px">
+              <div class="bet-top">
+                <div>
+                  <div class="bet-selection">${b.selection}</div>
+                  <div class="bet-odds">@${b.odds?.toFixed(2)} · ${b.player1} vs ${b.player2}</div>
+                </div>
+                <div>
+                  <div class="bet-profit ${profitClass}">${profitStr}</div>
+                  <div style="font-size:10px;color:var(--dim);text-align:right">${b.status}</div>
+                </div>
+              </div>
+              <div class="bet-details">
+                <span>📊 ${modelPct}%</span>
+                <span>${stakeStr}</span>
+                <span>+${edgePct}%</span>
+                <span>${b.confidence}</span>
+                <span>${b.market}</span>
+              </div>
+            </div>`;
+        });
+      });
+
+      document.getElementById("historyList").innerHTML = html;
+    }
+
+    // --- Report ---
+    function renderReport(d) {
+      const reportText = d.last_report;
+      if (!reportText) {
+        document.getElementById("reportBox").innerHTML = `<div class="empty">📋 Nessun report disponibile</div>`;
+        return;
+      }
+      document.getElementById("reportBox").innerHTML = `<pre>${reportText}</pre>`;
+    }
+
+    // --- Tab switching ---
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", function() {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+        this.classList.add("active");
+        document.getElementById("panel-" + this.dataset.tab).classList.add("active");
+      });
+    });
+
+    // --- Refresh ---
+    document.getElementById("refreshBtn").addEventListener("click", loadData);
+
+    // --- Init ---
+    loadData();
+
+    // Auto-refresh every 2 minutes
+    setInterval(loadData, 120000);
+  </script>
+</body>
+</html>
