@@ -162,20 +162,53 @@ def load_value_bets(db, days=2):
 
     bets = []
     for r in rows:
+        # Arricchisci con tournament/surface dal DB se match_id presente
+        tournament = r["tournament"] or ""
+        surface = r["surface"] or ""
+        if r["match_id"] and not tournament:
+            m = db.conn.execute("SELECT tournament, surface, round, tour_level FROM tennis_matches WHERE id=?", (r["match_id"],)).fetchone()
+            if m:
+                tournament = m["tournament"] or ""
+                surface = m["surface"] or ""
+
+        # Formatta market in italiano
+        market_label = {
+            "match_winner": "Vincitore",
+            "game_handicap": "Handicap Game",
+            "over_under": "Totale Game",
+        }.get(r["market"], r["market"] or "")
+
+        # Formatta selezione
+        selection = r["selection"] or ""
+        if r["market"] == "match_winner" and selection:
+            selection = f"{selection} vince"
+        elif r["market"] == "over_under" and selection:
+            selection = selection.replace("O/U", "Totale").replace("Over", "Oltre").replace("Under", "Sotto")
+        elif r["market"] == "game_handicap" and selection:
+            selection = f"{selection}"
+
         resolved = r["result"] is not None
         bets.append({
             "id": r["id"],
             "match_id": r["match_id"],
             "match_date": r["match_date"],
+            "match_datetime": r["match_datetime"] or "",
             "player1": r["player1"],
             "player2": r["player2"],
-            "selection": r["selection"],
+            "selection": selection,
+            "selection_raw": r["selection"] or "",
             "odds": r["odds"],
             "model_prob": r["model_prob"],
             "edge": r["edge"],
+            "edge_pct": round(r["edge"] * 100, 1),
             "stake": r["stake"],
-            "confidence": r["confidence"],
+            "confidence": r["confidence"] or "",
             "market": r["market"],
+            "market_label": market_label,
+            "tournament": tournament,
+            "surface": surface,
+            "bookmaker": r["bookmaker"] or "",
+            "status": r["status"],
             "result": r["result"],
             "resolved": resolved,
             "profit": r["result"],

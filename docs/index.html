@@ -97,6 +97,23 @@
     .bet-details span { background: var(--card2); padding: 2px 8px; border-radius: 4px; }
     .bet-profit { font-size: 14px; font-weight: 700; }
     .bet-profit.won { color: var(--green); }
+    /* New bet card style */
+    .bet-header { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--dim); margin-bottom: 6px; }
+    .bet-status { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+    .bet-card.won .bet-status { color: var(--green); }
+    .bet-card.lost .bet-status { color: var(--red); }
+    .bet-players { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 14px; font-weight: 600; }
+    .bet-vs { color: var(--dim); font-size: 12px; font-weight: 400; }
+    .bet-pick { text-align: center; font-size: 13px; font-weight: 700; color: var(--green); background: var(--card2); padding: 4px 10px; border-radius: 6px; margin-bottom: 8px; }
+    .bet-pick .bet-odds { font-weight: 400; color: var(--dim); margin-left: 6px; }
+    .bet-details { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 8px; }
+    .bet-detail-item { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 6px; }
+    .bet-detail-label { color: var(--dim); }
+    .bet-detail-value { font-weight: 600; }
+    .bet-footer { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); padding-top: 6px; border-top: 1px solid #334155; }
+    .bet-profit-row { text-align: center; font-size: 14px; font-weight: 700; padding: 4px; margin-top: 6px; border-radius: 4px; }
+    .bet-profit-row.won { color: var(--green); background: rgba(34,197,94,0.1); }
+    .bet-profit-row.lost { color: var(--red); background: rgba(239,68,68,0.1); }
     .bet-profit.lost { color: var(--red); }
     .bet-profit.push { color: var(--amber); }
     /* ELO rankings */
@@ -322,38 +339,73 @@
     function renderBets(d) {
       const bets = d.value_bets || [];
       if (!bets.length) {
-        document.getElementById("betList").innerHTML = `<div class="empty">💎 Nessuna value bet al momento</div>`;
+        document.getElementById("betList").innerHTML = `<div class="empty">Nessuna value bet al momento</div>`;
         return;
       }
 
+      const surfaceIcon = { "Hard": "[H]", "Clay": "[C]", "Grass": "[G]", "Carpet": "[R]" };
+
       let html = bets.map(b => {
-        const profitClass = b.result > 0 ? "won" : b.result < 0 ? "lost" : b.result === 0 ? "push" : "";
-        const statusClass = b.resolved ? profitClass : "pending";
-        const edgePct = (b.edge * 100).toFixed(1);
-        const stakeStr = b.stake ? `€${b.stake.toFixed(2)}` : "";
-        const profitStr = b.result !== null && b.result !== undefined ? (b.result > 0 ? "+" : "") + b.result.toFixed(2) : "";
-        const modelPct = (b.model_prob * 100).toFixed(0);
+        const isPending = b.status === "pending" || !b.resolved;
+        const isWon = b.status === "won" || (b.resolved && b.result > 0);
+        const isLost = b.status === "lost" || (b.resolved && b.result < 0);
+        const statusClass = isWon ? "won" : isLost ? "lost" : "pending";
+
+        const modelPct = Math.round(b.model_prob * 100);
+        const stakeStr = b.stake ? b.stake.toFixed(2) + "" : "";
+        const profitStr = !isPending ? ((b.result > 0 ? "+" : "") + b.result.toFixed(2)) : "";
+        const edgeStr = b.edge_pct != null ? b.edge_pct.toFixed(1) : (b.edge ? (b.edge * 100).toFixed(1) : "?");
+
+        let dateTimeStr = b.match_date || "";
+        if (b.match_datetime) {
+          dateTimeStr = b.match_datetime;
+        }
+
+        const tournament = b.tournament || "ATP";
+        const surface = surfaceIcon[b.surface] || " ";
+        const marketLabel = b.market_label || b.market || "";
+
+        const statusLabel = isWon ? "Vinta" : isLost ? "Persa" : "In corso";
 
         return `
           <div class="bet-card ${statusClass}">
-            <div class="bet-top">
-              <div>
-                <div class="bet-selection">${b.selection}</div>
-                <div class="bet-odds">@${b.odds?.toFixed(2)} · ${b.player1} vs ${b.player2}</div>
-              </div>
-              <div>
-                <div class="bet-edge ${edgePct < 0 ? 'negative' : ''}">+${edgePct}%</div>
-                <div style="font-size:10px;color:var(--dim);text-align:right">edge</div>
-              </div>
+            <div class="bet-header">
+              <span>${surface} ${tournament}</span>
+              <span class="bet-status">${statusLabel}</span>
+            </div>
+            <div class="bet-players">
+              <span class="bet-player">${b.player1 || "?"}</span>
+              <span class="bet-vs">vs</span>
+              <span class="bet-player">${b.player2 || "?"}</span>
+            </div>
+            <div class="bet-pick">
+              ${b.selection || b.selection_raw || "?"}
+              <span class="bet-odds">@${b.odds?.toFixed(2)}</span>
             </div>
             <div class="bet-details">
-              <span>📊 ${modelPct}% modello</span>
-              <span>${stakeStr}</span>
-              <span>${b.confidence}</span>
-              <span>${b.market}</span>
-              <span>${b.match_date}</span>
+              <div class="bet-detail-item">
+                <span class="bet-detail-label">Modello</span>
+                <span class="bet-detail-value">${modelPct}%</span>
+              </div>
+              <div class="bet-detail-item">
+                <span class="bet-detail-label">Edge</span>
+                <span class="bet-detail-value green">+${edgeStr}%</span>
+              </div>
+              <div class="bet-detail-item">
+                <span class="bet-detail-label">Stake</span>
+                <span class="bet-detail-value">${stakeStr}</span>
+              </div>
+              <div class="bet-detail-item">
+                <span class="bet-detail-label">Confidenza</span>
+                <span class="bet-detail-value">${b.confidence || "-"}</span>
+              </div>
             </div>
-            ${profitStr ? `<div style="margin-top:4px"><span class="bet-profit ${profitClass}">${profitStr} EUR</span></div>` : ""}
+            <div class="bet-footer">
+              <span>${dateTimeStr}</span>
+              <span>${marketLabel}</span>
+              <span>${b.bookmaker || "-"}</span>
+            </div>
+            ${profitStr ? `<div class="bet-profit-row ${statusClass}">${profitStr}</div>` : ""}
           </div>`;
       }).join("");
 
