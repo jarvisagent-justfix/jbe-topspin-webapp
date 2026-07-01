@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T19:36:13.121543",
+  "generated_at": "2026-07-01T19:47:53.079591",
   "date": "2026-07-01",
   "matches": {
     "today": [],
@@ -968,59 +968,66 @@
   "log_entries": [
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "Nessuna bet trovata"
+      "desc": "Nessuna bet trovata",
+      "info": null
     },
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "Nessuna bet trovata"
+      "desc": "Nessuna bet trovata",
+      "info": "[INFO] Self-Improvement: analisi errori per slice..."
     },
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "Nessuna bet trovata"
+      "desc": "Nessuna bet trovata",
+      "info": null
     },
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "📡 13 match analizzati · 💎 12 value bet trovate"
+      "desc": "📡 13 match analizzati · 💎 12 value bet trovate",
+      "info": null
     },
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "Nessuna bet trovata"
+      "desc": "Nessuna bet trovata",
+      "info": null
     },
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "Nessuna bet trovata"
+      "desc": "Nessuna bet trovata",
+      "info": null
     },
     {
       "date": "2026-07-01",
-      "time": "??:??",
+      "time": "19:47",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "💰 💼 Bankroll corrente: 200 EUR"
+      "desc": "💰 💼 Bankroll corrente: 200 EUR",
+      "info": "🔄 Self-Improvement: | 📊 Copertura 2026: | Webapp data generato: /opt/data/jbe-topspin-webapp/webapp/api/data.json | ===== Fatto: Tue Jun 30 17:47:49 UTC 2026 ====="
     },
     {
       "date": "2026-06-30",
@@ -1028,23 +1035,8 @@
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "📡 13 match analizzati · 💎 12 value bet trovate · ⚠️ 4 errori"
-    },
-    {
-      "date": "2026-06-30",
-      "time": "17:47",
-      "icon": "💎",
-      "type": "value_bet",
-      "title": "Tallon Griekspoor vs James Duckworth",
-      "desc": "🏆 Tallon Griekspoor · Edge +15.6% @2.80 · HIGH"
-    },
-    {
-      "date": "2026-06-30",
-      "time": "17:47",
-      "icon": "💎",
-      "type": "value_bet",
-      "title": "Tallon Griekspoor vs James Duckworth",
-      "desc": "⚖️ Tallon Griekspoor +1.5 · Edge +17.6% @2.23 · MEDIUM"
+      "desc": "📡 13 match analizzati · 💎 12 value bet trovate · ⚠️ 4 errori",
+      "info": null
     },
     {
       "date": "2026-06-30",
@@ -1052,7 +1044,26 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Tallon Griekspoor vs James Duckworth",
-      "desc": "📊 O/U 47.5 · Edge +49.4% @2.10 · MEDIUM"
+      "desc": "🏆 Tallon Griekspoor · Edge +15.6% @2.80 · HIGH",
+      "info": "Edge positivo (+15.6%) — quotazione 2.80, confidenza HIGH"
+    },
+    {
+      "date": "2026-06-30",
+      "time": "17:47",
+      "icon": "💎",
+      "type": "value_bet",
+      "title": "Tallon Griekspoor vs James Duckworth",
+      "desc": "⚖️ Tallon Griekspoor +1.5 · Edge +17.6% @2.23 · MEDIUM",
+      "info": "Edge positivo (+17.6%) — quotazione 2.23, confidenza MEDIUM"
+    },
+    {
+      "date": "2026-06-30",
+      "time": "17:47",
+      "icon": "💎",
+      "type": "value_bet",
+      "title": "Tallon Griekspoor vs James Duckworth",
+      "desc": "📊 O/U 47.5 · Edge +49.4% @2.10 · MEDIUM",
+      "info": "Edge molto alto (+49.4%) — quotazione 2.10, confidenza MEDIUM"
     },
     {
       "date": "2026-06-30",
@@ -1060,7 +1071,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Dane Sweeny vs Grigor Dimitrov",
-      "desc": "🏆 Dane Sweeny · Edge +32.7% @4.17 · HIGH"
+      "desc": "🏆 Dane Sweeny · Edge +32.7% @4.17 · HIGH",
+      "info": "Edge molto alto (+32.7%) — quotazione 4.17, confidenza HIGH"
     },
     {
       "date": "2026-06-30",
@@ -1068,7 +1080,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Frances Tiafoe vs Terence Atmane",
-      "desc": "⚖️ Terence Atmane +5.0 · Edge +32.5% @1.89 · MEDIUM"
+      "desc": "⚖️ Terence Atmane +5.0 · Edge +32.5% @1.89 · MEDIUM",
+      "info": "Edge molto alto (+32.5%) — quotazione 1.89, confidenza MEDIUM"
     },
     {
       "date": "2026-06-30",
@@ -1076,7 +1089,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Frances Tiafoe vs Terence Atmane",
-      "desc": "📊 O/U 40.0 · Edge +45.2% @1.93 · MEDIUM"
+      "desc": "📊 O/U 40.0 · Edge +45.2% @1.93 · MEDIUM",
+      "info": "Edge molto alto (+45.2%) — quotazione 1.93, confidenza MEDIUM"
     },
     {
       "date": "2026-06-30",
@@ -1084,7 +1098,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Alex de Minaur vs Adrian Mannarino",
-      "desc": "🏆 Alex de Minaur · Edge +17.3% @1.30 · HIGH"
+      "desc": "🏆 Alex de Minaur · Edge +17.3% @1.30 · HIGH",
+      "info": "Edge positivo (+17.3%) — quotazione 1.30, confidenza HIGH"
     },
     {
       "date": "2026-06-30",
@@ -1092,7 +1107,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Alex de Minaur vs Adrian Mannarino",
-      "desc": "⚖️ Adrian Mannarino +6.5 · Edge +36.9% @1.80 · MEDIUM"
+      "desc": "⚖️ Adrian Mannarino +6.5 · Edge +36.9% @1.80 · MEDIUM",
+      "info": "Edge molto alto (+36.9%) — quotazione 1.80, confidenza MEDIUM"
     },
     {
       "date": "2026-06-30",
@@ -1100,7 +1116,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Alex de Minaur vs Adrian Mannarino",
-      "desc": "📊 O/U 35.5 · Edge +43.9% @1.92 · MEDIUM"
+      "desc": "📊 O/U 35.5 · Edge +43.9% @1.92 · MEDIUM",
+      "info": "Edge molto alto (+43.9%) — quotazione 1.92, confidenza MEDIUM"
     },
     {
       "date": "2026-06-30",
@@ -1108,7 +1125,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Arthur Fery vs Otto Virtanen",
-      "desc": "🏆 Arthur Fery · Edge +10.9% @2.20 · HIGH"
+      "desc": "🏆 Arthur Fery · Edge +10.9% @2.20 · HIGH",
+      "info": "Edge positivo (+10.9%) — quotazione 2.20, confidenza HIGH"
     },
     {
       "date": "2026-06-30",
@@ -1116,7 +1134,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Lorenzo Sonego vs Tomas Martin Etcheverry",
-      "desc": "🏆 Tomas Martin Etcheverry · Edge +28.5% @3.62 · HIGH"
+      "desc": "🏆 Tomas Martin Etcheverry · Edge +28.5% @3.62 · HIGH",
+      "info": "Edge positivo (+28.5%) — quotazione 3.62, confidenza HIGH"
     },
     {
       "date": "2026-06-30",
@@ -1124,7 +1143,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Corentin Moutet vs Marcos Giron",
-      "desc": "🏆 Corentin Moutet · Edge +31.1% @3.99 · HIGH"
+      "desc": "🏆 Corentin Moutet · Edge +31.1% @3.99 · HIGH",
+      "info": "Edge molto alto (+31.1%) — quotazione 3.99, confidenza HIGH"
     },
     {
       "date": "2026-06-29",
@@ -1132,7 +1152,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Brandon Nakashima vs Jack Pinnington Jones",
-      "desc": "🏆 Jack Pinnington Jones · Edge +48.8% @9.62 · HIGH"
+      "desc": "🏆 Jack Pinnington Jones · Edge +48.8% @9.62 · HIGH",
+      "info": "Edge molto alto (+48.8%) — quotazione 9.62, confidenza HIGH"
     },
     {
       "date": "2026-06-29",
@@ -1140,7 +1161,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Emilio Nava vs Ignacio Buse",
-      "desc": "📊 O/U 40.0 · Edge +44.9% @1.92 · MEDIUM"
+      "desc": "📊 O/U 40.0 · Edge +44.9% @1.92 · MEDIUM",
+      "info": "Edge molto alto (+44.9%) — quotazione 1.92, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1148,7 +1170,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Aleksandar Kovacevic vs Botic van de Zandschulp",
-      "desc": "📊 O/U 42.0 · Edge +44.6% @1.91 · MEDIUM"
+      "desc": "📊 O/U 42.0 · Edge +44.6% @1.91 · MEDIUM",
+      "info": "Edge molto alto (+44.6%) — quotazione 1.91, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1156,7 +1179,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Aleksandar Vukic vs Jenson Brooksby",
-      "desc": "🏆 Jenson Brooksby · Edge +20.4% @1.48 · HIGH"
+      "desc": "🏆 Jenson Brooksby · Edge +20.4% @1.48 · HIGH",
+      "info": "Edge positivo (+20.4%) — quotazione 1.48, confidenza HIGH"
     },
     {
       "date": "2026-06-29",
@@ -1164,7 +1188,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Aleksandar Vukic vs Jenson Brooksby",
-      "desc": "⚖️ Jenson Brooksby -4.0 · Edge +20.8% @1.93 · MEDIUM"
+      "desc": "⚖️ Jenson Brooksby -4.0 · Edge +20.8% @1.93 · MEDIUM",
+      "info": "Edge positivo (+20.8%) — quotazione 1.93, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1172,7 +1197,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Aleksandar Vukic vs Jenson Brooksby",
-      "desc": "📊 O/U 38.5 · Edge +35.4% @1.93 · MEDIUM"
+      "desc": "📊 O/U 38.5 · Edge +35.4% @1.93 · MEDIUM",
+      "info": "Edge molto alto (+35.4%) — quotazione 1.93, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1180,7 +1206,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Andrey Rublev vs Roman Safiullin",
-      "desc": "🏆 Roman Safiullin · Edge +26.0% @2.72 · HIGH"
+      "desc": "🏆 Roman Safiullin · Edge +26.0% @2.72 · HIGH",
+      "info": "Edge positivo (+26.0%) — quotazione 2.72, confidenza HIGH"
     },
     {
       "date": "2026-06-29",
@@ -1188,7 +1215,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Andrey Rublev vs Roman Safiullin",
-      "desc": "📊 O/U 41.5 · Edge +45.2% @1.93 · MEDIUM"
+      "desc": "📊 O/U 41.5 · Edge +45.2% @1.93 · MEDIUM",
+      "info": "Edge molto alto (+45.2%) — quotazione 1.93, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1196,7 +1224,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Dalibor Svrcina vs Learner Tien",
-      "desc": "📊 O/U 31.5 · Edge +30.0% @1.90 · MEDIUM"
+      "desc": "📊 O/U 31.5 · Edge +30.0% @1.90 · MEDIUM",
+      "info": "Edge molto alto (+30.0%) — quotazione 1.90, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1204,7 +1233,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Denis Shapovalov vs Pablo Carreno Busta",
-      "desc": "🏆 Pablo Carreno Busta · Edge +50.7% @3.25 · HIGH"
+      "desc": "🏆 Pablo Carreno Busta · Edge +50.7% @3.25 · HIGH",
+      "info": "Edge molto alto (+50.7%) — quotazione 3.25, confidenza HIGH"
     },
     {
       "date": "2026-06-29",
@@ -1212,7 +1242,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Denis Shapovalov vs Pablo Carreno Busta",
-      "desc": "⚖️ Pablo Carreno Busta +5.0 · Edge +27.9% @1.89 · MEDIUM"
+      "desc": "⚖️ Pablo Carreno Busta +5.0 · Edge +27.9% @1.89 · MEDIUM",
+      "info": "Edge positivo (+27.9%) — quotazione 1.89, confidenza MEDIUM"
     },
     {
       "date": "2026-06-29",
@@ -1220,7 +1251,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Denis Shapovalov vs Pablo Carreno Busta",
-      "desc": "📊 O/U 38.5 · Edge +36.8% @1.95 · MEDIUM"
+      "desc": "📊 O/U 38.5 · Edge +36.8% @1.95 · MEDIUM",
+      "info": "Edge molto alto (+36.8%) — quotazione 1.95, confidenza MEDIUM"
     },
     {
       "date": "2026-06-25",
@@ -1228,7 +1260,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Hugo Gaston vs Moez Echargui",
-      "desc": "🏆 Moez Echargui · Edge +62.5% @3.58 · HIGH"
+      "desc": "🏆 Moez Echargui · Edge +62.5% @3.58 · HIGH",
+      "info": "Edge molto alto (+62.5%) — quotazione 3.58, confidenza HIGH"
     },
     {
       "date": "2026-06-25",
@@ -1236,7 +1269,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Hugo Gaston vs Moez Echargui",
-      "desc": "⚖️ Moez Echargui +5.5 · Edge +44.4% @1.91 · MEDIUM"
+      "desc": "⚖️ Moez Echargui +5.5 · Edge +44.4% @1.91 · MEDIUM",
+      "info": "Edge molto alto (+44.4%) — quotazione 1.91, confidenza MEDIUM"
     },
     {
       "date": "2026-06-25",
@@ -1244,7 +1278,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Hugo Gaston vs Moez Echargui",
-      "desc": "📊 O/U 37.5 · Edge +47.0% @1.91 · MEDIUM"
+      "desc": "📊 O/U 37.5 · Edge +47.0% @1.91 · MEDIUM",
+      "info": "Edge molto alto (+47.0%) — quotazione 1.91, confidenza MEDIUM"
     },
     {
       "date": "2026-06-25",
@@ -1252,7 +1287,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Dane Sweeny vs Marcelo Tomas Barrios Vera",
-      "desc": "🏆 Marcelo Tomas Barrios Vera · Edge +38.3% @2.30 · HIGH"
+      "desc": "🏆 Marcelo Tomas Barrios Vera · Edge +38.3% @2.30 · HIGH",
+      "info": "Edge molto alto (+38.3%) — quotazione 2.30, confidenza HIGH"
     },
     {
       "date": "2026-06-25",
@@ -1260,7 +1296,8 @@
       "icon": "💎",
       "type": "value_bet",
       "title": "Jaime Faria vs Rei Sakamoto",
-      "desc": "🏆 Rei Sakamoto · Edge +56.7% @4.58 · HIGH"
+      "desc": "🏆 Rei Sakamoto · Edge +56.7% @4.58 · HIGH",
+      "info": "Edge molto alto (+56.7%) — quotazione 4.58, confidenza HIGH"
     }
   ],
   "api_status": {

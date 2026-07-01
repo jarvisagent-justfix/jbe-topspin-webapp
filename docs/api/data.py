@@ -379,59 +379,64 @@ def load_bankroll_history(db):
 
 def load_log_entries():
     """Costruisce log strutturati dal pipeline log e dal DB."""
+    import calendar as cal
     base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     entries = []
+
+    def parse_pipeline_ts(header):
+        """Parsa 'Tue Jun 30 17:47:39 UTC 2026' manualmente (strptime con %Z è inaffidabile)."""
+        import re
+        m = re.search(r'(\w{3})\s+(\w{3})\s+(\d+)\s+(\d{2}):(\d{2}):(\d{2})\s+\w{3}\s+(\d{4})', header)
+        if not m:
+            return None, None
+        try:
+            month_num = list(cal.month_abbr).index(m.group(2).capitalize())
+            day = int(m.group(3))
+            h, mi, s = int(m.group(4)), int(m.group(5)), int(m.group(6))
+            yr = int(m.group(7))
+            ts = datetime(yr, month_num, day, h, mi, s)
+            return ts.strftime("%Y-%m-%d"), ts.strftime("%H:%M")
+        except:
+            return None, None
 
     # 1. Leggi pipeline log
     pipeline_log = "/tmp/jbe-pipeline.log"
     if os.path.exists(pipeline_log):
         with open(pipeline_log) as f:
             content = f.read()
-        # Split per run (separatore =====)
         runs = content.split("=" * 40)
         for run in runs:
             if not run.strip():
                 continue
             lines = run.strip().split("\n")
-            # Prima riga: "===== JBE Pipeline: Tue Jun 30 17:47:39 UTC 2026 ====="
             header = lines[0] if lines else ""
-            # Cerca timestamp
-            import re
-            ts_match = re.search(r'(\w{3}\s+\w{3}\s+\d+\s+\d{2}:\d{2}:\d{2}\s+\w{3}\s+\d{4})', header)
-            if ts_match:
-                try:
-                    ts = datetime.strptime(ts_match.group(1), "%a %b %d %H:%M:%S %Z %Y")
-                    date_key = ts.strftime("%Y-%m-%d")
-                    time_key = ts.strftime("%H:%M")
-                except:
-                    date_key = date.today().isoformat()
-                    time_key = "??:??"
-            else:
+            date_key, time_key = parse_pipeline_ts(header)
+            if not date_key:
+                # Se non c'è timestamp nel header, usa il modtime del file
                 date_key = date.today().isoformat()
-                time_key = "??:??"
+                time_key = datetime.now().strftime("%H:%M")
 
-            # Estrai info dal run
             value_count = len([l for l in lines if "VALUE BET" in l])
             err_count = len([l for l in lines if "ERRORE" in l or "ERROR" in l])
             match_count = None
             for l in lines:
                 if "Match trovati:" in l:
-                    try:
-                        match_count = int(l.split("Match trovati:")[1].split()[0])
-                    except:
-                        pass
-            # Cerca riepilogo
-            summary_line = None
-            for l in lines:
-                if "Match analizzati:" in l:
-                    summary_line = l.strip()
-            # Cerca bankroll
-            bankroll_line = None
-            for l in lines:
-                if "Bankroll" in l and "EUR" in l:
-                    bankroll_line = l.strip()
+                    try: match_count = int(l.split("Match trovati:")[1].split()[0])
+                    except: pass
 
-            # Entry: pipeline run
+            # Estrai dettagli extra per info
+            info_parts = []
+            for l in lines:
+                ls = l.strip()
+                if "Self-Improvement:" in ls:
+                    info_parts.append(ls)
+                if "Copertura" in ls and "2026" in ls:
+                    info_parts.append(ls)
+                if "Webapp data generato" in ls:
+                    info_parts.append(ls.replace("✅ ", ""))
+                if "Fatto:" in ls:
+                    info_parts.append(ls)
+
             icon = "🔄"
             title = "Pipeline eseguita"
             desc_parts = []
@@ -441,8 +446,11 @@ def load_log_entries():
                 desc_parts.append(f"💎 {value_count} value bet trovate")
             if err_count > 0:
                 desc_parts.append(f"⚠️ {err_count} errori")
-            if bankroll_line:
-                desc_parts.append(f"💰 {bankroll_line}")
+            bankroll_line = None
+            for l in lines:
+                if "Bankroll" in l and "EUR" in l:
+                    bankroll_line = l.strip()
+                    desc_parts.append(f"💰 {bankroll_line}")
 
             entries.append({
                 "date": date_key,
@@ -451,6 +459,7 @@ def load_log_entries():
                 "type": "pipeline",
                 "title": title,
                 "desc": " · ".join(desc_parts) if desc_parts else "Nessuna bet trovata",
+                "info": " | ".join(info_parts) if info_parts else None,
             })
 
     # 2. Value bet events dal DB
@@ -475,6 +484,8 @@ def load_log_entries():
             market_emoji = {"match_winner": "🏆", "game_handicap": "⚖️", "over_under": "📊"}
             me = market_emoji.get(r["market"], "🎯")
             edge_pct = round((r["edge"] or 0) * 100, 1)
+            model_pct = "N/A"
+            edge_desc = "molto alto" if edge_pct >= 30 else "positivo"
             entries.append({
                 "date": date_key,
                 "time": time_key,
@@ -482,6 +493,7 @@ def load_log_entries():
                 "type": "value_bet",
                 "title": f"{r['player1']} vs {r['player2']}",
                 "desc": f"{me} {r['selection']} · Edge +{edge_pct}% @{r['odds']:.2f} · {r['confidence'] or '-'}",
+                "info": f"Edge {edge_desc} (+{edge_pct}%) — quotazione {r['odds']:.2f}, confidenza {r['confidence'] or 'N/A'}",
             })
     except Exception as e:
         entries.append({
@@ -491,9 +503,9 @@ def load_log_entries():
             "type": "system",
             "title": "Errore DB",
             "desc": str(e),
+            "info": None,
         })
 
-    # Ordina per data (decrescente) e ora (decrescente)
     entries.sort(key=lambda e: (e["date"], e["time"]), reverse=True)
     return entries
 

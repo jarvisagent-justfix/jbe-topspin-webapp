@@ -22,7 +22,7 @@
     body{
       font-family:var(--font);background:var(--bg);color:var(--text);
       min-height:100dvh;-webkit-font-smoothing:antialiased;
-      padding-bottom:calc(var(--nav-h) + 12px);
+      padding-bottom:calc(var(--nav-h) + 24px);
     }
     /* ── Header ── */
     .header{
@@ -296,9 +296,13 @@
     }
     .log-title{font-size:14px;font-weight:700;line-height:1.3;color:var(--text)}
     .log-desc{font-size:12px;color:var(--dim);margin-top:4px;line-height:1.4}
+    .log-info{
+      font-size:11px;color:var(--muted);margin-top:8px;padding-top:6px;
+      border-top:1px solid rgba(255,255,255,0.05);line-height:1.4;
+    }
     .history-chart{margin-bottom:10px}
     .history-list{display:flex;flex-direction:column;gap:4px}
-    .bottom-spacer{height:10px}
+    .bottom-spacer{height:24px}
   </style>
 </head>
 <body>
@@ -876,6 +880,7 @@
                 </div>
                 <div class="log-title">${e.icon} ${e.title}</div>
                 <div class="log-desc">${e.desc}</div>
+                ${e.info ? `<div class="log-info">\u{1f4a1} ${e.info}</div>` : ""}
               </div>
             </div>`;
         });
