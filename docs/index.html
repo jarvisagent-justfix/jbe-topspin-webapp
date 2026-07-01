@@ -302,7 +302,51 @@
     }
     .log-info-line{padding:2px 0;line-height:1.5}
     .log-info-line:first-child{padding-top:0}
-    .history-chart{margin-bottom:10px}
+    /* ── Sub-tabs (WALLET) ── */
+    .sub-tabs{
+      display:flex;margin:10px var(--pad);gap:4px;
+      background:var(--card);border-radius:var(--radius);padding:4px;
+    }
+    .sub-tab{
+      flex:1;text-align:center;padding:9px 4px;border-radius:9px;
+      font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;
+      transition:all 0.2s;user-select:none;border:none;background:transparent;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .sub-tab.active{background:var(--green);color:#0b1120}
+    .sub-tab:not(.active):hover{color:var(--text)}
+    .sub-panel{display:none}
+    .sub-panel.active{display:block}
+    /* ── Statistiche cards ── */
+    .stats-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:8px;
+      padding:0 var(--pad);
+    }
+    .stats-card-lg{
+      background:var(--card);border-radius:var(--radius);padding:14px;
+      text-align:center;grid-column:span 2;
+    }
+    .stats-card-lg .val{font-size:24px;font-weight:800;line-height:1.2}
+    .stats-card-lg .lbl{font-size:11px;color:var(--dim);margin-top:4px;text-transform:uppercase;letter-spacing:0.4px;font-weight:600}
+    .stat-cell{
+      background:var(--card);border-radius:var(--radius);padding:12px 8px;
+      text-align:center;
+    }
+    .stat-cell .val{font-size:18px;font-weight:700;line-height:1.2}
+    .stat-cell .val.green{color:var(--green)}
+    .stat-cell .val.red{color:var(--red)}
+    .stat-cell .val.amber{color:var(--amber)}
+    .stat-cell .val.gray{color:var(--dim)}
+    .stat-cell .lbl{font-size:9px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:0.3px;font-weight:600}
+    /* ── Win/Loss bar ── */
+    .wl-bar{display:flex;height:20px;border-radius:10px;overflow:hidden;margin:10px var(--pad) 4px}
+    .wl-bar .w{background:var(--green);transition:width 0.5s}
+    .wl-bar .l{background:var(--red);transition:width 0.5s}
+    .wl-bar .p{background:var(--muted);transition:width 0.5s}
+    .wl-label{display:flex;justify-content:space-between;padding:0 var(--pad);font-size:10px;color:var(--dim);margin-bottom:8px}
+    .wl-label .w{color:var(--green);font-weight:600}
+    .wl-label .l{color:var(--red);font-weight:600}
+    .wl-label .p{color:var(--muted);font-weight:600}
     .history-list{display:flex;flex-direction:column;gap:4px}
     .bottom-spacer{height:24px}
   </style>
@@ -335,10 +379,21 @@
     <div class="bet-list" id="betList"></div>
   </div>
   <div class="panel" id="panel-history">
-    <div style="padding:0 var(--pad);display:flex;flex-direction:column;gap:8px">
-      <div class="page-stats" id="historyStats" style="margin:0;padding:0;grid-template-columns:repeat(3,1fr)"></div>
-      <div class="history-chart" id="historyChart"></div>
+    <div class="sub-tabs">
+      <button class="sub-tab active" data-sub="giocate">\u{1f3b1} Giocate</button>
+      <button class="sub-tab" data-sub="statistiche">\u{1f4ca} Statistiche</button>
+    </div>
+    <div class="sub-panel active" id="sub-giocate">
       <div class="history-list" id="historyList"></div>
+    </div>
+    <div class="sub-panel" id="sub-statistiche">
+      <div class="stats-grid" id="statsGrid"></div>
+      <div style="padding:10px var(--pad) 0">
+        <div style="background:var(--card);border-radius:var(--radius);padding:var(--pad)">
+          <div style="font-size:13px;font-weight:600;margin-bottom:10px">\u{1f4c8} Bankroll Progress</div>
+          <div id="historyChart"></div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="panel" id="panel-report">
@@ -367,8 +422,8 @@
       <span>Value</span>
     </button>
     <button class="nav-item" data-tab="history">
-      <span class="nav-icon">&#x1f4dc;</span>
-      <span>Storico</span>
+      <span class="nav-icon">&#x1f4b0;</span>
+      <span>Wallet</span>
     </button>
     <button class="nav-item" data-tab="report">
       <span class="nav-icon">&#x1f4cb;</span>
@@ -755,18 +810,136 @@
     }
 
     // ──────────────────────────────────────────────
-    //  HISTORY PAGE
+    //  WALLET PAGE
     // ──────────────────────────────────────────────
     function renderHistory(d) {
       const bets = d.bet_history || [];
       const bh = d.bankroll_history || [];
       const b = d.bankroll || {};
-      document.getElementById("historyStats").innerHTML = `
-        <div class="stat-card"><div class="val ${b.pnl_30d >= 0 ? 'green' : 'red'}">\u20ac${(b.pnl_30d||0).toFixed(0)}</div><div class="lbl">P&amp;L 30gg</div></div>
-        <div class="stat-card"><div class="val ${b.win_rate >= 60 ? 'green' : b.win_rate >= 50 ? 'amber' : 'red'}">${b.win_rate||0}%</div><div class="lbl">Win Rate</div></div>
-        <div class="stat-card"><div class="val">${b.total_bets||0}</div><div class="lbl">Totali</div></div>
+      const activeSub = document.querySelector(".sub-tab.active")?.dataset?.sub || "giocate";
+
+      // --- GIOVATE ---
+      if (!bets.length) {
+        document.getElementById("historyList").innerHTML = '<div class="empty">\u{1f4dc} Nessuna scommessa ancora</div>';
+      } else {
+        const grouped = {};
+        bets.forEach(b => { const d = b.date; if (!grouped[d]) grouped[d] = []; grouped[d].push(b); });
+        let html = "";
+        Object.entries(grouped).forEach(([date, dayBets]) => {
+          const dayPnl = dayBets.reduce((s, b) => s + (b.profit||0), 0);
+          const dayWins = dayBets.filter(b => b.status === "won").length;
+          const dayLoss = dayBets.filter(b => b.status === "lost").length;
+          html += `<div style="font-size:12px;color:var(--dim);font-weight:600;padding:10px var(--pad) 4px;text-transform:uppercase;letter-spacing:0.5px">
+            \u{1f4c5} ${date} \u00b7 ${dayWins}W ${dayLoss}L \u00b7 <span style="color:${dayPnl >= 0 ? 'var(--green)' : 'var(--red)'}">${dayPnl >= 0 ? '+' : ''}\u20ac${dayPnl.toFixed(2)}</span>
+          </div>`;
+          dayBets.forEach(b => {
+            const profitClass = b.status === "won" ? "won" : b.status === "lost" ? "lost" : "push";
+            const edgePct = (b.edge * 100).toFixed(1);
+            const modelPct = (b.model_prob * 100).toFixed(0);
+            const stakeStr = b.stake ? `\u20ac${b.stake.toFixed(2)}` : "";
+            const profitStr = b.profit !== null ? (b.profit > 0 ? "+" : "") + b.profit.toFixed(2) : "";
+            html += `
+              <div class="bet-card" style="margin-bottom:6px">
+                <div class="mc-accent ${profitClass}"></div>
+                <div style="padding:10px 14px 0;display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:12px;font-weight:600">${b.player1} vs ${b.player2}</span>
+                  <span style="font-size:10px;font-weight:600;color:${profitClass === 'won' ? 'var(--green)' : profitClass === 'lost' ? 'var(--red)' : 'var(--amber)'}">${b.status}</span>
+                </div>
+                <div style="font-size:12px;padding:4px 10px;margin:6px 14px;display:inline-block;background:var(--card2);border-radius:6px;font-weight:700">
+                  ${b.selection} <span style="font-weight:400;color:var(--dim)">@${b.odds?.toFixed(2)}</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);padding:0 14px 8px;gap:2px">
+                  <div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 4px"><span style="color:var(--dim)">Mod</span><span style="font-weight:600">${modelPct}%</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 4px"><span style="color:var(--dim)">Edge</span><span style="font-weight:600;color:var(--green)">+${edgePct}%</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 4px"><span style="color:var(--dim)">Stake</span><span style="font-weight:600">${stakeStr}</span></div>
+                </div>
+                <div style="text-align:center;font-size:14px;font-weight:700;padding:6px 14px 10px;color:${profitClass === 'won' ? 'var(--green)' : profitClass === 'lost' ? 'var(--red)' : 'var(--amber)'};background:rgba(255,255,255,0.03)">
+                  ${profitStr ? (profitStr.startsWith('+') ? '+' : '') + profitStr : ""}
+                </div>
+              </div>`;
+          });
+        });
+        document.getElementById("historyList").innerHTML = html;
+      }
+
+      // --- STATISTICHE ---
+      const total = bets.length;
+      const won = bets.filter(b => b.status === "won").length;
+      const lost = bets.filter(b => b.status === "lost").length;
+      const push = bets.filter(b => b.status === "push" || (b.status !== "won" && b.status !== "lost")).length;
+      const settled = won + lost;
+      const winRate = settled > 0 ? Math.round(won / settled * 100) : 0;
+      const totalPnl = bets.reduce((s, b) => s + (b.profit || 0), 0);
+      const totalStaked = bets.reduce((s, b) => s + (b.stake || 0), 0);
+      const roi = totalStaked > 0 ? ((totalPnl / totalStaked) * 100).toFixed(1) : "0.0";
+      const avgEdge = bets.length > 0 ? (bets.reduce((s, b) => s + (b.edge || 0), 0) / bets.length * 100).toFixed(1) : "0.0";
+      const bestBet = bets.reduce((best, b) => (b.profit || 0) > (best?.profit || 0) ? b : best, null);
+      const worstBet = bets.reduce((worst, b) => (b.profit || 0) < (worst?.profit || 0) ? b : worst, null);
+
+      // Calcola percentuali W/L/P
+      const wPct = total > 0 ? (won / total * 100).toFixed(0) : 0;
+      const lPct = total > 0 ? (lost / total * 100).toFixed(0) : 0;
+      const pPct = total > 0 ? (push / total * 100).toFixed(0) : 0;
+
+      let statsHtml = `
+        <div class="stats-card-lg">
+          <div class="val ${totalPnl >= 0 ? 'green' : 'red'}">${totalPnl >= 0 ? '+' : ''}\u20ac${totalPnl.toFixed(2)}</div>
+          <div class="lbl">P&amp;L Totale</div>
+        </div>
+        <div class="stat-cell"><div class="val ${winRate >= 60 ? 'green' : winRate >= 40 ? 'amber' : 'red'}">${winRate}%</div><div class="lbl">Win Rate</div></div>
+        <div class="stat-cell"><div class="val gray">${total}</div><div class="lbl">Scommesse</div></div>
+        <div class="stat-cell"><div class="val ${roi >= 0 ? 'green' : 'red'}">${roi}%</div><div class="lbl">ROI</div></div>
+        <div class="stat-cell"><div class="val">${totalStaked.toFixed(0)}</div><div class="lbl">Totale Puntato</div></div>
+        <div class="stat-cell"><div class="val green">${won}</div><div class="lbl">Vinte (${wPct}%)</div></div>
+        <div class="stat-cell"><div class="val red">${lost}</div><div class="lbl">Perse (${lPct}%)</div></div>
+        <div class="stat-cell"><div class="val" style="color:var(--green)">+${avgEdge}%</div><div class="lbl">Edge Medio</div></div>
+        <div class="stat-cell"><div class="val gray">${push}</div><div class="lbl">In attesa (${pPct}%)</div></div>
       `;
-      let chartHtml = '<div style="background:var(--card);border-radius:var(--radius);padding:var(--pad)"><div style="font-size:13px;font-weight:600;margin-bottom:10px">\u{1f4c8} Bankroll Progress</div>';
+
+      document.getElementById("statsGrid").innerHTML = statsHtml;
+
+      // Win/Loss bar (solo risolte)
+      const wlTotal = won + lost;
+      const wlW = wlTotal > 0 ? (won / wlTotal * 100).toFixed(0) : 0;
+      const wlL = wlTotal > 0 ? (lost / wlTotal * 100).toFixed(0) : 0;
+      const wlBar = `
+        <div class="wl-bar">
+          <div class="w" style="width:${wlW}%"></div>
+          <div class="l" style="width:${wlL}%"></div>
+        </div>
+        <div class="wl-label">
+          <span class="w">\u2713 ${won} vinte (${wlW}%)</span>
+          <span class="l">\u2717 ${lost} perse (${wlL}%)</span>
+        </div>
+      `;
+
+      // Miglior e peggior bet
+      let bestHtml = "";
+      if (bestBet && bestBet.profit > 0) {
+        bestHtml = `
+          <div class="stats-card-lg">
+            <div style="font-size:11px;color:var(--dim);margin-bottom:6px">\u{1f3c6} Miglior Giocata</div>
+            <div style="font-size:14px;font-weight:600">${bestBet.player1} vs ${bestBet.player2}</div>
+            <div style="font-size:12px;color:var(--dim);margin-top:2px">${bestBet.selection} @${bestBet.odds?.toFixed(2)}</div>
+            <div class="val green" style="font-size:20px;margin-top:6px">+\u20ac${bestBet.profit.toFixed(2)}</div>
+          </div>`;
+      }
+      if (worstBet && worstBet.profit < 0) {
+        bestHtml += `
+          <div class="stats-card-lg">
+            <div style="font-size:11px;color:var(--dim);margin-bottom:6px">\u{1f4a5} Peggior Giocata</div>
+            <div style="font-size:14px;font-weight:600">${worstBet.player1} vs ${worstBet.player2}</div>
+            <div style="font-size:12px;color:var(--dim);margin-top:2px">${worstBet.selection} @${worstBet.odds?.toFixed(2)}</div>
+            <div class="val red" style="font-size:20px;margin-top:6px">-\u20ac${Math.abs(worstBet.profit).toFixed(2)}</div>
+          </div>`;
+      }
+
+      if (bestHtml) {
+        document.getElementById("statsGrid").innerHTML += bestHtml;
+      }
+
+      // Bankroll chart (sempre renderizzato per la sub-tab statistiche)
+      let chartHtml = "";
       if (bh.length > 0) {
         const maxVal = Math.max(...bh.map(d => d.bankroll), 200);
         const minVal = Math.min(...bh.map(d => d.bankroll), 200);
@@ -783,53 +956,25 @@
           </div>`;
         });
       } else {
-        chartHtml += '<div style="color:var(--dim);font-size:13px;text-align:center;padding:12px">\u20ac200.00 (bankroll iniziale)</div>';
+        chartHtml = '<div style="color:var(--dim);font-size:13px;text-align:center;padding:12px">\u20ac200.00 (bankroll iniziale)</div>';
       }
-      chartHtml += "</div>";
       document.getElementById("historyChart").innerHTML = chartHtml;
-      if (!bets.length) {
-        document.getElementById("historyList").innerHTML = '<div class="empty">\u{1f4dc} Nessuna scommessa ancora</div>';
-        return;
-      }
-      const grouped = {};
-      bets.forEach(b => { const d = b.date; if (!grouped[d]) grouped[d] = []; grouped[d].push(b); });
-      let html = "";
-      Object.entries(grouped).forEach(([date, dayBets]) => {
-        const dayPnl = dayBets.reduce((s, b) => s + (b.profit||0), 0);
-        const dayWins = dayBets.filter(b => b.status === "won").length;
-        const dayLoss = dayBets.filter(b => b.status === "lost").length;
-        html += `<div style="font-size:12px;color:var(--dim);font-weight:600;padding:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">
-          \u{1f4c5} ${date} \u00b7 ${dayWins}W ${dayLoss}L \u00b7 <span style="color:${dayPnl >= 0 ? 'var(--green)' : 'var(--red)'}">${dayPnl >= 0 ? '+' : ''}\u20ac${dayPnl.toFixed(2)}</span>
-        </div>`;
-        dayBets.forEach(b => {
-          const profitClass = b.status === "won" ? "won" : b.status === "lost" ? "lost" : "push";
-          const edgePct = (b.edge * 100).toFixed(1);
-          const modelPct = (b.model_prob * 100).toFixed(0);
-          const stakeStr = b.stake ? `\u20ac${b.stake.toFixed(2)}` : "";
-          const profitStr = b.profit !== null ? (b.profit > 0 ? "+" : "") + b.profit.toFixed(2) : "";
-          html += `
-            <div class="bet-card" style="margin-bottom:6px">
-              <div class="mc-accent ${profitClass}"></div>
-              <div class="bet-header" style="padding:10px 14px 0">
-                <span style="font-size:12px;font-weight:600">${b.player1} vs ${b.player2}</span>
-                <span class="bet-status" style="font-size:10px;font-weight:600;color:${profitClass === 'won' ? 'var(--green)' : profitClass === 'lost' ? 'var(--red)' : 'var(--amber)'}">${b.status}</span>
-              </div>
-              <div class="bet-pick" style="font-size:12px;padding:4px 10px;margin:6px 14px;display:inline-block">
-                ${b.selection} <span class="bet-odds">@${b.odds?.toFixed(2)}</span>
-              </div>
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);padding:0 14px 8px;gap:2px">
-                <div class="bet-detail"><span class="bd-label">Mod</span><span class="bd-value">${modelPct}%</span></div>
-                <div class="bet-detail"><span class="bd-label">Edge</span><span class="bd-value bd-highlight">+${edgePct}%</span></div>
-                <div class="bet-detail"><span class="bd-label">Stake</span><span class="bd-value">${stakeStr}</span></div>
-              </div>
-              <div style="text-align:center;font-size:14px;font-weight:700;padding:6px 14px 10px;color:${profitClass === 'won' ? 'var(--green)' : profitClass === 'lost' ? 'var(--red)' : 'var(--amber)'};background:rgba(255,255,255,0.03)">
-                ${profitStr ? (profitStr.startsWith('+') ? '+' : '') + profitStr : ""}
-              </div>
-            </div>`;
-        });
-      });
-      document.getElementById("historyList").innerHTML = html;
+
+      // Aggiungi W/L bar dopo stats grid
+      document.getElementById("statsGrid").insertAdjacentHTML("beforeend", `<div style="grid-column:span 2">${wlBar}</div>`);
     }
+
+    // Sub-tab switching
+    document.querySelectorAll(".sub-tab").forEach(tab => {
+      tab.addEventListener("click", function() {
+        document.querySelectorAll(".sub-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".sub-panel").forEach(p => p.classList.remove("active"));
+        this.classList.add("active");
+        document.getElementById("sub-" + this.dataset.sub).classList.add("active");
+        // Aggiorna contenuto se ci sono dati
+        if (data) renderHistory(data);
+      });
+    });
 
     // ──────────────────────────────────────────────
     //  REPORT / LOG PAGE
@@ -927,12 +1072,23 @@
 <p>Raggruppate per data, dal futuro al passato. I numeri in alto mostrano quante scommesse sono state piazzate, vinte, perse e in attesa.</p>
 <p><em>Nota: qui non viene indicato l'importo vinto o perso \u2014 quelle info sono nella sezione Storico.</em></p>`,
 
-      history: `<p><strong>\u{1f4dc} Storico \u2014 Cronologia Scommesse</strong></p>
-<p>Elenco completo delle scommesse risolte, con esito e P&L.</p>
+      history: `<p><strong>\u{1f4b0} Wallet \u2014 Portafoglio Scommesse</strong></p>
+<p>La sezione Wallet \u00e8 divisa in due sottosezioni:</p>
+<p><strong>\u{1f3b1} Giocate</strong></p>
 <ul>
-  <li><strong>Bankroll Progress</strong>: grafico a barre giorno per giorno</li>
-  <li><strong>Statistiche</strong>: P&L 30gg, Win Rate, totali</li>
-  <li><strong>Scommesse</strong>: selezione, quota, probabilit\u00e0 modello, edge e risultato finale</li>
+  <li>Elenco completo di tutte le scommesse risolte</li>
+  <li>Ordinate per data con esito e profitto/perdita</li>
+  <li>Ogni card mostra: selezione, quota, probabilit\u00e0 modello, edge, stake e risultato</li>
+</ul>
+<p><strong>\u{1f4ca} Statistiche</strong></p>
+<ul>
+  <li><strong>P&amp;L Totale</strong> \u2014 profitto o perdita complessiva</li>
+  <li><strong>Win Rate</strong> \u2014 percentuale scommesse vinte sulle risolte</li>
+  <li><strong>ROI</strong> \u2014 ritorno sull'investimento totale</li>
+  <li><strong>Edge Medio</strong> \u2014 vantaggio medio del modello</li>
+  <li><strong>Miglior/Peggior giocata</strong> \u2014 bet con profitto/perdita maggiore</li>
+  <li><strong>Win/Loss bar</strong> \u2014 rapporto visivo vinte/perse</li>
+  <li><strong>Bankroll Progress</strong> \u2014 grafico a barre giorno per giorno</li>
 </ul>`,
 
       report: `<p><strong>\u{1f4cb} Report \u2014 Log di Sistema</strong></p>
