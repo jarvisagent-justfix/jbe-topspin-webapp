@@ -12,13 +12,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from database import TennisDatabase
 
 
-def load_matches_today(db, days_lookback=1, days_ahead=3):
-    """Carica i match recenti con odds e predizioni."""
+def load_matches_today(db, days_ahead=7):
+    """Carica i match ATP in programma da oggi in avanti (nessun lookback al passato)."""
     today = date.today()
-    start = today - timedelta(days=days_lookback)
-    end = today + timedelta(days=days_ahead)
-    start_s = start.isoformat()
-    end_s = end.isoformat()
+    start_s = today.isoformat()
+    end_s = (today + timedelta(days=days_ahead)).isoformat()
 
     rows = db.conn.execute("""
         SELECT m.id, m.match_date, m.tournament, m.surface, m.round,
@@ -26,76 +24,59 @@ def load_matches_today(db, days_lookback=1, days_ahead=3):
                m.winner_id, m.loser_id,
                w.name as winner_name, l.name as loser_name,
                w.country as winner_country, l.country as loser_country,
+               w.hand as winner_hand, l.hand as loser_hand,
                m.winner_rank, m.loser_rank,
                m.w_sets, m.l_sets, m.w_games, m.l_games
         FROM tennis_matches m
         JOIN players w ON w.id = m.winner_id
         JOIN players l ON l.id = m.loser_id
-        WHERE m.match_date >= ? AND m.match_date <= ?
+        WHERE m.match_date >= ?
         ORDER BY m.match_date ASC, m.id ASC
-    """, (start_s, end_s)).fetchall()
+    """, (start_s,)).fetchall()
 
     matches = []
     for r in rows:
-        # Carica odds per questo match
-        odds_rows = db.conn.execute("""
-            SELECT bookmaker, odds_winner, odds_loser, odds_2_0_fav, odds_2_1_fav,
-                   handicap_line, handicap_odds_fav, total_line, over_odds, under_odds
-            FROM tennis_odds WHERE match_id = ?
-        """, (r["id"],)).fetchall()
+        # Verifica se ci sono scommesse su questo match
+        has_bet = False
+        bet_count = db.conn.execute(
+            "SELECT COUNT(*) as n FROM paper_portfolio WHERE match_id = ?",
+            (r["id"],)
+        ).fetchone()["n"]
+        if bet_count > 0:
+            has_bet = True
+        if not has_bet:
+            # Fallback: cerca per nome giocatori e data
+            bc = db.conn.execute("""
+                SELECT COUNT(*) as n FROM paper_portfolio
+                WHERE match_date = ? AND status = 'pending'
+                AND (player1 LIKE ? OR player2 LIKE ? OR player1 LIKE ? OR player2 LIKE ?)
+            """, (
+                r["match_date"],
+                f'%{r["winner_name"].split()[-1]}%', f'%{r["winner_name"].split()[-1]}%',
+                f'%{r["loser_name"].split()[-1]}%', f'%{r["loser_name"].split()[-1]}%'
+            )).fetchone()["n"]
+            has_bet = bc > 0
 
-        odds_list = []
-        for o in odds_rows:
-            odds_list.append({
-                "bookmaker": o["bookmaker"],
-                "winner": o["odds_winner"],
-                "loser": o["odds_loser"],
-                "set_2_0_fav": o["odds_2_0_fav"],
-                "set_2_1_fav": o["odds_2_1_fav"],
-                "handicap": {
-                    "line": o["handicap_line"],
-                    "odds_fav": o["handicap_odds_fav"]
-                },
-                "total": {
-                    "line": o["total_line"],
-                    "over": o["over_odds"],
-                    "under": o["under_odds"]
-                }
-            })
-
-        best_odds = None
-        for o in odds_list:
-            if o["winner"] and o["loser"]:
-                if best_odds is None or o["winner"] < best_odds["winner"]:
-                    best_odds = {"winner": o["winner"], "loser": o["loser"], "bookmaker": o["bookmaker"]}
-
-        status = "completed" if r["score"] else ("live" if False else "upcoming")
-        is_completed = bool(r["score"])
+        # Data analisi: per DB matches non abbiamo un timestamp preciso
+        analysis_time = None
 
         matches.append({
             "id": r["id"],
             "date": r["match_date"],
-            "tournament": r["tournament"],
-            "surface": r["surface"],
-            "round": r["round"],
-            "best_of": r["best_of"],
-            "tour_level": r["tour_level"],
-            "status": status,
+            "tournament": r["tournament"] or "",
+            "surface": r["surface"] or "",
+            "round": r["round"] or "",
+            "best_of": r["best_of"] or 3,
+            "tour_level": r["tour_level"] or "",
+            "status": "upcoming",
             "players": {
-                "p1": {"name": r["winner_name"], "country": r["winner_country"], "rank": r["winner_rank"]},
-                "p2": {"name": r["loser_name"], "country": r["loser_country"], "rank": r["loser_rank"]}
+                "p1": {"name": r["winner_name"], "country": r["winner_country"], "rank": r["winner_rank"], "hand": r["winner_hand"]},
+                "p2": {"name": r["loser_name"], "country": r["loser_country"], "rank": r["loser_rank"], "hand": r["loser_hand"]}
             },
-            "result": {
-                "score": r["score"],
-                "w_sets": r["w_sets"],
-                "l_sets": r["l_sets"],
-                "w_games": r["w_games"],
-                "l_games": r["l_games"]
-            } if is_completed else None,
-            "odds": {
-                "best": best_odds,
-                "all": odds_list[:3]  # max 3 bookmaker
-            }
+            "result": None,
+            "has_bet": has_bet,
+            "analysis_time": analysis_time,
+            "source": "db",
         })
     return matches
 
@@ -108,7 +89,8 @@ def load_portfolio_upcoming(db, days_ahead=7):
 
     rows = db.conn.execute("""
         SELECT DISTINCT p.match_date, p.player1, p.player2, p.tournament,
-               p.market, p.odds, p.model_prob, p.edge, p.confidence
+               p.market, p.odds, p.model_prob, p.edge, p.confidence,
+               p.created_at
         FROM paper_portfolio p
         WHERE p.match_id IS NULL
           AND p.match_date >= ? AND p.match_date <= ?
@@ -133,17 +115,12 @@ def load_portfolio_upcoming(db, days_ahead=7):
             "tour_level": None,
             "status": "upcoming",
             "players": {
-                "p1": {"name": r["player1"], "country": None, "rank": None},
-                "p2": {"name": r["player2"], "country": None, "rank": None},
+                "p1": {"name": r["player1"], "country": None, "rank": None, "hand": None},
+                "p2": {"name": r["player2"], "country": None, "rank": None, "hand": None},
             },
             "result": None,
-            "odds": {
-                "best": {"winner": r["odds"], "loser": None, "bookmaker": "Odds API"},
-                "all": []
-            },
-            "model_prob": r["model_prob"],
-            "edge": r["edge"],
-            "confidence": r["confidence"],
+            "has_bet": True,
+            "analysis_time": r["created_at"] or None,
             "source": "odds_api",
         })
     return matches
@@ -391,10 +368,9 @@ def build_data():
 
     BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    # Carica match dal DB storico
-    matches_db_today = load_matches_today(db, days_lookback=0, days_ahead=0)
-    matches_db_upcoming = load_matches_today(db, days_lookback=0, days_ahead=3)
-    matches_db_recent = load_matches_today(db, days_lookback=2, days_ahead=0)
+    # Carica match dal DB storico (solo da oggi in poi)
+    matches_db_today = load_matches_today(db, days_ahead=7)
+    matches_db_upcoming = load_matches_today(db, days_ahead=7)
 
     # Stato API keys
     api_status = {"ok": True, "exhausted": False}
@@ -431,7 +407,6 @@ def build_data():
         "matches": {
             "today": matches_db_today,
             "upcoming": merged_upcoming,
-            "recent": matches_db_recent,
         },
         "value_bets": load_value_bets(db),
         "bankroll": load_bankroll_stats(db),

@@ -38,6 +38,31 @@
       padding: 8px 12px; margin: 8px 10px; border-radius: 8px;
       font-size: 13px; text-align: center; display: none;
     }
+    /* Help modal */
+    .help-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .help-modal {
+      background: #1e293b; border-radius: 16px; max-width: 420px; width: 100%;
+      max-height: 80vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .help-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px; border-bottom: 1px solid #334155;
+      font-size: 16px; font-weight: 700;
+    }
+    .help-body {
+      padding: 16px 20px; font-size: 13px; line-height: 1.6; color: #cbd5e1;
+    }
+    .help-body p { margin: 0 0 12px 0; }
+    .help-body ul { margin: 0 0 12px 0; padding-left: 18px; }
+    .help-body li { margin-bottom: 6px; }
+    .help-body strong { color: #f1f5f9; }
+    .help-body .hl { color: var(--green); font-weight: 600; }
     .stat-card {
       background: var(--card); border-radius: var(--radius); padding: 12px 8px;
       text-align: center;
@@ -64,20 +89,28 @@
     /* Match list */
     .match-list { padding: 0 10px; display: flex; flex-direction: column; gap: 8px; }
     .match-card {
-      background: var(--card); border-radius: var(--radius); padding: var(--pad);
+      background: var(--card); border-radius: var(--radius); padding: 14px;
+      position: relative;
     }
-    .match-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); margin-bottom: 6px; }
-    .match-players { display: flex; justify-content: space-between; align-items: center; }
-    .player { display: flex; flex-direction: column; }
-    .player .name { font-size: 15px; font-weight: 600; }
-    .player .rank { font-size: 11px; color: var(--dim); }
-    .player.fav .name { color: var(--green); }
-    .prob-badge {
-      background: var(--card2); padding: 4px 12px; border-radius: 20px;
-      font-size: 16px; font-weight: 800; color: var(--green);
+    .match-dot {
+      position: absolute; top: 10px; right: 10px;
+      width: 10px; height: 10px; border-radius: 50%;
     }
-    .match-footer { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--dim); }
-    .match-result { margin-top: 6px; padding-top: 6px; border-top: 1px solid #334155; font-size: 13px; color: var(--dim); }
+    .match-dot.green { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+    .match-dot.red { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+    .match-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--dim); margin-bottom: 8px; }
+    .match-tournament { display: flex; align-items: center; gap: 4px; }
+    .match-datetime { font-size: 11px; color: var(--dim); margin-bottom: 10px; }
+    .match-players { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .match-player { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .match-player .name { font-size: 15px; font-weight: 700; }
+    .match-player .country { font-size: 11px; color: var(--dim); }
+    .match-player .rank { font-size: 10px; color: var(--dim); }
+    .match-vs { color: var(--dim); font-size: 13px; font-weight: 400; }
+    .match-extra { display: flex; gap: 12px; font-size: 11px; color: var(--dim); justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+    .match-analysis { font-size: 10px; color: var(--dim); text-align: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid #1e293b; }
+    .day-header { font-size: 13px; font-weight: 700; padding: 12px 10px 6px; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; }
+    .day-header:first-child { padding-top: 0; }
     /* Value bets */
     .bet-list { padding: 0 10px; display: flex; flex-direction: column; gap: 8px; }
     .bet-card {
@@ -155,13 +188,25 @@
     </div>
     <div class="header-right">
       <span id="lastUpdate"></span>
-      <span style="cursor:pointer" onclick="loadData()">🔄 aggiorna</span>
+      <span style="cursor:pointer" onclick="showHelp()" title="Aiuto">❓</span>
+      <span style="cursor:pointer" onclick="loadData()">🔄</span>
     </div>
   </div>
   <div id="apiAlert" class="api-alert" style="display:none"></div>
 
-  <!-- Quick stats -->
-  <div class="stats-row" id="statsRow"></div>
+  <!-- Help Modal -->
+  <div id="helpModal" class="help-overlay" style="display:none" onclick="hideHelp()">
+    <div class="help-modal" onclick="event.stopPropagation()">
+      <div class="help-header">
+        <span id="helpTitle">Aiuto</span>
+        <span style="cursor:pointer;font-size:20px" onclick="hideHelp()">✕</span>
+      </div>
+      <div class="help-body" id="helpBody"></div>
+    </div>
+  </div>
+
+  <!-- Quick stats (only shown on Value/Storico/Report tabs) -->
+  <div class="stats-row" id="statsRow" style="display:none"></div>
 
   <!-- Tabs -->
   <div class="tabs">
@@ -260,79 +305,80 @@
 
     // --- Matches ---
     function renderMatches(d) {
-      const today = (d.matches?.today || []);
-      const upcoming = (d.matches?.upcoming || []);
-      const recent = (d.matches?.recent || []);
-
-      let html = "";
-
-      if (upcoming.length > 0) {
-        html += `<div style="padding:4px 10px;font-size:12px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">📅 In arrivo (${upcoming.length})</div>`;
-        upcoming.forEach(m => html += renderMatchCard(m, false));
+      const all = (d.matches?.upcoming || []);
+      if (!all.length) {
+        document.getElementById("matchList").innerHTML = `<div class="no-matches"><div class="icon">🎾</div><p>Nessun match in programma.</p></div>`;
+        return;
       }
 
-      if (today.length > 0) {
-        html += `<div style="padding:8px 10px 4px;font-size:12px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">🎾 Oggi</div>`;
-        today.forEach(m => html += renderMatchCard(m, false));
-      }
-
-      if (recent.length > 0) {
-        html += `<div style="padding:8px 10px 4px;font-size:12px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">📋 Recenti</div>`;
-        recent.forEach(m => html += renderMatchCard(m, true));
-      }
-
-      if (!html) {
-        html = `<div class="no-matches"><div class="icon">🎾</div><p>Nessun match disponibile per oggi.<br>I dati vengono aggiornati dal cron giornaliero.</p></div>`;
-      }
-
-      document.getElementById("matchList").innerHTML = html;
-    }
-
-    function renderMatchCard(m, showResult) {
-      const p1 = m.players?.p1 || {};
-      const p2 = m.players?.p2 || {};
-      const hasOdds = m.odds?.best?.winner && m.odds?.best?.loser;
-      const hasModelProb = m.model_prob != null;
-      let p1prob = null;
-      let p2prob = null;
-      if (hasOdds) {
-        p1prob = Math.round((1 / m.odds.best.winner) / ((1/m.odds.best.winner)+(1/m.odds.best.loser)) * 100);
-        p2prob = 100 - p1prob;
-      } else if (hasModelProb && m.edge != null) {
-        // Match da Odds API: usa model_prob come prob del favorito
-        p1prob = Math.round(m.model_prob * 100);
-        p2prob = 100 - p1prob;
-      }
-      const fav = p1prob >= p2prob ? "p1" : "p2";
-
-      let resultHtml = "";
-      if (showResult && m.result?.score) {
-        resultHtml = `<div class="match-result">${m.result.score} | ${m.result.w_sets}-${m.result.l_sets} sets</div>`;
-      }
+      // Raggruppa per data in ordine decrescente (più recente primo)
+      const byDate = {};
+      all.forEach(m => {
+        const d = m.date || "?";
+        if (!byDate[d]) byDate[d] = [];
+        byDate[d].push(m);
+      });
+      const sortedDates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
 
       const surfaceIcon = { "Hard": "🟦", "Clay": "🟧", "Grass": "🟩", "Carpet": "🟪" };
       const levelLabel = { "G": "Grand Slam", "M": "Masters", "A": "ATP 500", "C": "Challenger", "F": "Finals" };
+      const todayStr = new Date().toISOString().slice(0, 10);
 
-      return `
-        <div class="match-card">
-          <div class="match-header">
-            <span>${surfaceIcon[m.surface] || "🎾"} ${m.tournament || ""}</span>
-            <span>${levelLabel[m.tour_level] || ""} · ${m.round || ""}</span>
-          </div>
-          <div class="match-players">
-            <div class="player ${fav === 'p1' ? 'fav' : ''}">
-              <div class="name">${p1.name || "?"}</div>
-              <div class="rank">#${p1.rank || "?"} ${p1.country || ""}</div>
-            </div>
-            ${hasOdds ? `<div class="prob-badge">${p1prob}%</div>` : `<div class="prob-badge" style="color:var(--dim)">vs</div>`}
-            <div class="player ${fav === 'p2' ? 'fav' : ''}" style="text-align:right">
-              <div class="name">${p2.name || "?"}</div>
-              <div class="rank">#${p2.rank || "?"} ${p2.country || ""}</div>
-            </div>
-          </div>
-          ${hasOdds ? `<div class="match-footer"><span>📊 ${m.odds.best.bookmaker}: ${m.odds.best.winner.toFixed(2)} / ${m.odds.best.loser.toFixed(2)}</span><span>${m.date}</span></div>` : hasModelProb ? `<div class="match-footer"><span>🤖 Modello: ${p1prob}% vs ${p2prob}%</span><span>${m.date}</span></div>` : `<div class="match-footer"><span>${m.date}</span></div>`}
-          ${resultHtml}
-        </div>`;
+      let html = "";
+      sortedDates.forEach(dateStr => {
+        const isToday = dateStr === todayStr;
+        const label = isToday ? "🎾 Oggi" : "📅 " + new Date(dateStr + "T12:00:00").toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long" });
+        html += `<div class="day-header">${label}</div>`;
+        byDate[dateStr].forEach(m => {
+          const p1 = m.players?.p1 || {};
+          const p2 = m.players?.p2 || {};
+          const dotClass = m.has_bet ? "green" : "red";
+          const dotTitle = m.has_bet ? "Abbiamo scommesse su questo match" : "Nessuna scommessa su questo match";
+
+          // Data match: usa match_datetime se presente, altrimenti formatta
+          let dateTimeStr = "";
+          if (m.match_datetime) {
+            dateTimeStr = m.match_datetime;
+          } else if (m.date) {
+            const dt = new Date(m.date + "T12:00:00");
+            dateTimeStr = dt.toLocaleDateString("it-IT", { day: "numeric", month: "short" }) + " · 12:00";
+          }
+
+          // Data analisi
+          let analysisStr = "";
+          if (m.analysis_time) {
+            try {
+              const at = new Date(m.analysis_time);
+              analysisStr = at.toLocaleDateString("it-IT", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+            } catch(e) { analysisStr = m.analysis_time.slice(0, 10); }
+          }
+
+          html += `
+            <div class="match-card">
+              <div class="match-dot ${dotClass}" title="${dotTitle}"></div>
+              <div class="match-header">
+                <span class="match-tournament">${surfaceIcon[m.surface] || ""} ${m.tournament || "ATP"}</span>
+                <span>${levelLabel[m.tour_level] || ""}${m.round ? " · " + m.round : ""}</span>
+              </div>
+              <div class="match-players">
+                <div class="match-player">
+                  <div class="name">${p1.name || "?"}</div>
+                  <div class="country">${p1.country || ""}${p1.rank ? " · #" + p1.rank : ""}</div>
+                </div>
+                <span class="match-vs">vs</span>
+                <div class="match-player">
+                  <div class="name">${p2.name || "?"}</div>
+                  <div class="country">${p2.country || ""}${p2.rank ? " · #" + p2.rank : ""}</div>
+                </div>
+              </div>
+              <div class="match-datetime">📅 ${dateTimeStr}</div>
+              ${m.surface ? `<div class="match-extra">🏟️ ${m.surface}${m.best_of ? " · " + m.best_of + " set" : ""}</div>` : ""}
+              ${analysisStr ? `<div class="match-analysis">🕐 Analisi: ${analysisStr}</div>` : ""}
+            </div>`;
+        });
+      });
+
+      document.getElementById("matchList").innerHTML = html;
     }
 
     // --- Value Bets ---
@@ -515,20 +561,93 @@
     }
 
     // --- Tab switching ---
+    const TAB_NAMES = {
+      "matches": "Match",
+      "bets": "Value",
+      "history": "Storico",
+      "report": "Report"
+    };
+    const HELP_TEXTS = {
+      "matches": `<p><strong>🎾 Match</strong></p>
+<p>Questa pagina mostra <strong>tutti i match ATP in programma</strong> da oggi in poi, indipendentemente dal fatto che abbiamo scommesso o meno su di essi.</p>
+<p><strong>Cosa vedi:</strong></p>
+<ul>
+  <li><strong>Pallino verde</strong> 🟢 in alto a destra: su questo match abbiamo almeno una scommessa attiva</li>
+  <li><strong>Pallino rosso</strong> 🔴 in alto a destra: nessuna scommessa su questo match</li>
+  <li><strong>Torneo e superficie</strong> — es. Wimbledon, ATP 500, Challenger</li>
+  <li><strong>Giocatori</strong> con nazione e ranking ATP</li>
+  <li><strong>Data e ora</strong> della partita (in ora italiana)</li>
+  <li><strong>Data analisi</strong> — quando il modello ha esaminato il match</li>
+</ul>
+<p>I match sono raggruppati per giornata, dalla più recente alla meno recente. Allo scattare della mezzanotte, i match del giorno prima spariscono automaticamente.</p>
+<p><em>Nota: qui non vengono mostrate quote o probabilità perché il sistema può scommettere su diversi mercati (vincitore, handicap, over/under). Le info sulle scommesse sono nella sezione Value.</em></p>`,
+
+      "bets": `<p><strong>💎 Value — Scommesse Consigliate</strong></p>
+<p>Qui trovi le <strong>scommesse che il modello ritiene vantaggiose</strong>. Per ogni scommessa vedi:</p>
+<ul>
+  <li><strong>Torneo e superficie</strong></li>
+  <li><strong>Giocatori</strong> coinvolti</li>
+  <li><strong>Scommessa da fare</strong> — es. "de Minaur vince", "Mannarino +6.5", "Totale Oltre 35.5"</li>
+  <li><strong>Quota</strong> @ — la quota del bookmaker</li>
+  <li><strong>Probabilità modello</strong> — quanto % ritiene il modello che accada</li>
+  <li><strong>Edge</strong> — il vantaggio % rispetto alla quota. Più è alto, meglio è</li>
+  <li><strong>Stake</strong> — quanto puntare consigliato in €</li>
+  <li><strong>Confidenza</strong> — HIGH (alta) o MEDIUM (media)</li>
+  <li><strong>Data e ora</strong> della partita in Italia</li>
+  <li><strong>Bookmaker</strong> — chi offre quella quota</li>
+  <li><strong>Stato</strong> — In corso / Vinta / Persa</li>
+</ul>
+<p>I numeri in alto (Bankroll, Win Rate, P&L, Value Live) ti danno il polso della situazione generale.</p>`,
+
+      "history": `<p><strong>📜 Storico — Cronologia Scommesse</strong></p>
+<p>Elenco completo di tutte le scommesse già risolte, con esito e profitto/perdita.</p>
+<p>Utile per capire l'andamento nel tempo e l'efficacia del modello.</p>`,
+
+      "report": `<p><strong>📋 Report — Riepilogo Giornaliero</strong></p>
+<p>Il report generato automaticamente dal sistema ogni giorno. Contiene:</p>
+<ul>
+  <li>Riepilogo delle value bet trovate</li>
+  <li>Confronto tra probabilità modello e quote reali</li>
+  <li>Statistiche di performance</li>
+</ul>
+<p>Viene aggiornato ogni ciclo di analisi (ogni 2 ore).</p>`
+    };
+
+    function showHelp() {
+      const activeTab = document.querySelector(".tab.active");
+      const tabName = activeTab ? activeTab.dataset.tab : "matches";
+      document.getElementById("helpTitle").textContent = TAB_NAMES[tabName] || "Aiuto";
+      document.getElementById("helpBody").innerHTML = HELP_TEXTS[tabName] || "<p>Nessuna informazione disponibile.</p>";
+      document.getElementById("helpModal").style.display = "flex";
+    }
+    function hideHelp() {
+      document.getElementById("helpModal").style.display = "none";
+    }
+
     document.querySelectorAll(".tab").forEach(tab => {
       tab.addEventListener("click", function() {
         document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
         document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
         this.classList.add("active");
         document.getElementById("panel-" + this.dataset.tab).classList.add("active");
+
+        // Mostra/nasconde stats in base al tab
+        const statsRow = document.getElementById("statsRow");
+        if (this.dataset.tab === "matches") {
+          statsRow.style.display = "none";
+        } else {
+          statsRow.style.display = "grid";
+          // Aggiorna stats se ci sono dati
+          if (data) renderStats(data);
+        }
       });
     });
 
-    // --- Refresh ---
-    document.getElementById("refreshBtn").addEventListener("click", loadData);
-
     // --- Init ---
     loadData();
+
+    // Nascondi stats all'avvio (siamo sulla tab Match di default)
+    document.getElementById("statsRow").style.display = "none";
 
     // Auto-refresh every 2 minutes
     setInterval(loadData, 120000);
