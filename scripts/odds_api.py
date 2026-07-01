@@ -360,7 +360,9 @@ def predict_and_find_value(db, engine, match):
     if match.get("commence_time"):
         try:
             ct = datetime.fromisoformat(match["commence_time"].replace("Z", "+00:00"))
-            match_date = ct.date()
+            # Converte in ora italiana (UTC+2) prima di estrarre la data
+            italian_dt = ct.astimezone(timezone(timedelta(hours=2)))
+            match_date = italian_dt.date()
         except (ValueError, AttributeError):
             pass
     

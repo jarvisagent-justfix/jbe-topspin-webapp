@@ -106,9 +106,23 @@ def load_portfolio_upcoming(db, days_ahead=7):
         if key in seen_keys:
             continue
         seen_keys.add(key)
+
+        # Se match_datetime è in formato italiano DD/MM/YYYY HH:MM, usalo per la data corretta
+        match_date_str = r["match_date"]
+        if r["match_datetime"]:
+            try:
+                parts = r["match_datetime"].split("/")
+                if len(parts) >= 3:
+                    day = parts[0].zfill(2)
+                    month = parts[1].zfill(2)
+                    year = parts[2].split()[0]  # "2026 11:00" -> "2026"
+                    match_date_str = f"{year}-{month}-{day}"
+            except:
+                pass
+
         matches.append({
             "id": None,
-            "date": r["match_date"],
+            "date": match_date_str,
             "tournament": r["tournament"] or "ATP",
             "surface": r["surface"] or None,
             "round": None,

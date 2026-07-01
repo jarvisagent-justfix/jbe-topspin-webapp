@@ -422,7 +422,9 @@
       const byDate = {};
       all.forEach(m => { const d = m.date || "?"; if (!byDate[d]) byDate[d] = []; byDate[d].push(m); });
       const sortedDates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
-      const todayStr = new Date().toISOString().slice(0, 10);
+      // Usa data locale italiana (non UTC)
+      const now = new Date();
+      const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
       let html = "";
       sortedDates.forEach(dateStr => {
         const isToday = dateStr === todayStr;
@@ -532,7 +534,9 @@
         byDate[d].push(b);
       });
       const sortedDates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
-      const todayStr = new Date().toISOString().slice(0, 10);
+      // Usa data locale italiana (non UTC)
+      const now = new Date();
+      const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
 
       const marketLabel = (b) => b.market_label || b.market || "";
       const marketEmoji = { "match_winner": "\u{1f3c6}", "game_handicap": "\u2696\ufe0f", "over_under": "\u{1f4ca}" };
