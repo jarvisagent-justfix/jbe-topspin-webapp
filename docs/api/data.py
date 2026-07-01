@@ -13,7 +13,7 @@ from database import TennisDatabase
 
 
 def load_matches_today(db, days_ahead=7):
-    """Carica i match ATP in programma da oggi in avanti (nessun lookback al passato)."""
+    """Carica i match ATP in programma da oggi in avanti (solo non giocati)."""
     today = date.today()
     start_s = today.isoformat()
     end_s = (today + timedelta(days=days_ahead)).isoformat()
@@ -31,6 +31,7 @@ def load_matches_today(db, days_ahead=7):
         JOIN players w ON w.id = m.winner_id
         JOIN players l ON l.id = m.loser_id
         WHERE m.match_date >= ?
+          AND m.score IS NULL
         ORDER BY m.match_date ASC, m.id ASC
     """, (start_s,)).fetchall()
 
@@ -57,7 +58,6 @@ def load_matches_today(db, days_ahead=7):
             )).fetchone()["n"]
             has_bet = bc > 0
 
-        # Data analisi: per DB matches non abbiamo un timestamp preciso
         analysis_time = None
 
         matches.append({
@@ -75,6 +75,7 @@ def load_matches_today(db, days_ahead=7):
             },
             "result": None,
             "has_bet": has_bet,
+            "match_datetime": None,
             "analysis_time": analysis_time,
             "source": "db",
         })
@@ -90,12 +91,12 @@ def load_portfolio_upcoming(db, days_ahead=7):
     rows = db.conn.execute("""
         SELECT DISTINCT p.match_date, p.player1, p.player2, p.tournament,
                p.market, p.odds, p.model_prob, p.edge, p.confidence,
-               p.created_at
+               p.created_at, p.match_datetime, p.surface
         FROM paper_portfolio p
         WHERE p.match_id IS NULL
           AND p.match_date >= ? AND p.match_date <= ?
           AND p.status = 'pending'
-        ORDER BY p.match_date ASC
+        ORDER BY p.match_date ASC, p.match_datetime ASC
     """, (start, end)).fetchall()
 
     matches = []
@@ -109,7 +110,7 @@ def load_portfolio_upcoming(db, days_ahead=7):
             "id": None,
             "date": r["match_date"],
             "tournament": r["tournament"] or "ATP",
-            "surface": None,
+            "surface": r["surface"] or None,
             "round": None,
             "best_of": 3,
             "tour_level": None,
@@ -120,6 +121,7 @@ def load_portfolio_upcoming(db, days_ahead=7):
             },
             "result": None,
             "has_bet": True,
+            "match_datetime": r["match_datetime"] or None,
             "analysis_time": r["created_at"] or None,
             "source": "odds_api",
         })
