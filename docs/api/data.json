@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-01T18:44:22.486282",
+  "generated_at": "2026-07-01T19:09:12.504373",
   "date": "2026-07-01",
   "matches": {
     "today": [],
     "upcoming": [
       {
         "id": null,
-        "date": "2026-07-01",
+        "date": "2026-07-02",
         "tournament": "ATP",
         "surface": "Hard",
         "round": null,
@@ -29,13 +29,13 @@
         },
         "result": null,
         "has_bet": true,
-        "match_datetime": "01/07/2026 11:00",
+        "match_datetime": "02/07/2026 12:00",
         "analysis_time": "2026-06-30 17:47:43",
         "source": "odds_api"
       },
       {
         "id": null,
-        "date": "2026-07-01",
+        "date": "2026-07-02",
         "tournament": "ATP",
         "surface": "Hard",
         "round": null,
@@ -58,7 +58,7 @@
         },
         "result": null,
         "has_bet": true,
-        "match_datetime": "01/07/2026 11:00",
+        "match_datetime": "02/07/2026 12:00",
         "analysis_time": "2026-06-30 17:47:43",
         "source": "odds_api"
       }
@@ -588,8 +588,8 @@
     {
       "id": 626,
       "match_id": null,
-      "match_date": "2026-07-01",
-      "match_datetime": "01/07/2026 11:00",
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
       "player1": "Alex de Minaur",
       "player2": "Adrian Mannarino",
       "selection": "Totale 35.5",
@@ -614,8 +614,8 @@
     {
       "id": 625,
       "match_id": null,
-      "match_date": "2026-07-01",
-      "match_datetime": "01/07/2026 11:00",
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
       "player1": "Alex de Minaur",
       "player2": "Adrian Mannarino",
       "selection": "Adrian Mannarino +6.5",
@@ -640,8 +640,8 @@
     {
       "id": 624,
       "match_id": null,
-      "match_date": "2026-07-01",
-      "match_datetime": "01/07/2026 11:00",
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
       "player1": "Alex de Minaur",
       "player2": "Adrian Mannarino",
       "selection": "Alex de Minaur vince",
@@ -666,8 +666,8 @@
     {
       "id": 627,
       "match_id": null,
-      "match_date": "2026-07-01",
-      "match_datetime": "01/07/2026 11:00",
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
       "player1": "Arthur Fery",
       "player2": "Otto Virtanen",
       "selection": "Arthur Fery vince",
