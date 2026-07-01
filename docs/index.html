@@ -307,7 +307,7 @@
     <div class="match-list" id="matchList"></div>
   </div>
   <div class="panel" id="panel-bets">
-    <div class="page-stats" id="betStats" style="margin:0;padding:0"></div>
+    <div id="betStats" style="margin:0;padding:0;width:100%"></div>
     <div class="bet-list" id="betList"></div>
   </div>
   <div class="panel" id="panel-history">
@@ -513,12 +513,13 @@
       const lost = bets.filter(b => b.status === "lost" || (b.resolved && b.result < 0)).length;
       const pending = bets.filter(b => b.status === "pending" || !b.resolved).length;
       const winRate = total - pending > 0 ? Math.round(won / (total - pending) * 100) : 0;
+      const settlePct = total > 0 ? Math.round((total - pending) / total * 100) : 0;
 
       statsEl.innerHTML = `
         <div class="page-stats" style="padding:10px var(--pad);margin:0">
-          <div class="stat-card"><div class="val">${total}</div><div class="lbl">Totali</div></div>
-          <div class="stat-card"><div class="val green">${won}</div><div class="lbl">Vinte</div></div>
-          <div class="stat-card"><div class="val red">${lost}</div><div class="lbl">Perse</div></div>
+          <div class="stat-card"><div class="val ${winRate >= 60 ? 'green' : winRate >= 40 ? 'amber' : 'red'}">${winRate}%</div><div class="lbl">Win Rate</div></div>
+          <div class="stat-card"><div class="val green">${won}</div><div class="lbl">Vinte (${total-pending > 0 ? Math.round(won/(total-pending)*100) : 0}%)</div></div>
+          <div class="stat-card"><div class="val red">${lost}</div><div class="lbl">Perse (${total-pending > 0 ? Math.round(lost/(total-pending)*100) : 0}%)</div></div>
           <div class="stat-card"><div class="val gray">${pending}</div><div class="lbl">In attesa</div></div>
         </div>
       `;
