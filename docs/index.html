@@ -594,14 +594,15 @@
       const won = bets.filter(b => b.status === "won" || (b.resolved && b.result > 0)).length;
       const lost = bets.filter(b => b.status === "lost" || (b.resolved && b.result < 0)).length;
       const pending = bets.filter(b => b.status === "pending" || !b.resolved).length;
-      const winRate = total - pending > 0 ? Math.round(won / (total - pending) * 100) : 0;
+      const settled = won + lost;
+      const winRate = settled > 0 ? Math.round(won / settled * 100) : 0;
       const settlePct = total > 0 ? Math.round((total - pending) / total * 100) : 0;
 
       statsEl.innerHTML = `
         <div class="page-stats" style="padding:10px var(--pad);margin:0">
           <div class="stat-card"><div class="val ${winRate >= 60 ? 'green' : winRate >= 40 ? 'amber' : 'red'}">${winRate}%</div><div class="lbl">Win Rate</div></div>
-          <div class="stat-card"><div class="val green">${won}</div><div class="lbl">Vinte (${total-pending > 0 ? Math.round(won/(total-pending)*100) : 0}%)</div></div>
-          <div class="stat-card"><div class="val red">${lost}</div><div class="lbl">Perse (${total-pending > 0 ? Math.round(lost/(total-pending)*100) : 0}%)</div></div>
+          <div class="stat-card"><div class="val green">${won}</div><div class="lbl">Vinte (${settled > 0 ? Math.round(won/settled*100) : 0}%)</div></div>
+          <div class="stat-card"><div class="val red">${lost}</div><div class="lbl">Perse (${settled > 0 ? Math.round(lost/settled*100) : 0}%)</div></div>
           <div class="stat-card"><div class="val gray">${pending}</div><div class="lbl">In attesa</div></div>
         </div>
       `;
@@ -814,7 +815,8 @@
     //  WALLET PAGE
     // ──────────────────────────────────────────────
     function renderHistory(d) {
-      const bets = d.bet_history || [];
+      const allBets = d.value_bets || [];
+      const bets = allBets.filter(b => b.status !== 'pending');
       const bh = d.bankroll_history || [];
       const b = d.bankroll || {};
       const activeSub = document.querySelector(".sub-tab.active")?.dataset?.sub || "giocate";

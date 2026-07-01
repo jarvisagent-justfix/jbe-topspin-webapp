@@ -142,16 +142,12 @@ def load_portfolio_upcoming(db, days_ahead=7):
     return matches
 
 
-def load_value_bets(db, days=2):
-    """Carica value bets recenti dal paper portfolio."""
-    today = date.today()
-    start = (today - timedelta(days=days)).isoformat()
-
+def load_value_bets(db):
+    """Carica tutti i value bets dal paper portfolio."""
     rows = db.conn.execute("""
         SELECT * FROM paper_portfolio
-        WHERE match_date >= ?
         ORDER BY match_date ASC, edge DESC
-    """, (start,)).fetchall()
+    """).fetchall()
 
     bets = []
     for r in rows:
