@@ -126,6 +126,10 @@
     .surface-badge.carpet{background:rgba(139,92,246,0.15);color:#8b5cf6}
     .mc-meta .label{color:var(--muted)}
     .mc-meta .sep{color:var(--card3);font-size:8px}
+    .rank-badge{
+      font-size:10px;color:var(--muted);background:var(--card2);
+      padding:1px 6px;border-radius:4px;font-weight:600;display:inline-block;
+    }
     .mc-players{
       padding:14px 16px 10px;display:flex;align-items:center;gap:0;
     }
@@ -303,7 +307,7 @@
     <div class="match-list" id="matchList"></div>
   </div>
   <div class="panel" id="panel-bets">
-    <div class="page-stats" id="betStats" style="margin:0 0 8px;padding:0 var(--pad)"></div>
+    <div class="page-stats" id="betStats" style="margin:0;padding:0"></div>
     <div class="bet-list" id="betList"></div>
   </div>
   <div class="panel" id="panel-history">
@@ -508,10 +512,10 @@
       const won = bets.filter(b => b.status === "won" || (b.resolved && b.result > 0)).length;
       const lost = bets.filter(b => b.status === "lost" || (b.resolved && b.result < 0)).length;
       const pending = bets.filter(b => b.status === "pending" || !b.resolved).length;
-      const avgEdge = bets.reduce((s,b) => s + (b.edge||0), 0) / total;
+      const winRate = total - pending > 0 ? Math.round(won / (total - pending) * 100) : 0;
 
       statsEl.innerHTML = `
-        <div class="page-stats" style="padding:0;margin:0">
+        <div class="page-stats" style="padding:10px var(--pad);margin:0">
           <div class="stat-card"><div class="val">${total}</div><div class="lbl">Totali</div></div>
           <div class="stat-card"><div class="val green">${won}</div><div class="lbl">Vinte</div></div>
           <div class="stat-card"><div class="val red">${lost}</div><div class="lbl">Perse</div></div>
@@ -530,6 +534,7 @@
       const todayStr = new Date().toISOString().slice(0, 10);
 
       const marketLabel = (b) => b.market_label || b.market || "";
+      const marketEmoji = { "match_winner": "\u{1f3c6}", "game_handicap": "\u2696\ufe0f", "over_under": "\u{1f4ca}" };
 
       let html = "";
       sortedDates.forEach(dateStr => {
@@ -549,8 +554,13 @@
 
           const modelPct = Math.round((b.model_prob||0) * 100);
           const edgePct = b.edge_pct != null ? b.edge_pct : (b.edge ? Math.round(b.edge * 100) : 0);
-          const edgeDec = (edgePct/100).toFixed(2);
           const stakeStr = b.stake ? b.stake.toFixed(2) : "";
+          const conf = b.confidence || "";
+          const marketEm = marketEmoji[b.market] || "\u{1f3b1}";
+
+          // Calcola probabilità implicita del mercato (1/odds)
+          const marketImplied = b.odds > 0 ? Math.round((1 / b.odds) * 100) : 0;
+          const diffPct = modelPct - marketImplied; // quanto il modello è più confidente
 
           let dt = b.match_datetime || b.match_date || "";
           if (b.match_datetime) {
@@ -566,35 +576,46 @@
           const surf = b.surface || "";
           const tournament = b.tournament || "ATP";
 
-          // Genera spiegazione "perché questa è una buona giocata"
+          // Spiegazione "perché"
           let whyParts = [];
-          const edgeIsHigh = edgePct >= 30;
-          const modelIsHigh = modelPct >= 70;
-          const conf = b.confidence || "";
+          const isHighEdge = edgePct >= 30;
+          const isHighModel = modelPct >= 70;
+          const isPosDiff = diffPct > 0;
 
-          if (edgeIsHigh) {
-            whyParts.push(`Il modello individua un <span class="hl">edge del +${edgePct}%</span> rispetto alla quota reale \u2014 molto alto`);
+          if (isHighEdge) {
+            whyParts.push(`Edge del <strong>+${edgePct}%</strong> \u2014 molto alto rispetto alla quota`);
           } else {
-            whyParts.push(`Il modello rileva un <span class="hl">edge positivo del +${edgePct}%</span> rispetto alla quota`);
+            whyParts.push(`Edge positivo del <strong>+${edgePct}%</strong>`);
           }
-          if (modelIsHigh) {
-            whyParts.push(`la probabilit\u00e0 stimata \u00e8 del <strong>${modelPct}%</strong>, ben sopra la quota di mercato`);
+          if (isHighModel) {
+            whyParts.push(`Modello al <strong>${modelPct}%</strong>, molto sopra la quota di mercato (${marketImplied}%)`);
+          } else {
+            whyParts.push(`Modello al <strong>${modelPct}%</strong> vs mercato ${marketImplied}%`);
           }
           if (conf === "HIGH") {
-            whyParts.push(`il modello ha <strong>alta confidenza</strong> su questa previsione`);
+            whyParts.push(`Confidenza <strong>alta</strong> sulla previsione`);
+          }
+          if (isPosDiff) {
+            whyParts.push(`Differenza di <span class="hl">+${diffPct}%</span> tra modello e mercato`);
           }
 
-          // Calcola barre visuali per edge
           const edgeBarPct = Math.min(edgePct, 100);
           const modelBarPct = Math.min(modelPct, 100);
+          const marketBarPct = Math.min(marketImplied, 100);
 
-          // Token id univoco per il toggle
           const infoId = "bi_" + (b.id || Math.random().toString(36).slice(2,8));
+
+          // Badge confidenza
+          const confBadge = conf === "HIGH" ? `<span style="font-size:10px;background:rgba(34,197,94,0.15);color:var(--green);padding:1px 7px;border-radius:4px;font-weight:600">HIGH</span>`
+            : conf === "MEDIUM" ? `<span style="font-size:10px;background:rgba(245,158,11,0.15);color:var(--amber);padding:1px 7px;border-radius:4px;font-weight:600">MEDIUM</span>`
+            : `<span style="font-size:10px;color:var(--muted)">${conf||'-'}</span>`;
 
           html += `
             <div class="bet-card">
               <div class="mc-accent ${statClass}"></div>
               <div class="mc-dot ${statClass}" title="${statLabel}"></div>
+
+              <!-- Riga 1: Superficie · Torneo · Stato -->
               <div class="mc-top">
                 <div class="mc-meta">
                   ${surf ? `<span class="surface-badge ${SURFACE_BADGE[surf]||''}">${SURFACE_LABEL[surf]||surf}</span>` : ""}
@@ -603,7 +624,9 @@
                   <span class="label">${statLabel}</span>
                 </div>
               </div>
-              <div class="mc-players">
+
+              <!-- Riga 2: Giocatori -->
+              <div class="mc-players" style="padding:10px 16px 4px">
                 <div class="mc-player left">
                   <div class="name" style="font-size:15px">${b.player1||"?"}</div>
                 </div>
@@ -612,60 +635,80 @@
                   <div class="name" style="font-size:15px">${b.player2||"?"}</div>
                 </div>
               </div>
-              <div class="bet-selection-block">
+
+              <!-- Riga 3: Giocata in evidenza -->
+              <div class="bet-selection-block" style="padding:4px 16px 10px">
                 <div class="bet-pick">
                   <span class="pick-text">${b.selection || b.selection_raw || "?"}</span>
                   <span class="pick-odds">@ <em>${b.odds?.toFixed(2) || "?"}</em></span>
                 </div>
               </div>
-              <div class="bet-details-block">
-                <div class="bet-detail">
-                  <span class="bd-label">\u{1f4ca} Modello</span>
-                  <span class="bd-value">${modelPct}%</span>
+
+              <!-- Riga 4: Metriche principali (2x2 grid) -->
+              <div style="padding:0 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <!-- Modello -->
+                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:11px;color:var(--dim)">\u{1f4ca} Modello</span>
+                  <span style="font-size:16px;font-weight:700;color:var(--blue)">${modelPct}%</span>
                 </div>
-                <div class="bet-detail">
-                  <span class="bd-label">\u{1f4cf} Edge</span>
-                  <span class="bd-value bd-highlight">+${edgePct}%</span>
+                <!-- Edge -->
+                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:11px;color:var(--dim)">\u{1f4cf} Edge</span>
+                  <span style="font-size:16px;font-weight:700;color:var(--green)">+${edgePct}%</span>
                 </div>
-                <div class="bet-detail">
-                  <span class="bd-label">\u{1f4b0} Stake</span>
-                  <span class="bd-value">\u20ac${stakeStr}</span>
+                <!-- Stake -->
+                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:11px;color:var(--dim)">\u{1f4b0} Stake</span>
+                  <span style="font-size:14px;font-weight:700">\u20ac${stakeStr}</span>
                 </div>
-                <div class="bet-detail">
-                  <span class="bd-label">\u{1f3af} Confidenza</span>
-                  <span class="bd-value">${conf || "-"}</span>
+                <!-- Confidenza -->
+                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:11px;color:var(--dim)">\u{1f3af} Confidenza</span>
+                  <span style="font-size:13px;font-weight:700">${confBadge}</span>
                 </div>
-                <div class="bet-detail" style="grid-column:span 2">
-                  <span class="bd-label">\u{1f4d6} Mercato</span>
-                  <span class="bd-value bd-market">${marketLabel(b)}</span>
-                </div>
-                <div class="bet-detail" style="grid-column:span 2">
-                  <span class="bd-label">\u{1f4c5} Data</span>
-                  <span class="bd-value">${dt || b.match_date || "-"}</span>
-                </div>
-                ${b.bookmaker ? `<div class="bet-detail" style="grid-column:span 2">
-                  <span class="bd-label">\u{1f3e6} Bookmaker</span>
-                  <span class="bd-value">${b.bookmaker}</span>
-                </div>` : ""}
               </div>
+
+              <!-- Riga 5: Dettagli compatti -->
+              <div style="padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--dim)">
+                ${dt ? `<span>\u{1f4c5} ${dt}</span>` : ""}
+                <span>${marketEm} ${marketLabel(b)}</span>
+                ${b.bookmaker ? `<span>\u{1f3e6} ${b.bookmaker}</span>` : ""}
+              </div>
+
+              <!-- Riga 6: Info toggle -->
               <div class="bet-info-toggle" onclick="toggleBetInfo('${infoId}')">
                 <span class="info-icon">i</span>
                 <span class="info-trigger">Perch\u00e9 \u00e8 una buona giocata</span>
                 <span class="info-arrow">\u25bc</span>
               </div>
+
+              <!-- Riga 7: Info body -->
               <div class="bet-info-body" id="${infoId}">
                 <div class="explain">
                   <p>${whyParts.join(". ")}.</p>
+
+                  <!-- Confronto Modello vs Mercato + Edge -->
+                  <div style="margin:10px 0 6px;font-size:11px;color:var(--dim);font-weight:600">\u{1f4ca} Probabilit\u00e0 a confronto</div>
+                  
                   <div class="metric-bar">
-                    <span style="font-size:10px;min-width:40px">Edge</span>
-                    <div class="bar"><div class="bar-fill" style="width:${edgeBarPct}%;background:var(--green)"></div></div>
-                    <span style="font-size:10px;min-width:35px;text-align:right;color:var(--green);font-weight:600">+${edgePct}%</span>
-                  </div>
-                  <div class="metric-bar">
-                    <span style="font-size:10px;min-width:40px">Modello</span>
+                    <span style="font-size:10px;min-width:60px;">Modello</span>
                     <div class="bar"><div class="bar-fill" style="width:${modelBarPct}%;background:var(--blue)"></div></div>
-                    <span style="font-size:10px;min-width:35px;text-align:right;color:var(--blue);font-weight:600">${modelPct}%</span>
+                    <span style="font-size:11px;min-width:40px;text-align:right;color:var(--blue);font-weight:700">${modelPct}%</span>
                   </div>
+                  <div class="metric-bar">
+                    <span style="font-size:10px;min-width:60px;">Mercato</span>
+                    <div class="bar"><div class="bar-fill" style="width:${marketBarPct}%;background:var(--dim);opacity:0.5"></div></div>
+                    <span style="font-size:11px;min-width:40px;text-align:right;color:var(--dim);font-weight:600">${marketImplied}%</span>
+                  </div>
+                  <div class="metric-bar">
+                    <span style="font-size:10px;min-width:60px;">Edge</span>
+                    <div class="bar"><div class="bar-fill" style="width:${edgeBarPct}%;background:var(--green)"></div></div>
+                    <span style="font-size:11px;min-width:40px;text-align:right;color:var(--green);font-weight:700">+${edgePct}%</span>
+                  </div>
+
+                  ${diffPct > 0 ? `<div style="margin-top:8px;font-size:11px;color:var(--dim);background:rgba(34,197,94,0.08);border-radius:6px;padding:6px 10px;text-align:center">
+                    Il modello \u00e8 pi\u00f9 confidente del bookmaker del <strong style="color:var(--green)">+${diffPct}%</strong>
+                  </div>` : ""}
                 </div>
               </div>
             </div>`;
