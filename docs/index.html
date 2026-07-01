@@ -22,7 +22,7 @@
     body{
       font-family:var(--font);background:var(--bg);color:var(--text);
       min-height:100dvh;-webkit-font-smoothing:antialiased;
-      padding-bottom:calc(var(--nav-h) + 24px);
+      padding-bottom:calc(var(--nav-h) + 48px);
     }
     /* ── Header ── */
     .header{
@@ -298,8 +298,10 @@
     .log-desc{font-size:12px;color:var(--dim);margin-top:4px;line-height:1.4}
     .log-info{
       font-size:11px;color:var(--muted);margin-top:8px;padding-top:6px;
-      border-top:1px solid rgba(255,255,255,0.05);line-height:1.4;
+      border-top:1px solid rgba(255,255,255,0.05);
     }
+    .log-info-line{padding:2px 0;line-height:1.5}
+    .log-info-line:first-child{padding-top:0}
     .history-chart{margin-bottom:10px}
     .history-list{display:flex;flex-direction:column;gap:4px}
     .bottom-spacer{height:24px}
@@ -880,7 +882,7 @@
                 </div>
                 <div class="log-title">${e.icon} ${e.title}</div>
                 <div class="log-desc">${e.desc}</div>
-                ${e.info ? `<div class="log-info">\u{1f4a1} ${e.info}</div>` : ""}
+                ${e.info ? `<div class="log-info">${e.info.split('\n').map(line => `<div class="log-info-line">\u{1f4a1} ${line}</div>`).join('')}</div>` : ""}
               </div>
             </div>`;
         });

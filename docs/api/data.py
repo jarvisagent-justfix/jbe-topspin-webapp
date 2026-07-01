@@ -384,20 +384,15 @@ def load_log_entries():
     entries = []
 
     def parse_pipeline_ts(header):
-        """Parsa 'Tue Jun 30 17:47:39 UTC 2026' manualmente (strptime con %Z è inaffidabile)."""
         import re
         m = re.search(r'(\w{3})\s+(\w{3})\s+(\d+)\s+(\d{2}):(\d{2}):(\d{2})\s+\w{3}\s+(\d{4})', header)
-        if not m:
-            return None, None
+        if not m: return None, None
         try:
             month_num = list(cal.month_abbr).index(m.group(2).capitalize())
-            day = int(m.group(3))
-            h, mi, s = int(m.group(4)), int(m.group(5)), int(m.group(6))
-            yr = int(m.group(7))
-            ts = datetime(yr, month_num, day, h, mi, s)
+            ts = datetime(int(m.group(7)), month_num, int(m.group(3)),
+                          int(m.group(4)), int(m.group(5)), int(m.group(6)))
             return ts.strftime("%Y-%m-%d"), ts.strftime("%H:%M")
-        except:
-            return None, None
+        except: return None, None
 
     # 1. Leggi pipeline log
     pipeline_log = "/tmp/jbe-pipeline.log"
@@ -412,7 +407,6 @@ def load_log_entries():
             header = lines[0] if lines else ""
             date_key, time_key = parse_pipeline_ts(header)
             if not date_key:
-                # Se non c'è timestamp nel header, usa il modtime del file
                 date_key = date.today().isoformat()
                 time_key = datetime.now().strftime("%H:%M")
 
@@ -423,34 +417,67 @@ def load_log_entries():
                 if "Match trovati:" in l:
                     try: match_count = int(l.split("Match trovati:")[1].split()[0])
                     except: pass
+            
+            match_analyzed = None
+            for l in lines:
+                if "Match analizzati:" in l:
+                    try: match_analyzed = int(l.split("Match analizzati:")[1].split()[0])
+                    except: pass
 
-            # Estrai dettagli extra per info
-            info_parts = []
+            # Info multi-linea
+            info_lines = []
+
+            # Self-Improvement
             for l in lines:
                 ls = l.strip()
-                if "Self-Improvement:" in ls:
-                    info_parts.append(ls)
+                if "errori totali" in ls and "accuracy" in ls:
+                    info_lines.append(f"🎯 Self-Improvement: {ls}")
+                if "Errori da ultimo retrain" in ls:
+                    info_lines.append(f"📊 {ls}")
+                if "Retrain non necessario" in ls or "Retrain necessario" in ls:
+                    info_lines.append(f"🔄 {ls}")
+
+            # Coverage
+            for l in lines:
+                ls = l.strip()
                 if "Copertura" in ls and "2026" in ls:
-                    info_parts.append(ls)
+                    info_lines.append(f"📈 {ls}")
+                if "Odds totali nel DB" in ls:
+                    info_lines.append(f"🗄️ {ls}")
+
+            # Webapp + Bankroll
+            for l in lines:
+                ls = l.strip()
                 if "Webapp data generato" in ls:
-                    info_parts.append(ls.replace("✅ ", ""))
-                if "Fatto:" in ls:
-                    info_parts.append(ls)
+                    info_lines.append(f"🌐 {ls.replace('✅ ','')}")
+                if "Bankroll" in l and "EUR" in l:
+                    info_lines.append(f"💰 {ls}")
+                if "Match oggi:" in ls and "Match in arrivo:" in ls:
+                    info_lines.append(f"📅 {ls}")
+                if "Value bets:" in ls and "Bankroll:" in ls:
+                    info_lines.append(f"💎 {ls}")
+
+            # Odds API info
+            for l in lines:
+                ls = l.strip()
+                if ls.startswith("[INFO] Recupero"):
+                    info_lines.append(f"📡 {ls}")
+                if "[CACHE] Salvati" in ls:
+                    info_lines.append(f"💾 {ls}")
+                if "Odds API report integrato" in ls:
+                    info_lines.append(f"✅ {ls}")
 
             icon = "🔄"
             title = "Pipeline eseguita"
             desc_parts = []
-            if match_count is not None:
-                desc_parts.append(f"📡 {match_count} match analizzati")
+            if match_analyzed is not None:
+                desc_parts.append(f"📡 {match_analyzed} match analizzati")
+            elif match_count is not None:
+                desc_parts.append(f"📡 {match_count} match trovati")
             if value_count > 0:
-                desc_parts.append(f"💎 {value_count} value bet trovate")
+                desc_parts.append(f"💎 {value_count} value bet")
             if err_count > 0:
                 desc_parts.append(f"⚠️ {err_count} errori")
-            bankroll_line = None
-            for l in lines:
-                if "Bankroll" in l and "EUR" in l:
-                    bankroll_line = l.strip()
-                    desc_parts.append(f"💰 {bankroll_line}")
 
             entries.append({
                 "date": date_key,
@@ -459,19 +486,23 @@ def load_log_entries():
                 "type": "pipeline",
                 "title": title,
                 "desc": " · ".join(desc_parts) if desc_parts else "Nessuna bet trovata",
-                "info": " | ".join(info_parts) if info_parts else None,
+                "info": "\n".join(info_lines) if info_lines else None,
             })
 
     # 2. Value bet events dal DB
     try:
         db_local = TennisDatabase()
         bet_events = db_local.conn.execute("""
-            SELECT created_at, player1, player2, selection, market, odds, edge, confidence
+            SELECT created_at, player1, player2, selection, market, odds, edge, model_prob, confidence
             FROM paper_portfolio
             WHERE created_at IS NOT NULL
             ORDER BY created_at DESC
             LIMIT 30
         """).fetchall()
+        
+        market_emoji = {"match_winner": "🏆", "game_handicap": "⚖️", "over_under": "📊"}
+        market_labels = {"match_winner": "Vincitore", "game_handicap": "Handicap Game", "over_under": "Totale Game"}
+        
         for r in bet_events:
             try:
                 ts = datetime.strptime(r["created_at"], "%Y-%m-%d %H:%M:%S")
@@ -481,11 +512,20 @@ def load_log_entries():
                 date_key = date.today().isoformat()
                 time_key = "??:??"
 
-            market_emoji = {"match_winner": "🏆", "game_handicap": "⚖️", "over_under": "📊"}
             me = market_emoji.get(r["market"], "🎯")
+            ml = market_labels.get(r["market"], r["market"] or "")
             edge_pct = round((r["edge"] or 0) * 100, 1)
-            model_pct = "N/A"
-            edge_desc = "molto alto" if edge_pct >= 30 else "positivo"
+            model_pct = round((r["model_prob"] or 0) * 100)
+            
+            # Info dettagliata
+            info = []
+            info.append(f"📊 Mercato: {me} {ml}")
+            if model_pct:
+                info.append(f"🎯 Modello: {model_pct}%")
+            info.append(f"📈 Edge: +{edge_pct}%")
+            info.append(f"🎲 Quota: {r['odds']:.2f}")
+            info.append(f"🎯 Confidenza: {r['confidence'] or 'N/A'}")
+
             entries.append({
                 "date": date_key,
                 "time": time_key,
@@ -493,7 +533,7 @@ def load_log_entries():
                 "type": "value_bet",
                 "title": f"{r['player1']} vs {r['player2']}",
                 "desc": f"{me} {r['selection']} · Edge +{edge_pct}% @{r['odds']:.2f} · {r['confidence'] or '-'}",
-                "info": f"Edge {edge_desc} (+{edge_pct}%) — quotazione {r['odds']:.2f}, confidenza {r['confidence'] or 'N/A'}",
+                "info": "\n".join(info),
             })
     except Exception as e:
         entries.append({
