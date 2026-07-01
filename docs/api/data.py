@@ -377,6 +377,127 @@ def load_bankroll_history(db):
     return history
 
 
+def load_log_entries():
+    """Costruisce log strutturati dal pipeline log e dal DB."""
+    base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    entries = []
+
+    # 1. Leggi pipeline log
+    pipeline_log = "/tmp/jbe-pipeline.log"
+    if os.path.exists(pipeline_log):
+        with open(pipeline_log) as f:
+            content = f.read()
+        # Split per run (separatore =====)
+        runs = content.split("=" * 40)
+        for run in runs:
+            if not run.strip():
+                continue
+            lines = run.strip().split("\n")
+            # Prima riga: "===== JBE Pipeline: Tue Jun 30 17:47:39 UTC 2026 ====="
+            header = lines[0] if lines else ""
+            # Cerca timestamp
+            import re
+            ts_match = re.search(r'(\w{3}\s+\w{3}\s+\d+\s+\d{2}:\d{2}:\d{2}\s+\w{3}\s+\d{4})', header)
+            if ts_match:
+                try:
+                    ts = datetime.strptime(ts_match.group(1), "%a %b %d %H:%M:%S %Z %Y")
+                    date_key = ts.strftime("%Y-%m-%d")
+                    time_key = ts.strftime("%H:%M")
+                except:
+                    date_key = date.today().isoformat()
+                    time_key = "??:??"
+            else:
+                date_key = date.today().isoformat()
+                time_key = "??:??"
+
+            # Estrai info dal run
+            value_count = len([l for l in lines if "VALUE BET" in l])
+            err_count = len([l for l in lines if "ERRORE" in l or "ERROR" in l])
+            match_count = None
+            for l in lines:
+                if "Match trovati:" in l:
+                    try:
+                        match_count = int(l.split("Match trovati:")[1].split()[0])
+                    except:
+                        pass
+            # Cerca riepilogo
+            summary_line = None
+            for l in lines:
+                if "Match analizzati:" in l:
+                    summary_line = l.strip()
+            # Cerca bankroll
+            bankroll_line = None
+            for l in lines:
+                if "Bankroll" in l and "EUR" in l:
+                    bankroll_line = l.strip()
+
+            # Entry: pipeline run
+            icon = "🔄"
+            title = "Pipeline eseguita"
+            desc_parts = []
+            if match_count is not None:
+                desc_parts.append(f"📡 {match_count} match analizzati")
+            if value_count > 0:
+                desc_parts.append(f"💎 {value_count} value bet trovate")
+            if err_count > 0:
+                desc_parts.append(f"⚠️ {err_count} errori")
+            if bankroll_line:
+                desc_parts.append(f"💰 {bankroll_line}")
+
+            entries.append({
+                "date": date_key,
+                "time": time_key,
+                "icon": icon,
+                "type": "pipeline",
+                "title": title,
+                "desc": " · ".join(desc_parts) if desc_parts else "Nessuna bet trovata",
+            })
+
+    # 2. Value bet events dal DB
+    try:
+        db_local = TennisDatabase()
+        bet_events = db_local.conn.execute("""
+            SELECT created_at, player1, player2, selection, market, odds, edge, confidence
+            FROM paper_portfolio
+            WHERE created_at IS NOT NULL
+            ORDER BY created_at DESC
+            LIMIT 30
+        """).fetchall()
+        for r in bet_events:
+            try:
+                ts = datetime.strptime(r["created_at"], "%Y-%m-%d %H:%M:%S")
+                date_key = ts.strftime("%Y-%m-%d")
+                time_key = ts.strftime("%H:%M")
+            except:
+                date_key = date.today().isoformat()
+                time_key = "??:??"
+
+            market_emoji = {"match_winner": "🏆", "game_handicap": "⚖️", "over_under": "📊"}
+            me = market_emoji.get(r["market"], "🎯")
+            edge_pct = round((r["edge"] or 0) * 100, 1)
+            entries.append({
+                "date": date_key,
+                "time": time_key,
+                "icon": "💎",
+                "type": "value_bet",
+                "title": f"{r['player1']} vs {r['player2']}",
+                "desc": f"{me} {r['selection']} · Edge +{edge_pct}% @{r['odds']:.2f} · {r['confidence'] or '-'}",
+            })
+    except Exception as e:
+        entries.append({
+            "date": date.today().isoformat(),
+            "time": datetime.now().strftime("%H:%M"),
+            "icon": "⚠️",
+            "type": "system",
+            "title": "Errore DB",
+            "desc": str(e),
+        })
+
+    # Ordina per data (decrescente) e ora (decrescente)
+    entries.sort(key=lambda e: (e["date"], e["time"]), reverse=True)
+    return entries
+
+
 def build_data():
     db = TennisDatabase()
 
@@ -429,6 +550,7 @@ def build_data():
         "bet_history": load_bet_history(db, limit=50),
         "bankroll_history": load_bankroll_history(db),
         "last_report": load_last_report(db),
+        "log_entries": load_log_entries(),
         "api_status": api_status,
     }
     return data
