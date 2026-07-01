@@ -85,7 +85,7 @@ def load_portfolio_upcoming(db, days_ahead=7):
     """Carica match in arrivo dal paper_portfolio (Odds API, non ancora importati in tennis_matches)."""
     today = date.today()
     end = (today + timedelta(days=days_ahead)).isoformat()
-    start = (today - timedelta(days=1)).isoformat()
+    start = today.isoformat()
 
     rows = db.conn.execute("""
         SELECT DISTINCT p.match_date, p.player1, p.player2, p.tournament,
