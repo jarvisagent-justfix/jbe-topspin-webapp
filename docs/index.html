@@ -349,6 +349,26 @@
     .wl-label .l{color:var(--red);font-weight:600}
     .wl-label .p{color:var(--muted);font-weight:600}
     .history-list{display:flex;flex-direction:column;gap:4px}
+    /* ── Calendario Value ── */
+    .cal-wrap{background:var(--card);border-radius:var(--radius);margin:0 var(--pad) 10px;padding:12px 10px 10px}
+    .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .cal-nav-btn{background:var(--card2);border:none;color:var(--dim);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s}
+    .cal-nav-btn:hover{background:var(--card3);color:var(--text)}
+    .cal-nav-btn:active{transform:scale(.9)}
+    .cal-month{font-size:14px;font-weight:700;letter-spacing:-.3px}
+    .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:10px;color:var(--muted);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+    .cal-day{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;border:none;background:transparent;cursor:pointer;position:relative;transition:.12s;padding:0}
+    .cal-day:hover{background:var(--card2)}
+    .cal-day .num{font-size:13px;font-weight:600;line-height:1;color:var(--text)}
+    .cal-day.other .num{color:var(--muted);opacity:.4}
+    .cal-day .dot{width:4px;height:4px;border-radius:50%;background:var(--green);margin-top:3px;display:none}
+    .cal-day.has-bet .dot{display:block}
+    .cal-day.selected{background:var(--green)!important}
+    .cal-day.selected .num{color:#0b1120!important}
+    .cal-day.selected .dot{background:#0b1120}
+    .cal-day.today .num{box-shadow:0 0 0 1.5px var(--green);border-radius:50%;padding:0 4px}
+    .cal-day.empty{cursor:default}
     .bottom-spacer{height:24px}
   </style>
 </head>
@@ -377,6 +397,17 @@
   </div>
   <div class="panel" id="panel-bets">
     <div id="betStats" style="margin:0;padding:0;width:100%"></div>
+    <div class="cal-wrap" id="calWrap" style="display:none">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" id="calPrev">◀</button>
+        <span class="cal-month" id="calMonthYear"></span>
+        <button class="cal-nav-btn" id="calNext">▶</button>
+      </div>
+      <div class="cal-weekdays">
+        <span>Lun</span><span>Mar</span><span>Mer</span><span>Gio</span><span>Ven</span><span>Sab</span><span>Dom</span>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
     <div class="bet-list" id="betList"></div>
   </div>
   <div class="panel" id="panel-history">
@@ -578,25 +609,29 @@
     // ──────────────────────────────────────────────
     //  VALUE BETS PAGE
     // ──────────────────────────────────────────────
+    let valueSelectedDate = null;
+    let valueCalView = null; // {year, month}
+
     function renderBets(d) {
       const bets = d.value_bets || [];
       const el = document.getElementById("betList");
       const statsEl = document.getElementById("betStats");
+      const calWrap = document.getElementById("calWrap");
 
       if (!bets.length) {
         el.innerHTML = '<div class="empty">Nessuna value bet al momento</div>';
         statsEl.innerHTML = "";
+        calWrap.style.display = "none";
         return;
       }
 
-      // Calcola stats
+      // Calcola stats (globali, sempre visibili)
       const total = bets.length;
       const won = bets.filter(b => b.status === "won" || (b.resolved && b.result > 0)).length;
       const lost = bets.filter(b => b.status === "lost" || (b.resolved && b.result < 0)).length;
       const pending = bets.filter(b => b.status === "pending" || !b.resolved).length;
       const settled = won + lost;
       const winRate = settled > 0 ? Math.round(won / settled * 100) : 0;
-      const settlePct = total > 0 ? Math.round((total - pending) / total * 100) : 0;
 
       statsEl.innerHTML = `
         <div class="page-stats" style="padding:10px var(--pad);margin:0">
@@ -607,207 +642,298 @@
         </div>
       `;
 
-      // Raggruppa per data, dal futuro al passato
+      // Raccogli date con bet pending risolte
+      const betDates = new Set();
+      bets.forEach(b => { if (b.match_date) betDates.add(b.match_date); });
+
+      // Seleziona data di default (oggi o la piu' vicina)
+      const now = new Date();
+      const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+      if (!valueSelectedDate || !betDates.has(valueSelectedDate)) {
+        valueSelectedDate = betDates.has(todayStr) ? todayStr : [...betDates].sort().reverse()[0] || todayStr;
+      }
+
+      // Raggruppa bets per data per i filtri
       const byDate = {};
       bets.forEach(b => {
         const d = b.match_date || "?";
         if (!byDate[d]) byDate[d] = [];
         byDate[d].push(b);
       });
-      const sortedDates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
-      // Usa data locale italiana (non UTC)
-      const now = new Date();
-      const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
 
-      const marketLabel = (b) => b.market_label || b.market || "";
-      const marketEmoji = { "match_winner": "\u{1f3c6}", "game_handicap": "\u2696\ufe0f", "over_under": "\u{1f4ca}" };
+      // --- Render calendario ---
+      calWrap.style.display = "block";
+      renderCalendar(betDates);
+
+      // Salva i dati per i click sul calendario
+      window._lastValueData = d;
+
+      // --- Render card per la data selezionata ---
+      renderCardsForDate(valueSelectedDate, byDate, todayStr);
+
+      // Aggancia navigazione calendario
+      document.getElementById("calPrev").onclick = () => {
+        valueCalView.month--;
+        if (valueCalView.month < 0) { valueCalView.month = 11; valueCalView.year--; }
+        renderCalendar(betDates);
+      };
+      document.getElementById("calNext").onclick = () => {
+        valueCalView.month++;
+        if (valueCalView.month > 11) { valueCalView.month = 0; valueCalView.year++; }
+        renderCalendar(betDates);
+      };
+    }
+
+    function renderCalendar(betDates) {
+      const grid = document.getElementById("calGrid");
+      const monthLabel = document.getElementById("calMonthYear");
+      if (!valueCalView) {
+        const today = new Date();
+        valueCalView = { year: today.getFullYear(), month: today.getMonth() };
+      }
+      const { year, month } = valueCalView;
+      const mNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+      monthLabel.textContent = mNames[month] + " " + year;
+
+      const firstDay = new Date(year, month, 1).getDay(); // 0=Dom
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const daysInPrev = new Date(year, month, 0).getDate();
+      const firstCol = firstDay === 0 ? 6 : firstDay - 1; // LUN=0, DOM=6
+
+      const today = new Date();
+      const todayStr = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
 
       let html = "";
-      sortedDates.forEach(dateStr => {
+
+      // Giorni del mese precedente
+      for (let i = firstCol - 1; i >= 0; i--) {
+        const d = daysInPrev - i;
+        html += `<button class="cal-day other empty"></button>`;
+      }
+
+      // Giorni del mese corrente
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = year + '-' + String(month+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
         const isToday = dateStr === todayStr;
-        const label = isToday ? "Oggi" : new Date(dateStr+"T12:00:00").toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
-        html += `<div class="day-header"><span>${isToday ? '\u{1f48e}' : '\u{1f4c5}'} ${label}</span><span class="count">${byDate[dateStr].length} scommesse</span></div>`;
+        const isSelected = dateStr === valueSelectedDate;
+        const hasBet = betDates.has(dateStr);
+        const cls = `cal-day${isSelected ? ' selected' : ''}${isToday ? ' today' : ''}${hasBet ? ' has-bet' : ''}`;
+        html += `<button class="${cls}" data-date="${dateStr}">
+          <span class="num">${d}</span>
+          <span class="dot"></span>
+        </button>`;
+      }
 
-        // Ordina per orario decrescente (partita piu' tardi in alto)
-        byDate[dateStr].sort((a, b) => {
-          const parseDT = (bet) => {
-            if (!bet.match_datetime) return 0;
-            const p = bet.match_datetime.split(/[\s\/:]/);
-            if (p.length < 5) return 0;
-            return new Date(p[2], p[1]-1, p[0], p[3], p[4]).getTime();
-          };
-          return (parseDT(b) || 0) - (parseDT(a) || 0);
-        });
+      // Giorni del mese successivo per completare la griglia
+      const totalCells = firstCol + daysInMonth;
+      const remaining = (7 - totalCells % 7) % 7;
+      for (let i = 1; i <= remaining; i++) {
+        html += `<button class="cal-day other empty"></button>`;
+      }
 
-        byDate[dateStr].forEach(b => {
-          const isPending = b.status === "pending" || !b.resolved;
-          const isWon = b.status === "won" || (b.resolved && b.result > 0);
-          const isLost = b.status === "lost" || (b.resolved && b.result < 0);
-          const statClass = isWon ? "green" : isLost ? "red" : "gray";
-          const statLabel = isWon ? "Vinta" : isLost ? "Persa" : "In corso";
+      grid.innerHTML = html;
 
-          const modelPct = Math.round((b.model_prob||0) * 100);
-          const edgePct = b.edge_pct != null ? b.edge_pct : (b.edge ? Math.round(b.edge * 100) : 0);
-          const stakeStr = b.stake ? b.stake.toFixed(2) : "";
-          const conf = b.confidence || "";
-          const marketEm = marketEmoji[b.market] || "\u{1f3b1}";
-
-          // Calcola probabilità implicita del mercato (1/odds)
-          const marketImplied = b.odds > 0 ? Math.round((1 / b.odds) * 100) : 0;
-          const diffPct = modelPct - marketImplied; // quanto il modello è più confidente
-
-          let dt = b.match_datetime || b.match_date || "";
-          if (b.match_datetime) {
-            try {
-              const parts = b.match_datetime.split(/[\s\/:]/);
-              if (parts.length >= 4) {
-                const d = new Date(parts[2], parts[1]-1, parts[0], parts[3], parts[4]||0);
-                dt = d.toLocaleDateString("it-IT",{day:"numeric",month:"short"})+" \u00b7 "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
-              }
-            } catch(e) {}
+      // Click handler
+      grid.querySelectorAll(".cal-day:not(.empty)").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const date = this.dataset.date;
+          if (date && betDates.has(date)) {
+            valueSelectedDate = date;
+            // Ricarica solo le card
+            const bets = (window._lastValueData?.value_bets) || [];
+            const byDate = {};
+            bets.forEach(b => { const d = b.match_date || "?"; if (!byDate[d]) byDate[d] = []; byDate[d].push(b); });
+            const now = new Date();
+            const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+            renderCardsForDate(date, byDate, todayStr);
+            // Aggiorna highlight calendario
+            grid.querySelectorAll(".cal-day.selected").forEach(el => el.classList.remove("selected"));
+            this.classList.add("selected");
           }
-
-          const surf = b.surface || "";
-          const tournament = b.tournament || "ATP";
-
-          // Spiegazione "perché"
-          let whyParts = [];
-          const isHighEdge = edgePct >= 30;
-          const isHighModel = modelPct >= 70;
-          const isPosDiff = diffPct > 0;
-
-          if (isHighEdge) {
-            whyParts.push(`Edge del <strong>+${edgePct}%</strong> \u2014 molto alto rispetto alla quota`);
-          } else {
-            whyParts.push(`Edge positivo del <strong>+${edgePct}%</strong>`);
-          }
-          if (isHighModel) {
-            whyParts.push(`Modello al <strong>${modelPct}%</strong>, molto sopra la quota di mercato (${marketImplied}%)`);
-          } else {
-            whyParts.push(`Modello al <strong>${modelPct}%</strong> vs mercato ${marketImplied}%`);
-          }
-          if (conf === "HIGH") {
-            whyParts.push(`Confidenza <strong>alta</strong> sulla previsione`);
-          }
-          if (isPosDiff) {
-            whyParts.push(`Differenza di <span class="hl">+${diffPct}%</span> tra modello e mercato`);
-          }
-
-          const edgeBarPct = Math.min(edgePct, 100);
-          const modelBarPct = Math.min(modelPct, 100);
-          const marketBarPct = Math.min(marketImplied, 100);
-
-          const infoId = "bi_" + (b.id || Math.random().toString(36).slice(2,8));
-
-          // Badge confidenza
-          const confBadge = conf === "HIGH" ? `<span style="font-size:10px;background:rgba(34,197,94,0.15);color:var(--green);padding:1px 7px;border-radius:4px;font-weight:600">HIGH</span>`
-            : conf === "MEDIUM" ? `<span style="font-size:10px;background:rgba(245,158,11,0.15);color:var(--amber);padding:1px 7px;border-radius:4px;font-weight:600">MEDIUM</span>`
-            : `<span style="font-size:10px;color:var(--muted)">${conf||'-'}</span>`;
-
-          html += `
-            <div class="bet-card">
-              <div class="mc-accent ${statClass}"></div>
-              <div class="mc-dot ${statClass}" title="${statLabel}"></div>
-
-              <!-- Riga 1: Superficie · Torneo · Stato -->
-              <div class="mc-top">
-                <div class="mc-meta">
-                  ${surf ? `<span class="surface-badge ${SURFACE_BADGE[surf]||''}">${SURFACE_LABEL[surf]||surf}</span>` : ""}
-                  <span>${tournament}</span>
-                  <span class="sep">\u00b7</span>
-                  <span class="label">${statLabel}</span>
-                </div>
-              </div>
-
-              <!-- Riga 2: Giocatori -->
-              <div class="mc-players" style="padding:10px 16px 4px">
-                <div class="mc-player left">
-                  <div class="name" style="font-size:15px">${b.player1||"?"}</div>
-                </div>
-                <div class="mc-vs">vs</div>
-                <div class="mc-player right">
-                  <div class="name" style="font-size:15px">${b.player2||"?"}</div>
-                </div>
-              </div>
-
-              <!-- Riga 3: Giocata in evidenza -->
-              <div class="bet-selection-block" style="padding:4px 16px 10px">
-                <div class="bet-pick">
-                  <span class="pick-text">${b.selection || b.selection_raw || "?"}</span>
-                  <span class="pick-odds">@ <em>${b.odds?.toFixed(2) || "?"}</em></span>
-                </div>
-              </div>
-
-              <!-- Riga 4: Metriche principali (2x2 grid) -->
-              <div style="padding:0 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
-                <!-- Modello -->
-                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:11px;color:var(--dim)">\u{1f4ca} Modello</span>
-                  <span style="font-size:16px;font-weight:700;color:var(--blue)">${modelPct}%</span>
-                </div>
-                <!-- Edge -->
-                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:11px;color:var(--dim)">\u{1f4cf} Edge</span>
-                  <span style="font-size:16px;font-weight:700;color:var(--green)">+${edgePct}%</span>
-                </div>
-                <!-- Stake -->
-                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:11px;color:var(--dim)">\u{1f4b0} Stake</span>
-                  <span style="font-size:14px;font-weight:700">\u20ac${stakeStr}</span>
-                </div>
-                <!-- Confidenza -->
-                <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:11px;color:var(--dim)">\u{1f3af} Confidenza</span>
-                  <span style="font-size:13px;font-weight:700">${confBadge}</span>
-                </div>
-              </div>
-
-              <!-- Riga 5: Dettagli compatti -->
-              <div style="padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--dim)">
-                ${dt ? `<span>\u{1f4c5} ${dt}</span>` : ""}
-                <span>${marketEm} ${marketLabel(b)}</span>
-                ${b.bookmaker ? `<span>\u{1f3e6} ${b.bookmaker}</span>` : ""}
-              </div>
-
-              <!-- Riga 6: Info toggle -->
-              <div class="bet-info-toggle" onclick="toggleBetInfo('${infoId}')">
-                <span class="info-icon">i</span>
-                <span class="info-trigger">Perch\u00e9 \u00e8 una buona giocata</span>
-                <span class="info-arrow">\u25bc</span>
-              </div>
-
-              <!-- Riga 7: Info body -->
-              <div class="bet-info-body" id="${infoId}">
-                <div class="explain">
-                  <p>${whyParts.join(". ")}.</p>
-
-                  <!-- Confronto Modello vs Mercato + Edge -->
-                  <div style="margin:10px 0 6px;font-size:11px;color:var(--dim);font-weight:600">\u{1f4ca} Probabilit\u00e0 a confronto</div>
-                  
-                  <div class="metric-bar">
-                    <span style="font-size:10px;min-width:60px;">Modello</span>
-                    <div class="bar"><div class="bar-fill" style="width:${modelBarPct}%;background:var(--blue)"></div></div>
-                    <span style="font-size:11px;min-width:40px;text-align:right;color:var(--blue);font-weight:700">${modelPct}%</span>
-                  </div>
-                  <div class="metric-bar">
-                    <span style="font-size:10px;min-width:60px;">Mercato</span>
-                    <div class="bar"><div class="bar-fill" style="width:${marketBarPct}%;background:var(--dim);opacity:0.5"></div></div>
-                    <span style="font-size:11px;min-width:40px;text-align:right;color:var(--dim);font-weight:600">${marketImplied}%</span>
-                  </div>
-                  <div class="metric-bar">
-                    <span style="font-size:10px;min-width:60px;">Edge</span>
-                    <div class="bar"><div class="bar-fill" style="width:${edgeBarPct}%;background:var(--green)"></div></div>
-                    <span style="font-size:11px;min-width:40px;text-align:right;color:var(--green);font-weight:700">+${edgePct}%</span>
-                  </div>
-
-                  ${diffPct > 0 ? `<div style="margin-top:8px;font-size:11px;color:var(--dim);background:rgba(34,197,94,0.08);border-radius:6px;padding:6px 10px;text-align:center">
-                    Il modello \u00e8 pi\u00f9 confidente del bookmaker del <strong style="color:var(--green)">+${diffPct}%</strong>
-                  </div>` : ""}
-                </div>
-              </div>
-            </div>`;
         });
       });
+    }
+
+    function renderCardsForDate(dateStr, byDate, todayStr) {
+      const el = document.getElementById("betList");
+      const betsForDate = byDate[dateStr] || [];
+
+      if (!betsForDate.length) {
+        el.innerHTML = `<div class="empty" style="padding:20px var(--pad);text-align:center">\u{1f4ed} Nessuna value bet per questa data</div>`;
+        return;
+      }
+
+      // Header data
+      const isToday = dateStr === todayStr;
+      const label = isToday ? "Oggi" : new Date(dateStr+"T12:00:00").toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
+      let html = `<div class="day-header"><span>${isToday ? '\u{1f48e}' : '\u{1f4c5}'} ${label}</span><span class="count">${betsForDate.length} scommesse</span></div>`;
+
+      // Ordina per orario decrescente
+      betsForDate.sort((a, b) => {
+        const parseDT = (bet) => {
+          if (!bet.match_datetime) return 0;
+          const p = bet.match_datetime.split(/[\\s\\/:]/);
+          if (p.length < 5) return 0;
+          return new Date(p[2], p[1]-1, p[0], p[3], p[4]).getTime();
+        };
+        return (parseDT(b) || 0) - (parseDT(a) || 0);
+      });
+
+      const marketLabel = (b) => b.market_label || b.market || "";
+      const marketEmoji = { "match_winner": "\u{1f3c6}", "game_handicap": "\\u2696\\ufe0f", "over_under": "\u{1f4ca}" };
+
+      betsForDate.forEach(b => {
+        const isPending = b.status === "pending" || !b.resolved;
+        const isWon = b.status === "won" || (b.resolved && b.result > 0);
+        const isLost = b.status === "lost" || (b.resolved && b.result < 0);
+        const statClass = isWon ? "green" : isLost ? "red" : "gray";
+        const statLabel = isWon ? "Vinta" : isLost ? "Persa" : "In corso";
+
+        const modelPct = Math.round((b.model_prob||0) * 100);
+        const edgePct = b.edge_pct != null ? b.edge_pct : (b.edge ? Math.round(b.edge * 100) : 0);
+        const stakeStr = b.stake ? b.stake.toFixed(2) : "";
+        const conf = b.confidence || "";
+        const marketEm = marketEmoji[b.market] || "\u{1f3b1}";
+
+        const marketImplied = b.odds > 0 ? Math.round((1 / b.odds) * 100) : 0;
+        const diffPct = modelPct - marketImplied;
+
+        let dt = b.match_datetime || b.match_date || "";
+        if (b.match_datetime) {
+          try {
+            const parts = b.match_datetime.split(/[\\s\\/:]/);
+            if (parts.length >= 4) {
+              const d = new Date(parts[2], parts[1]-1, parts[0], parts[3], parts[4]||0);
+              dt = d.toLocaleDateString("it-IT",{day:"numeric",month:"short"})+" \u00b7 "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
+            }
+          } catch(e) {}
+        }
+
+        const surf = b.surface || "";
+        const tournament = b.tournament || "ATP";
+
+        // Spiegazione "perché"
+        let whyParts = [];
+        const isHighEdge = edgePct >= 30;
+        const isHighModel = modelPct >= 70;
+        const isPosDiff = diffPct > 0;
+
+        if (isHighEdge) {
+          whyParts.push(`Edge del <strong>+${edgePct}%</strong> \\u2014 molto alto rispetto alla quota`);
+        } else {
+          whyParts.push(`Edge positivo del <strong>+${edgePct}%</strong>`);
+        }
+        if (isHighModel) {
+          whyParts.push(`Modello al <strong>${modelPct}%</strong>, molto sopra la quota di mercato (${marketImplied}%)`);
+        } else {
+          whyParts.push(`Modello al <strong>${modelPct}%</strong> vs mercato ${marketImplied}%`);
+        }
+        if (conf === "HIGH") {
+          whyParts.push(`Confidenza <strong>alta</strong> sulla previsione`);
+        }
+        if (isPosDiff) {
+          whyParts.push(`Differenza di <span class="hl">+${diffPct}%</span> tra modello e mercato`);
+        }
+
+        const edgeBarPct = Math.min(edgePct, 100);
+        const modelBarPct = Math.min(modelPct, 100);
+        const marketBarPct = Math.min(marketImplied, 100);
+
+        const infoId = "bi_" + (b.id || Math.random().toString(36).slice(2,8));
+
+        const confBadge = conf === "HIGH" ? `<span style="font-size:10px;background:rgba(34,197,94,0.15);color:var(--green);padding:1px 7px;border-radius:4px;font-weight:600">HIGH</span>`
+          : conf === "MEDIUM" ? `<span style="font-size:10px;background:rgba(245,158,11,0.15);color:var(--amber);padding:1px 7px;border-radius:4px;font-weight:600">MEDIUM</span>`
+          : `<span style="font-size:10px;color:var(--muted)">${conf||'-'}</span>`;
+
+        html += `
+          <div class="bet-card">
+            <div class="mc-accent ${statClass}"></div>
+            <div class="mc-dot ${statClass}" title="${statLabel}"></div>
+
+            <div class="mc-top">
+              <div class="mc-meta">
+                ${surf ? `<span class="surface-badge ${SURFACE_BADGE[surf]||''}">${SURFACE_LABEL[surf]||surf}</span>` : ""}
+                <span>${tournament}</span>
+                <span class="sep">\u00b7</span>
+                <span class="label">${statLabel}</span>
+              </div>
+            </div>
+
+            <div class="mc-players" style="padding:10px 16px 4px">
+              <div class="mc-player left">
+                <div class="name" style="font-size:15px">${b.player1||"?"}</div>
+              </div>
+              <div class="mc-vs">vs</div>
+              <div class="mc-player right">
+                <div class="name" style="font-size:15px">${b.player2||"?"}</div>
+              </div>
+            </div>
+
+            <div class="bet-selection-block" style="padding:4px 16px 10px">
+              <div class="bet-pick">
+                <span class="pick-text">${b.selection || b.selection_raw || "?"}</span>
+                <span class="pick-odds">@ <em>${b.odds?.toFixed(2) || "?"}</em></span>
+              </div>
+            </div>
+
+            <div style="padding:0 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+              <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:11px;color:var(--dim)">\u{1f4ca} Modello</span>
+                <span style="font-size:16px;font-weight:700;color:var(--blue)">${modelPct}%</span>
+              </div>
+              <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:11px;color:var(--dim)">\u{1f4cf} Edge</span>
+                <span style="font-size:16px;font-weight:700;color:var(--green)">+${edgePct}%</span>
+              </div>
+              <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:11px;color:var(--dim)">\u{1f4b0} Stake</span>
+                <span style="font-size:14px;font-weight:700">\\u20ac${stakeStr}</span>
+              </div>
+              <div style="background:var(--card2);border-radius:8px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:11px;color:var(--dim)">\u{1f3af} Confidenza</span>
+                <span style="font-size:13px;font-weight:700">${confBadge}</span>
+              </div>
+            </div>
+
+            <div style="padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--dim)">
+              ${dt ? `<span>\u{1f4c5} ${dt}</span>` : ""}
+              <span>${marketEm} ${marketLabel(b)}</span>
+              ${b.bookmaker ? `<span>\u{1f3e6} ${b.bookmaker}</span>` : ""}
+            </div>
+
+            <div class="bet-info-toggle" onclick="toggleBetInfo('${infoId}')">
+              <span class="info-icon">i</span>
+              <span class="info-trigger">Perch\u00e9 \u00e8 una buona giocata</span>
+              <span class="info-arrow">\\u25bc</span>
+            </div>
+
+            <div class="bet-info-body" id="${infoId}">
+              <div class="explain">
+                <p>${whyParts.join(". ")}.</p>
+                <div style="margin:10px 0 6px;font-size:11px;color:var(--dim);font-weight:600">\u{1f4ca} Probabilit\u00e0 a confronto</div>
+                <div class="metric-bar">
+                  <span style="font-size:10px;min-width:60px;">Modello</span>
+                  <div class="bar"><div class="bar-fill" style="width:${modelBarPct}%;background:var(--blue)"></div></div>
+                  <span style="font-size:11px;min-width:40px;text-align:right;color:var(--blue);font-weight:700">${modelPct}%</span>
+                </div>
+                <div class="metric-bar">
+                  <span style="font-size:10px;min-width:60px;">Mercato</span>
+                  <div class="bar"><div class="bar-fill" style="width:${marketBarPct}%;background:var(--dim);opacity:0.5"></div></div>
+                  <span style="font-size:11px;min-width:40px;text-align:right;color:var(--dim);font-weight:600">${marketImplied}%</span>
+                </div>
+                <div class="metric-bar">
+                  <span style="font-size:10px;min-width:60px;">Edge</span>
+                  <div class="bar"><div class="bar-fill" style="width:${edgeBarPct}%;background:var(--green)"></div></div>
+                  <span style="font-size:11px;min-width:40px;text-align:right;color:var(--green);font-weight:700">+${edgePct}%</span>
+                </div>
+                ${diffPct > 0 ? `<div style="margin-top:8px;font-size:11px;color:var(--dim);background:rgba(34,197,94,0.08);border-radius:6px;padding:6px 10px;text-align:center">
+                  Il modello \u00e8 pi\u00f9 confidente del bookmaker del <strong style="color:var(--green)">+${diffPct}%</strong>
+                </div>` : ""}
+              </div>
+            </div>
+          </div>`;
+      });
+
       el.innerHTML = html;
     }
 
