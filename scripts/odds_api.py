@@ -608,6 +608,42 @@ def predict_and_find_value(db, engine, match):
                         reason=f"Edge +{edge_ou:.1%} @{odds_val:.2f}"
                     ))
 
+    # === STRATEGIA FINALE: massimo 2 bet per match ===
+    # Regole basate su analisi dati reali (32 bet risolte + backtest 1135 match)
+    
+    # 1. Blocca match_winner su odds >= 2.0 (WR 33% vs 75% su odds < 2.0)
+    # 2. game_handicap solo se edge > 12% E odds < 2.5
+    # 3. over_under edge minimo 8%
+    # 4. Confidence: HIGH su match_winner → MEDIUM (WR 31% vs 57%)
+    
+    filtered = []
+    for b in bets:
+        if b.market == "match_winner" and b.odds >= 2.0:
+            continue
+        if b.market == "game_handicap" and (b.edge < 0.12 or b.odds >= 2.5):
+            continue
+        if b.market == "over_under" and b.edge < 0.08:
+            continue
+        # Downgrade confidence su match_winner
+        if b.market == "match_winner" and b.confidence == "HIGH":
+            b.confidence = "MEDIUM"
+        filtered.append(b)
+    
+    # Ordina: over_under > match_winner > game_handicap, poi per edge
+    priority = {"over_under": 0, "match_winner": 1, "game_handicap": 2}
+    filtered.sort(key=lambda b: (priority.get(b.market, 9), -b.edge))
+    
+    # Seleziona fino a 2 (mercati diversi: massimo 1 per tipo)
+    best = []
+    for b in filtered:
+        if len(best) >= 2:
+            break
+        same_market = [x for x in best if x.market == b.market]
+        if not same_market:
+            best.append(b)
+    
+    bets = best[:2]
+    
     return {
         "match": match,
         "match_id": match.get("api_id", 0),
