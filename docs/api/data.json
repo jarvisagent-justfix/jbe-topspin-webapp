@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T13:09:55.614805",
+  "generated_at": "2026-07-02T13:18:58.050473",
   "date": "2026-07-02",
   "matches": {
     "today": [],
@@ -268,35 +268,6 @@
       {
         "id": null,
         "date": "2026-07-02",
-        "tournament": "Wimbledon Men Doubles",
-        "surface": "Hard",
-        "round": null,
-        "best_of": 3,
-        "tour_level": null,
-        "status": "upcoming",
-        "players": {
-          "p1": {
-            "name": "Cash R / Tracy J",
-            "country": null,
-            "rank": null,
-            "hand": null
-          },
-          "p2": {
-            "name": "Barrientos N / Borges Nu",
-            "country": null,
-            "rank": null,
-            "hand": null
-          }
-        },
-        "result": null,
-        "has_bet": true,
-        "match_datetime": "02/07/2026 15:10",
-        "analysis_time": "2026-07-02 13:08:08",
-        "source": "odds_api"
-      },
-      {
-        "id": null,
-        "date": "2026-07-02",
         "tournament": "Wimbledon Men Singles",
         "surface": "Hard",
         "round": null,
@@ -350,35 +321,6 @@
         "has_bet": true,
         "match_datetime": "02/07/2026 15:10",
         "analysis_time": "2026-07-02 13:08:14",
-        "source": "odds_api"
-      },
-      {
-        "id": null,
-        "date": "2026-07-02",
-        "tournament": "Wimbledon Men Doubles",
-        "surface": "Hard",
-        "round": null,
-        "best_of": 3,
-        "tour_level": null,
-        "status": "upcoming",
-        "players": {
-          "p1": {
-            "name": "Arends S / Pel D",
-            "country": null,
-            "rank": null,
-            "hand": null
-          },
-          "p2": {
-            "name": "Griekspoor T / Van de Zandschulp B",
-            "country": null,
-            "rank": null,
-            "hand": null
-          }
-        },
-        "result": null,
-        "has_bet": true,
-        "match_datetime": "02/07/2026 15:25",
-        "analysis_time": "2026-07-02 13:08:08",
         "source": "odds_api"
       },
       {
@@ -495,35 +437,6 @@
         "has_bet": true,
         "match_datetime": "02/07/2026 15:40",
         "analysis_time": "2026-07-02 13:08:12",
-        "source": "odds_api"
-      },
-      {
-        "id": null,
-        "date": "2026-07-02",
-        "tournament": "Wimbledon Men Doubles",
-        "surface": "Hard",
-        "round": null,
-        "best_of": 3,
-        "tour_level": null,
-        "status": "upcoming",
-        "players": {
-          "p1": {
-            "name": "Burruchaga R A / Tirante T A",
-            "country": null,
-            "rank": null,
-            "hand": null
-          },
-          "p2": {
-            "name": "Collignon R / Prizmic D",
-            "country": null,
-            "rank": null,
-            "hand": null
-          }
-        },
-        "result": null,
-        "has_bet": true,
-        "match_datetime": "02/07/2026 15:45",
-        "analysis_time": "2026-07-02 13:08:09",
         "source": "odds_api"
       },
       {
@@ -689,35 +602,6 @@
           },
           "p2": {
             "name": "Broady L / Hussey G",
-            "country": null,
-            "rank": null,
-            "hand": null
-          }
-        },
-        "result": null,
-        "has_bet": true,
-        "match_datetime": "02/07/2026 23:00",
-        "analysis_time": "2026-07-02 13:08:08",
-        "source": "odds_api"
-      },
-      {
-        "id": null,
-        "date": "2026-07-02",
-        "tournament": "ATP Challenger Cary, USA Men Doubles",
-        "surface": "Hard",
-        "round": null,
-        "best_of": 3,
-        "tour_level": null,
-        "status": "upcoming",
-        "players": {
-          "p1": {
-            "name": "Reynolds F / Watt J",
-            "country": null,
-            "rank": null,
-            "hand": null
-          },
-          "p2": {
-            "name": "Ayeni A / Cook E",
             "country": null,
             "rank": null,
             "hand": null
@@ -950,35 +834,6 @@
           },
           "p2": {
             "name": "Kiger M / Trhac P",
-            "country": null,
-            "rank": null,
-            "hand": null
-          }
-        },
-        "result": null,
-        "has_bet": true,
-        "match_datetime": "03/07/2026 12:00",
-        "analysis_time": "2026-07-02 13:08:10",
-        "source": "odds_api"
-      },
-      {
-        "id": null,
-        "date": "2026-07-03",
-        "tournament": "Wimbledon Men Doubles",
-        "surface": "Hard",
-        "round": null,
-        "best_of": 3,
-        "tour_level": null,
-        "status": "upcoming",
-        "players": {
-          "p1": {
-            "name": "de Jong J / Royer V",
-            "country": null,
-            "rank": null,
-            "hand": null
-          },
-          "p2": {
-            "name": "Golubev A / Nedovyesov A",
             "country": null,
             "rank": null,
             "hand": null
@@ -1430,10 +1285,10 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -1.5,
+      "resolved": true,
+      "profit": -1.5,
       "reason": ""
     },
     {
@@ -1768,10 +1623,10 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
       "reason": ""
     },
     {
@@ -1820,10 +1675,10 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
       "reason": ""
     },
     {
@@ -1846,10 +1701,10 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
       "reason": ""
     },
     {
@@ -1898,10 +1753,10 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "casumo",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.0,
+      "resolved": true,
+      "profit": -2.0,
       "reason": ""
     },
     {
@@ -3614,10 +3469,10 @@
       "tournament": "ATP Challenger Cary, USA Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
       "reason": ""
     },
     {
@@ -4498,10 +4353,10 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
       "reason": ""
     },
     {
@@ -4680,10 +4535,10 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.0,
+      "resolved": true,
+      "profit": -2.0,
       "reason": ""
     },
     {
@@ -4836,10 +4691,10 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "won",
+      "result": 2.055,
+      "resolved": true,
+      "profit": 2.055,
       "reason": ""
     },
     {
@@ -7306,10 +7161,10 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "won",
+      "result": 6.0,
+      "resolved": true,
+      "profit": 6.0,
       "reason": ""
     },
     {
@@ -8294,26 +8149,191 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
+      "status": "lost",
+      "result": -2.0,
+      "resolved": true,
+      "profit": -2.0,
       "reason": ""
     }
   ],
   "bankroll": {
-    "current": 226.55,
-    "peak": 226.55,
+    "current": 214.6,
+    "peak": 214.6,
     "drawdown": 0.0,
-    "consecutive_losses": 0,
-    "total_bets": 15,
-    "wins": 9,
-    "losses": 6,
-    "win_rate": 60.0,
-    "pnl_30d": 26.55,
-    "roi_30d": 23.3
+    "consecutive_losses": 1,
+    "total_bets": 26,
+    "wins": 11,
+    "losses": 15,
+    "win_rate": 42.3,
+    "pnl_30d": 14.6,
+    "roi_30d": 10.6
   },
   "bet_history": [
+    {
+      "id": 738,
+      "date": "2026-07-03",
+      "player1": "de Jong J / Royer V",
+      "player2": "Golubev A / Nedovyesov A",
+      "selection": "Golubev A / Nedovyesov A",
+      "market": "match_winner",
+      "odds": 2.1,
+      "model_prob": 0.5590011636585306,
+      "edge": 0.08281068746805442,
+      "stake": 2.0,
+      "profit": -2.0,
+      "status": "lost",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 730,
+      "date": "2026-07-03",
+      "player1": "Heliovaara H / Patten H",
+      "player2": "Kiger M / Trhac P",
+      "selection": "Kiger M / Trhac P",
+      "market": "match_winner",
+      "odds": 3.4,
+      "model_prob": 0.5365005159638532,
+      "edge": 0.24238286890502964,
+      "stake": 2.5,
+      "profit": 6.0,
+      "status": "won",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 708,
+      "date": "2026-07-02",
+      "player1": "Burruchaga R A / Tirante T A",
+      "player2": "Collignon R / Prizmic D",
+      "selection": "Collignon R / Prizmic D",
+      "market": "match_winner",
+      "odds": 2.25,
+      "model_prob": 0.5546630641615791,
+      "edge": 0.11021861971713465,
+      "stake": 2.0,
+      "profit": -2.0,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 707,
+      "date": "2026-07-02",
+      "player1": "Arends S / Pel D",
+      "player2": "Griekspoor T / Van de Zandschulp B",
+      "selection": "Griekspoor T / Van de Zandschulp B",
+      "market": "match_winner",
+      "odds": 2.37,
+      "model_prob": 0.5171474425383223,
+      "edge": 0.0952065142682802,
+      "stake": 1.5,
+      "profit": 2.06,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 706,
+      "date": "2026-07-02",
+      "player1": "Cash R / Tracy J",
+      "player2": "Barrientos N / Borges Nu",
+      "selection": "Barrientos N / Borges Nu",
+      "market": "match_winner",
+      "odds": 2.37,
+      "model_prob": 0.5567399358098655,
+      "edge": 0.13479900753982332,
+      "stake": 2.5,
+      "profit": -2.5,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 672,
+      "date": "2026-07-02",
+      "player1": "Reynolds F / Watt J",
+      "player2": "Ayeni A / Cook E",
+      "selection": "Ayeni A / Cook E",
+      "market": "match_winner",
+      "odds": 4.0,
+      "model_prob": 0.5730419515551943,
+      "edge": 0.32304195155519433,
+      "stake": 2.5,
+      "profit": -2.5,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 621,
+      "date": "2026-06-30",
+      "player1": "Dane Sweeny",
+      "player2": "Grigor Dimitrov",
+      "selection": "Dane Sweeny",
+      "market": "match_winner",
+      "odds": 4.17,
+      "model_prob": 0.5670945452075202,
+      "edge": 0.327286391730302,
+      "stake": 2.5,
+      "profit": -2.5,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 618,
+      "date": "2026-06-30",
+      "player1": "Tallon Griekspoor",
+      "player2": "James Duckworth",
+      "selection": "Tallon Griekspoor",
+      "market": "match_winner",
+      "odds": 2.8,
+      "model_prob": 0.5128129508225091,
+      "edge": 0.15567009367965196,
+      "stake": 2.0,
+      "profit": -2.0,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 617,
+      "date": "2026-06-30",
+      "player1": "Corentin Moutet",
+      "player2": "Marcos Giron",
+      "selection": "Corentin Moutet",
+      "market": "match_winner",
+      "odds": 3.99,
+      "model_prob": 0.5613127627770689,
+      "edge": 0.3106861963610288,
+      "stake": 2.5,
+      "profit": -2.5,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 616,
+      "date": "2026-06-30",
+      "player1": "Lorenzo Sonego",
+      "player2": "Tomas Martin Etcheverry",
+      "selection": "Tomas Martin Etcheverry",
+      "market": "match_winner",
+      "odds": 3.62,
+      "model_prob": 0.5613395309344812,
+      "edge": 0.28509643701182924,
+      "stake": 2.5,
+      "profit": -2.5,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 615,
+      "date": "2026-06-29",
+      "player1": "Brandon Nakashima",
+      "player2": "Jack Pinnington Jones",
+      "selection": "Jack Pinnington Jones",
+      "market": "match_winner",
+      "odds": 9.62,
+      "model_prob": 0.5919369540419909,
+      "edge": 0.4879868500918869,
+      "stake": 1.5,
+      "profit": -1.5,
+      "status": "lost",
+      "confidence": "HIGH"
+    },
     {
       "id": 614,
       "date": "2026-06-29",
@@ -8567,19 +8587,46 @@
     },
     {
       "date": "2026-06-29",
-      "bankroll": 226.55,
-      "pnl": 44.77,
-      "staked": 90.5,
-      "bets": 11,
+      "bankroll": 225.05,
+      "pnl": 43.27,
+      "staked": 92.0,
+      "bets": 12,
       "wins": 8,
-      "losses": 2
+      "losses": 3
+    },
+    {
+      "date": "2026-06-30",
+      "bankroll": 215.55,
+      "pnl": -9.5,
+      "staked": 9.5,
+      "bets": 4,
+      "wins": 0,
+      "losses": 4
+    },
+    {
+      "date": "2026-07-02",
+      "bankroll": 210.61,
+      "pnl": -4.95,
+      "staked": 8.5,
+      "bets": 4,
+      "wins": 1,
+      "losses": 3
+    },
+    {
+      "date": "2026-07-03",
+      "bankroll": 214.61,
+      "pnl": 4.0,
+      "staked": 4.5,
+      "bets": 2,
+      "wins": 1,
+      "losses": 1
     }
   ],
   "last_report": "🎾 JBE TopSpin — Value Bets Live (02/07/2026)\n📡 Fonte: The Odds API | Match trovati: 10\n\n⚪ 2026-07-02 10:00\n   Gabriel Diallo vs Lorenzo Sonego\n   Modello: Lorenzo Sonego 79% @1.33 (nessun edge sufficiente)\n\n⚪ 2026-07-02 10:04 — Arthur Fery vs Otto Virtanen (confidenza bassa)\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 12:00 | ?\n   Zizou Bergs vs Jaime Faria\n   **Jaime Faria** @3.57\n  Modello: 56.8% | Implicita: 28.0% | Edge: 28.8%\n  Stake: 3.00 EUR (1.5% bankroll) | Confidenza: HIGH\n  Edge +28.8% @3.57 (Pinnacle)\n\n⚪ 2026-07-02 12:12 — Zachary Svajda vs Kamil Majchrzak (confidenza bassa)\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 13:15 | ?\n   Karen Khachanov vs Yannick Hanfmann\n   **Karen Khachanov** @1.61\n  Modello: 77.0% | Implicita: 62.1% | Edge: 14.9%\n  Stake: 6.00 EUR (3.0% bankroll) | Confidenza: HIGH\n  Edge +14.9% @1.61 (Pinnacle)\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 13:15 | ?\n   Karen Khachanov vs Yannick Hanfmann\n   **O/U 41.5** @1.94\n  Modello: 97.0% | Implicita: 51.5% | Edge: 45.5%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +45.5% (under 41.5) @1.94\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 13:19 | ?\n   Quentin Halys vs Marcos Giron\n   **O/U 42.0** @1.93\n  Modello: 97.0% | Implicita: 51.8% | Edge: 45.2%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +45.2% (under 42.0) @1.93\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 13:30 | ?\n   Jiri Lehecka vs Alex Molcan\n   **Alex Molcan** @5.56\n  Modello: 60.5% | Implicita: 18.0% | Edge: 42.6%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: HIGH\n  Edge +42.6% @5.56 (Pinnacle)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 13:30 | ?\n   Jiri Lehecka vs Alex Molcan\n   **Alex Molcan +6.0** @1.88\n  Modello: 90.0% | Implicita: 53.2% | Edge: 36.8%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +36.8% (handicap +6.0) @1.88\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 13:30 | ?\n   Jiri Lehecka vs Alex Molcan\n   **O/U 36.5** @1.96\n  Modello: 61.9% | Implicita: 51.0% | Edge: 10.9%\n  Stake: 3.00 EUR (1.5% bankroll) | Confidenza: LOW\n  Edge +10.9% (under 36.5) @1.96\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 13:30 | ?\n   James Duckworth vs Flavio Cobolli\n   **Flavio Cobolli -4.0** @2.04\n  Modello: 74.7% | Implicita: 49.0% | Edge: 25.6%\n  Stake: 6.00 EUR (3.0% bankroll) | Confidenza: MEDIUM\n  Edge +25.6% (handicap -4.0) @2.04\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 13:30 | ?\n   James Duckworth vs Flavio Cobolli\n   **O/U 40.0** @1.97\n  Modello: 97.0% | Implicita: 50.8% | Edge: 46.2%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +46.2% (under 40.0) @1.97\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 13:30 | ?\n   Frances Tiafoe vs Jan Choinski\n   **Jan Choinski** @6.39\n  Modello: 61.3% | Implicita: 15.6% | Edge: 45.6%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: HIGH\n  Edge +45.6% @6.39 (Pinnacle)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 13:30 | ?\n   Frances Tiafoe vs Jan Choinski\n   **Jan Choinski +6.0** @1.97\n  Modello: 91.8% | Implicita: 50.8% | Edge: 41.0%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +41.0% (handicap +6.0) @1.97\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 13:30 | ?\n   Frances Tiafoe vs Jan Choinski\n   **O/U 36.0** @1.93\n  Modello: 96.3% | Implicita: 51.8% | Edge: 44.5%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +44.5% (under 36.0) @1.93\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 13:50 | ?\n   Valentin Royer vs Alexander Zverev\n   **Alexander Zverev -7.0** @1.98\n  Modello: 88.2% | Implicita: 50.5% | Edge: 37.7%\n  Stake: 9.50 EUR (4.8% bankroll) | Confidenza: MEDIUM\n  Edge +37.7% (handicap -7.0) @1.98\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 13:50 | ?\n   Valentin Royer vs Alexander Zverev\n   **O/U 32.0** @2.00\n  Modello: 77.5% | Implicita: 50.0% | Edge: 27.5%\n  Stake: 7.00 EUR (3.5% bankroll) | Confidenza: MEDIUM\n  Edge +27.5% (under 32.0) @2.00\n\n📊 RIEPILOGO\n   Match analizzati: 10\n   Value bets trovate: 14\n\n==================================================\n\n🎾 JBE TopSpin Report — 02/07/2026\n📊 Match analizzati: 0\n\n\n==================================================\n📈 RIEPILOGO\n==================================================\nMatch analizzati: 0\nValue Bets trovate: 0\n\n🔄 Self-Improvement:\n   Errori totali loggati: 371\n   Di cui risolti: 371 (accuracy: 91.1%)\n   In attesa risultato: 0\n\n📊 Copertura 2026:\n   Match con odds: 1107/1509 (73%)\n   Odds totali nel DB: 3846\n\n💼 Bankroll corrente: 200 EUR",
   "log_entries": [
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8588,7 +8635,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8597,7 +8644,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8606,7 +8653,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8615,7 +8662,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8624,7 +8671,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8633,7 +8680,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:09",
+      "time": "13:18",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",

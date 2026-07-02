@@ -725,6 +725,195 @@ def generate_odds_report(target_date: date = None) -> str:
     return "\n".join(report_lines)
 
 
+def resolve_pending_bets():
+    """
+    Controlla i match pending in paper_portfolio e verifica se sono finiti
+    usando OddsPapi /v4/settlements e /v4/scores.
+    Aggiorna lo stato: won/lost con profitto e data settling.
+    """
+    import sqlite3
+    from database import TennisDatabase
+
+    db = TennisDatabase(DB_PATH)
+    log("[INFO] Risoluzione value bet pending...")
+
+    # Prendi tutte le bet pending (non solo quelle recenti)
+    pending = db.conn.execute("""
+        SELECT pp.id, pp.player1, pp.player2, pp.selection, pp.market,
+               pp.odds, pp.stake, pp.match_date, pp.match_datetime,
+               tm.id as tennis_match_id
+        FROM paper_portfolio pp
+        LEFT JOIN tennis_matches tm ON pp.player1 LIKE '%' || tm.winner_id || '%'
+        WHERE pp.status = 'pending'
+        ORDER BY pp.match_date DESC
+    """).fetchall()
+
+    if not pending:
+        log("  Nessuna bet pending da risolvere.")
+        db.close()
+        return 0
+
+    log(f"  Bet pending trovate: {len(pending)}")
+
+    # Raggruppa per match (coppia giocatori + data)
+    from collections import defaultdict
+    by_match = defaultdict(list)
+    for p in pending:
+        key = (p["player1"], p["player2"], str(p["match_date"] or ""))
+        by_match[key].append(p)
+
+    resolved = 0
+    errors = 0
+
+    for (p1, p2, mdate), bets in by_match.items():
+        try:
+            # Prendi fixture OddsPapi per questo match
+            # Costruisci query nomi (OddsPapi usa formato "Cognome, Nome")
+            # Converti "Nome Cognome" in "Cognome, Nome"
+            def to_oddspapi_name(name):
+                parts = name.strip().split()
+                if len(parts) >= 2:
+                    return f"{parts[-1]}, {' '.join(parts[:-1])}"
+                return name
+
+            p1_api = to_oddspapi_name(p1)
+            p2_api = to_oddspapi_name(p2)
+
+            # Cerca fixture OddsPapi per questi giocatori
+            from datetime import date
+            today = date.today()
+            fixtures = odds_api_request("fixtures", {
+                "sportId": "12",
+                "from": "2026-06-25",  # Ampio range per prendere match passati
+                "to": today.isoformat(),
+            })
+
+            if not fixtures or not isinstance(fixtures, list):
+                errors += 1
+                continue
+
+            # Matcha per nomi giocatori
+            match_fixture = None
+            for f in fixtures:
+                if not isinstance(f, dict):
+                    continue
+                fp1 = f.get("participant1Name", "")
+                fp2 = f.get("participant2Name", "")
+                if (p1_api in fp1 and p2_api in fp2) or (p1_api in fp2 and p2_api in fp1):
+                    match_fixture = f
+                    break
+                # Fallback: match parziale per cognome
+                p1_surname = p1.split()[-1] if p1.split() else ""
+                p2_surname = p2.split()[-1] if p2.split() else ""
+                if p1_surname and p2_surname:
+                    if (p1_surname in fp1 and p2_surname in fp2) or (p1_surname in fp2 and p2_surname in fp1):
+                        match_fixture = f
+                        break
+
+            if not match_fixture:
+                log(f"  [SKIP] Match non trovato su OddsPapi: {p1} vs {p2}")
+                errors += 1
+                continue
+
+            status_id = match_fixture.get("statusId")
+            if status_id != 2:  # Non ancora finito
+                continue
+
+            # Match finito! Prendi settlements
+            fid = str(match_fixture["fixtureId"])
+            time.sleep(0.5)
+            settlements = odds_api_request("settlements", {"fixtureId": fid})
+            if not settlements or "markets" not in settlements:
+                log(f"  [SKIP] Nessun settlement per {p1} vs {p2}")
+                errors += 1
+                continue
+
+            # Prendi anche scores per conferma e statistiche
+            time.sleep(0.3)
+            scores_data = odds_api_request("scores", {"fixtureId": fid})
+
+            # Determina vincitore dal settlement market 121 (H2H)
+            market_h2h = settlements.get("markets", {}).get("121", {})
+            if not market_h2h:
+                continue
+
+            outcomes = market_h2h.get("outcomes", {})
+            outcome_121 = outcomes.get("121", {}).get("players", {}).get("0", {}).get("result", "")
+            outcome_122 = outcomes.get("122", {}).get("players", {}).get("0", {}).get("result", "")
+
+            # outcome 121 = participant 1 (OddsPapi), outcome 122 = participant 2
+            # OddsPapi nomi sono in formato "Cognome, Nome" quindi dobbiamo mappare
+            api_p1 = match_fixture.get("participant1Name", "")
+            api_p2 = match_fixture.get("participant2Name", "")
+
+            # Chi ha vinto secondo OddsPapi?
+            if outcome_121 == "WIN":
+                winner = api_p1
+            elif outcome_122 == "WIN":
+                winner = api_p2
+            else:
+                log(f"  [SKIP] Settlement ambiguo per {p1} vs {p2}: {outcome_121}/{outcome_122}")
+                continue
+
+            # Prendi il punteggio per il log
+            score_str = ""
+            if scores_data and "scores" in scores_data:
+                periods = scores_data["scores"].get("periods", {})
+                result = periods.get("result", {})
+                s1 = result.get("participant1Score", "?")
+                s2 = result.get("participant2Score", "?")
+                score_str = f"{s1}-{s2}"
+
+            # Per ogni bet di questo match, determina se è won/lost
+            for bet in bets:
+                selection = bet["selection"]
+                market_type = bet["market"]
+
+                # Determina se la selezione corrisponde al vincitore
+                is_won = False
+                if market_type == "match_winner":
+                    # La selezione contiene il nome del giocatore
+                    if winner and (winner.split(",")[0].strip() in selection or
+                                   any(w in selection for w in winner.replace(",", "").split())):
+                        is_won = True
+                elif market_type == "over_under":
+                    # Per O/U non possiamo determinarlo senza i total games effettivi
+                    # Per ora skippiamo — richiederebbe i games totali da scores
+                    continue
+                elif market_type == "game_handicap":
+                    # Per handicap servirebbe il margine di games — skippiamo
+                    continue
+
+                if is_won:
+                    profit = bet["stake"] * (bet["odds"] - 1)
+                    db.conn.execute("""
+                        UPDATE paper_portfolio
+                        SET status = 'won', result = ?, settled_at = datetime('now')
+                        WHERE id = ?
+                    """, (profit, bet["id"]))
+                    log(f"  ✅ {p1[:18]:18} vs {p2[:18]:18} — {selection[:25]:25} → VINTA (+${profit:.2f}) [{score_str}]")
+                else:
+                    profit = -bet["stake"]
+                    db.conn.execute("""
+                        UPDATE paper_portfolio
+                        SET status = 'lost', result = ?, settled_at = datetime('now')
+                        WHERE id = ?
+                    """, (profit, bet["id"]))
+                    log(f"  ❌ {p1[:18]:18} vs {p2[:18]:18} — {selection[:25]:25} → PERSA (-${bet['stake']:.2f}) [{score_str}]")
+
+                resolved += 1
+
+        except Exception as e:
+            log(f"  [ERRORE] {p1} vs {p2}: {e}")
+            errors += 1
+            continue
+
+    db.conn.commit()
+    db.close()
+    log(f"\n[OK] Bet risolte: {resolved}, errori: {errors}")
+    return resolved
+
+
 def test_connection():
     """Test rapido connessione OddsPapi."""
     log("=== Test OddsPapi ===\n")
@@ -754,6 +943,8 @@ def test_connection():
 if __name__ == "__main__":
     if "--test" in sys.argv:
         test_connection()
+    elif "--settle" in sys.argv:
+        resolve_pending_bets()
     elif "--report" in sys.argv:
         report = generate_odds_report()
         print(report)
