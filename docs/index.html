@@ -628,8 +628,16 @@
         const label = isToday ? "Oggi" : new Date(dateStr+"T12:00:00").toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
         html += `<div class="day-header"><span>${isToday ? '\u{1f48e}' : '\u{1f4c5}'} ${label}</span><span class="count">${byDate[dateStr].length} scommesse</span></div>`;
 
-        // Ordina per edge decrescente dentro la stessa data
-        byDate[dateStr].sort((a, b) => (b.edge||0) - (a.edge||0));
+        // Ordina per orario decrescente (partita piu' tardi in alto)
+        byDate[dateStr].sort((a, b) => {
+          const parseDT = (bet) => {
+            if (!bet.match_datetime) return 0;
+            const p = bet.match_datetime.split(/[\s\/:]/);
+            if (p.length < 5) return 0;
+            return new Date(p[2], p[1]-1, p[0], p[3], p[4]).getTime();
+          };
+          return (parseDT(b) || 0) - (parseDT(a) || 0);
+        });
 
         byDate[dateStr].forEach(b => {
           const isPending = b.status === "pending" || !b.resolved;
