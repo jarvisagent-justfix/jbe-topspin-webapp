@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T06:32:03.993488",
+  "generated_at": "2026-07-02T09:26:37.088785",
   "date": "2026-07-02",
   "matches": {
     "today": [],
@@ -878,6 +878,32 @@
       "reason": ""
     },
     {
+      "id": 638,
+      "match_id": null,
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
+      "player1": "Arthur Fery",
+      "player2": "Otto Virtanen",
+      "selection": "Totale 40.0",
+      "selection_raw": "O/U 40.0",
+      "odds": 1.97,
+      "model_prob": 0.97,
+      "edge": 0.46238578680203046,
+      "edge_pct": 46.2,
+      "stake": 10.0,
+      "confidence": "MEDIUM",
+      "market": "over_under",
+      "market_label": "Totale Game",
+      "tournament": "",
+      "surface": "Hard",
+      "bookmaker": "Pinnacle",
+      "status": "pending",
+      "result": null,
+      "resolved": false,
+      "profit": null,
+      "reason": ""
+    },
+    {
       "id": 632,
       "match_id": null,
       "match_date": "2026-07-02",
@@ -923,6 +949,58 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "coolbet",
+      "status": "pending",
+      "result": null,
+      "resolved": false,
+      "profit": null,
+      "reason": ""
+    },
+    {
+      "id": 636,
+      "match_id": null,
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
+      "player1": "Alex de Minaur",
+      "player2": "Adrian Mannarino",
+      "selection": "Adrian Mannarino +7.0",
+      "selection_raw": "Adrian Mannarino +7.0",
+      "odds": 1.84,
+      "model_prob": 0.96695,
+      "edge": 0.4234717391304348,
+      "edge_pct": 42.3,
+      "stake": 10.0,
+      "confidence": "MEDIUM",
+      "market": "game_handicap",
+      "market_label": "Handicap Game",
+      "tournament": "",
+      "surface": "Hard",
+      "bookmaker": "Pinnacle",
+      "status": "pending",
+      "result": null,
+      "resolved": false,
+      "profit": null,
+      "reason": ""
+    },
+    {
+      "id": 637,
+      "match_id": null,
+      "match_date": "2026-07-02",
+      "match_datetime": "02/07/2026 12:00",
+      "player1": "Alex de Minaur",
+      "player2": "Adrian Mannarino",
+      "selection": "Totale 35.0",
+      "selection_raw": "O/U 35.0",
+      "odds": 1.92,
+      "model_prob": 0.9182,
+      "edge": 0.39736666666666665,
+      "edge_pct": 39.7,
+      "stake": 10.0,
+      "confidence": "MEDIUM",
+      "market": "over_under",
+      "market_label": "Totale Game",
+      "tournament": "",
+      "surface": "Hard",
+      "bookmaker": "Pinnacle",
       "status": "pending",
       "result": null,
       "resolved": false,
@@ -1360,11 +1438,20 @@
       "losses": 2
     }
   ],
-  "last_report": "🎾 JBE TopSpin — Value Bets Live (02/07/2026)\n📡 Fonte: The Odds API | Match trovati: 6\n\n⚪ 2026-07-01 16:31 — Brandon Nakashima vs Jan-Lennard Struff (confidenza bassa)\n\n🟢 VALUE BET (Match Winner)\n   2026-07-01 17:28 | ?\n   Rafael Jodar vs Pablo Carreno Busta\n   **Rafael Jodar** @2.24\n  Modello: 54.9% | Implicita: 44.6% | Edge: 10.3%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: HIGH\n  Edge +10.3% @2.24 (draftkings)\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Alex de Minaur vs Adrian Mannarino\n   **Alex de Minaur** @1.16\n  Modello: 94.3% | Implicita: 86.2% | Edge: 8.1%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +8.1% @1.16 (Pinnacle)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 10:00 | ?\n   Alex de Minaur vs Adrian Mannarino\n   **Adrian Mannarino +6.5** @1.96\n  Modello: 92.8% | Implicita: 51.0% | Edge: 41.7%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +41.7% (handicap +6.5) @1.96\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Alex de Minaur vs Adrian Mannarino\n   **O/U 35.5** @1.95\n  Modello: 95.9% | Implicita: 51.3% | Edge: 44.7%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +44.7% (under 35.5) @1.95\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Arthur Fery vs Otto Virtanen\n   **Arthur Fery** @2.24\n  Modello: 56.4% | Implicita: 44.6% | Edge: 11.7%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: HIGH\n  Edge +11.7% @2.24 (Pinnacle)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 10:00 | ?\n   Arthur Fery vs Otto Virtanen\n   **Otto Virtanen -2.0** @1.99\n  Modello: 58.5% | Implicita: 50.3% | Edge: 8.2%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: LOW\n  Edge +8.2% (handicap -2.0) @1.99\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Arthur Fery vs Otto Virtanen\n   **O/U 39.5** @1.97\n  Modello: 97.0% | Implicita: 50.8% | Edge: 46.2%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +46.2% (under 39.5) @1.97\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Gabriel Diallo vs Lorenzo Sonego\n   **Lorenzo Sonego** @2.07\n  Modello: 79.2% | Implicita: 48.3% | Edge: 30.9%\n  Stake: 7.00 EUR (3.5% bankroll) | Confidenza: HIGH\n  Edge +30.9% @2.07 (Pinnacle)\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Gabriel Diallo vs Lorenzo Sonego\n   **O/U 41.0** @1.94\n  Modello: 97.0% | Implicita: 51.5% | Edge: 45.5%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +45.5% (under 41.0) @1.94\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Taylor Fritz vs Patrick Kypson\n   **Patrick Kypson** @11.90\n  Modello: 55.3% | Implicita: 8.4% | Edge: 46.9%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: HIGH\n  Edge +46.9% @11.90 (Pinnacle)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 10:00 | ?\n   Taylor Fritz vs Patrick Kypson\n   **Patrick Kypson +6.5** @2.17\n  Modello: 91.9% | Implicita: 46.1% | Edge: 45.8%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +45.8% (handicap +6.5) @2.17\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Taylor Fritz vs Patrick Kypson\n   **O/U 33.5** @1.90\n  Modello: 86.3% | Implicita: 52.6% | Edge: 33.7%\n  Stake: 9.50 EUR (4.8% bankroll) | Confidenza: MEDIUM\n  Edge +33.7% (under 33.5) @1.90\n\n📊 RIEPILOGO\n   Match analizzati: 6\n   Value bets trovate: 12\n\n==================================================\n\n🎾 JBE TopSpin Report — 02/07/2026\n📊 Match analizzati: 0\n\n\n==================================================\n📈 RIEPILOGO\n==================================================\nMatch analizzati: 0\nValue Bets trovate: 0\n\n🔄 Self-Improvement:\n   Errori totali loggati: 371\n   Di cui risolti: 371 (accuracy: 91.1%)\n   In attesa risultato: 0\n\n📊 Copertura 2026:\n   Match con odds: 1107/1509 (73%)\n   Odds totali nel DB: 3846\n\n💼 Bankroll corrente: 200 EUR",
+  "last_report": "🎾 JBE TopSpin — Value Bets Live (02/07/2026)\n📡 Fonte: The Odds API | Match trovati: 5\n\n🟢 VALUE BET (Match Winner)\n   2026-07-01 17:28 | ?\n   Rafael Jodar vs Pablo Carreno Busta\n   **Rafael Jodar** @2.24\n  Modello: 54.9% | Implicita: 44.6% | Edge: 10.3%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: HIGH\n  Edge +10.3% @2.24 (draftkings)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 10:00 | ?\n   Alex de Minaur vs Adrian Mannarino\n   **Adrian Mannarino +7.0** @1.84\n  Modello: 96.6% | Implicita: 54.3% | Edge: 42.2%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +42.2% (handicap +7.0) @1.84\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Alex de Minaur vs Adrian Mannarino\n   **O/U 35.0** @1.92\n  Modello: 91.9% | Implicita: 52.1% | Edge: 39.8%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +39.8% (under 35.0) @1.92\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Arthur Fery vs Otto Virtanen\n   **Arthur Fery** @2.16\n  Modello: 56.4% | Implicita: 46.3% | Edge: 10.1%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: HIGH\n  Edge +10.1% @2.16 (Pinnacle)\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Arthur Fery vs Otto Virtanen\n   **O/U 40.0** @1.97\n  Modello: 97.0% | Implicita: 50.8% | Edge: 46.2%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +46.2% (under 40.0) @1.97\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Gabriel Diallo vs Lorenzo Sonego\n   **Lorenzo Sonego** @2.04\n  Modello: 79.2% | Implicita: 49.0% | Edge: 30.2%\n  Stake: 7.50 EUR (3.8% bankroll) | Confidenza: HIGH\n  Edge +30.2% @2.04 (Pinnacle)\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Gabriel Diallo vs Lorenzo Sonego\n   **O/U 41.0** @1.95\n  Modello: 97.0% | Implicita: 51.3% | Edge: 45.7%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +45.7% (under 41.0) @1.95\n\n🟢 VALUE BET (Match Winner)\n   2026-07-02 10:00 | ?\n   Taylor Fritz vs Patrick Kypson\n   **Patrick Kypson** @11.95\n  Modello: 55.3% | Implicita: 8.4% | Edge: 46.9%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: HIGH\n  Edge +46.9% @11.95 (Pinnacle)\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-02 10:00 | ?\n   Taylor Fritz vs Patrick Kypson\n   **Patrick Kypson +6.5** @2.12\n  Modello: 92.2% | Implicita: 47.2% | Edge: 45.0%\n  Stake: 10.00 EUR (5.0% bankroll) | Confidenza: MEDIUM\n  Edge +45.0% (handicap +6.5) @2.12\n\n🟢 VALUE BET (Over Under)\n   2026-07-02 10:00 | ?\n   Taylor Fritz vs Patrick Kypson\n   **O/U 33.5** @1.95\n  Modello: 86.1% | Implicita: 51.3% | Edge: 34.9%\n  Stake: 9.00 EUR (4.5% bankroll) | Confidenza: MEDIUM\n  Edge +34.9% (under 33.5) @1.95\n\n📊 RIEPILOGO\n   Match analizzati: 5\n   Value bets trovate: 10\n\n==================================================\n\n🎾 JBE TopSpin Report — 02/07/2026\n📊 Match analizzati: 0\n\n\n==================================================\n📈 RIEPILOGO\n==================================================\nMatch analizzati: 0\nValue Bets trovate: 0\n\n🔄 Self-Improvement:\n   Errori totali loggati: 371\n   Di cui risolti: 371 (accuracy: 91.1%)\n   In attesa risultato: 0\n\n📊 Copertura 2026:\n   Match con odds: 1107/1509 (73%)\n   Odds totali nel DB: 3846\n\n💼 Bankroll corrente: 200 EUR",
   "log_entries": [
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
+      "icon": "🔄",
+      "type": "pipeline",
+      "title": "Pipeline eseguita",
+      "desc": "📡 5 match analizzati · 💎 10 value bet",
+      "info": "📡 [INFO] Recupero match ATP da The Odds API...\n💾 [CACHE] Salvati 5 match (aggiornamento: 02/07/2026 11:26)\n📡 [INFO] Recupero match ATP da The Odds API...\n💾 [CACHE] Salvati 5 match (aggiornamento: 02/07/2026 11:26)\n✅ [INFO] Odds API report integrato"
+    },
+    {
+      "date": "2026-07-02",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -1373,7 +1460,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -1382,7 +1469,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -1391,16 +1478,16 @@
     },
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
-      "desc": "📡 6 match analizzati · 💎 12 value bet",
+      "desc": "📡 5 match analizzati · 💎 10 value bet",
       "info": null
     },
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -1409,7 +1496,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -1418,7 +1505,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "06:32",
+      "time": "09:26",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -1427,12 +1514,30 @@
     },
     {
       "date": "2026-07-02",
-      "time": "06:31",
-      "icon": "🔄",
-      "type": "pipeline",
-      "title": "Pipeline eseguita",
-      "desc": "📡 6 match analizzati · 💎 12 value bet",
-      "info": "📡 [INFO] Recupero match ATP da The Odds API...\n💾 [CACHE] Salvati 6 match (aggiornamento: 02/07/2026 08:31)\n📡 [INFO] Recupero match ATP da The Odds API...\n💾 [CACHE] Salvati 6 match (aggiornamento: 02/07/2026 08:32)\n✅ [INFO] Odds API report integrato"
+      "time": "09:26",
+      "icon": "💎",
+      "type": "value_bet",
+      "title": "Alex de Minaur vs Adrian Mannarino",
+      "desc": "⚖️ Adrian Mannarino +7.0 · Edge +42.3% @1.84 · MEDIUM",
+      "info": "📊 Mercato: ⚖️ Handicap Game\n🎯 Modello: 97%\n📈 Edge: +42.3%\n🎲 Quota: 1.84\n🎯 Confidenza: MEDIUM"
+    },
+    {
+      "date": "2026-07-02",
+      "time": "09:26",
+      "icon": "💎",
+      "type": "value_bet",
+      "title": "Alex de Minaur vs Adrian Mannarino",
+      "desc": "📊 O/U 35.0 · Edge +39.7% @1.92 · MEDIUM",
+      "info": "📊 Mercato: 📊 Totale Game\n🎯 Modello: 92%\n📈 Edge: +39.7%\n🎲 Quota: 1.92\n🎯 Confidenza: MEDIUM"
+    },
+    {
+      "date": "2026-07-02",
+      "time": "09:26",
+      "icon": "💎",
+      "type": "value_bet",
+      "title": "Arthur Fery vs Otto Virtanen",
+      "desc": "📊 O/U 40.0 · Edge +46.2% @1.97 · MEDIUM",
+      "info": "📊 Mercato: 📊 Totale Game\n🎯 Modello: 97%\n📈 Edge: +46.2%\n🎲 Quota: 1.97\n🎯 Confidenza: MEDIUM"
     },
     {
       "date": "2026-07-02",
@@ -1676,33 +1781,6 @@
       "title": "Andrey Rublev vs Roman Safiullin",
       "desc": "🏆 Roman Safiullin · Edge +26.0% @2.72 · HIGH",
       "info": "📊 Mercato: 🏆 Vincitore\n🎯 Modello: 63%\n📈 Edge: +26.0%\n🎲 Quota: 2.72\n🎯 Confidenza: HIGH"
-    },
-    {
-      "date": "2026-06-29",
-      "time": "07:36",
-      "icon": "💎",
-      "type": "value_bet",
-      "title": "Andrey Rublev vs Roman Safiullin",
-      "desc": "📊 O/U 41.5 · Edge +45.2% @1.93 · MEDIUM",
-      "info": "📊 Mercato: 📊 Totale Game\n🎯 Modello: 97%\n📈 Edge: +45.2%\n🎲 Quota: 1.93\n🎯 Confidenza: MEDIUM"
-    },
-    {
-      "date": "2026-06-29",
-      "time": "07:36",
-      "icon": "💎",
-      "type": "value_bet",
-      "title": "Dalibor Svrcina vs Learner Tien",
-      "desc": "📊 O/U 31.5 · Edge +30.0% @1.90 · MEDIUM",
-      "info": "📊 Mercato: 📊 Totale Game\n🎯 Modello: 83%\n📈 Edge: +30.0%\n🎲 Quota: 1.90\n🎯 Confidenza: MEDIUM"
-    },
-    {
-      "date": "2026-06-29",
-      "time": "07:36",
-      "icon": "💎",
-      "type": "value_bet",
-      "title": "Denis Shapovalov vs Pablo Carreno Busta",
-      "desc": "🏆 Pablo Carreno Busta · Edge +50.7% @3.25 · HIGH",
-      "info": "📊 Mercato: 🏆 Vincitore\n🎯 Modello: 81%\n📈 Edge: +50.7%\n🎲 Quota: 3.25\n🎯 Confidenza: HIGH"
     }
   ],
   "api_status": {
