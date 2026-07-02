@@ -772,7 +772,7 @@
       betsForDate.sort((a, b) => {
         const parseDT = (bet) => {
           if (!bet.match_datetime) return 0;
-          const p = bet.match_datetime.split(/[\\s\\/:]/);
+          const p = bet.match_datetime.split(/[\/\s:]/);
           if (p.length < 5) return 0;
           return new Date(p[2], p[1]-1, p[0], p[3], p[4]).getTime();
         };
@@ -780,7 +780,7 @@
       });
 
       const marketLabel = (b) => b.market_label || b.market || "";
-      const marketEmoji = { "match_winner": "\u{1f3c6}", "game_handicap": "\\u2696\\ufe0f", "over_under": "\u{1f4ca}" };
+      const marketEmoji = { "match_winner": "\u{1f3c6}", "game_handicap": "\u2696\ufe0f", "over_under": "\u{1f4ca}" };
 
       betsForDate.forEach(b => {
         const isPending = b.status === "pending" || !b.resolved;
@@ -801,7 +801,7 @@
         let dt = b.match_datetime || b.match_date || "";
         if (b.match_datetime) {
           try {
-            const parts = b.match_datetime.split(/[\\s\\/:]/);
+            const parts = b.match_datetime.split(/[\/\s:]/);
             if (parts.length >= 4) {
               const d = new Date(parts[2], parts[1]-1, parts[0], parts[3], parts[4]||0);
               dt = d.toLocaleDateString("it-IT",{day:"numeric",month:"short"})+" \u00b7 "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
@@ -904,7 +904,7 @@
             <div class="bet-info-toggle" onclick="toggleBetInfo('${infoId}')">
               <span class="info-icon">i</span>
               <span class="info-trigger">Perch\u00e9 \u00e8 una buona giocata</span>
-              <span class="info-arrow">\\u25bc</span>
+              <span class="info-arrow">▼</span>
             </div>
 
             <div class="bet-info-body" id="${infoId}">
