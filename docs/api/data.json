@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T13:18:58.050473",
+  "generated_at": "2026-07-02T14:35:12.796854",
   "date": "2026-07-02",
   "matches": {
     "today": [],
@@ -1571,11 +1571,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "casumo",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.49,
+      "resolved": true,
+      "profit": 4.49,
+      "reason": "Auto-risolta via verifica risultati Wimbledon 2026"
     },
     {
       "id": 623,
@@ -1597,11 +1597,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "push",
+      "result": 0.0,
+      "resolved": true,
+      "profit": 0.0,
+      "reason": "Auto-risolta via verifica risultati Wimbledon 2026"
     },
     {
       "id": 621,
@@ -1649,11 +1649,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.25,
+      "resolved": true,
+      "profit": -4.25,
+      "reason": "Auto-risolta via verifica risultati Wimbledon 2026"
     },
     {
       "id": 617,
@@ -1727,11 +1727,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "casumo",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.21,
+      "resolved": true,
+      "profit": -4.21,
+      "reason": "Auto-risolta via verifica risultati Wimbledon 2026"
     },
     {
       "id": 618,
@@ -1779,11 +1779,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "draftkings",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.88,
+      "resolved": true,
+      "profit": 4.88,
+      "reason": "Auto-risolta via verifica risultati Wimbledon 2026"
     },
     {
       "id": 807,
@@ -8157,16 +8157,16 @@
     }
   ],
   "bankroll": {
-    "current": 214.6,
-    "peak": 214.6,
+    "current": 215.51,
+    "peak": 215.51,
     "drawdown": 0.0,
     "consecutive_losses": 1,
-    "total_bets": 26,
-    "wins": 11,
-    "losses": 15,
-    "win_rate": 42.3,
-    "pnl_30d": 14.6,
-    "roi_30d": 10.6
+    "total_bets": 30,
+    "wins": 13,
+    "losses": 17,
+    "win_rate": 43.3,
+    "pnl_30d": 15.51,
+    "roi_30d": 9.5
   },
   "bet_history": [
     {
@@ -8260,6 +8260,51 @@
       "confidence": "HIGH"
     },
     {
+      "id": 628,
+      "date": "2026-07-01",
+      "player1": "Rafael Jodar",
+      "player2": "Pablo Carreno Busta",
+      "selection": "Rafael Jodar",
+      "market": "match_winner",
+      "odds": 2.24,
+      "model_prob": 0.5493270949900266,
+      "edge": 0.10289852356145524,
+      "stake": 2.0,
+      "profit": 4.88,
+      "status": "won",
+      "confidence": "HIGH"
+    },
+    {
+      "id": 623,
+      "date": "2026-06-30",
+      "player1": "Frances Tiafoe",
+      "player2": "Terence Atmane",
+      "selection": "O/U 40.0",
+      "market": "over_under",
+      "odds": 1.93,
+      "model_prob": 0.97,
+      "edge": 0.4518652849740932,
+      "stake": 10.0,
+      "profit": 0.0,
+      "status": "push",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 622,
+      "date": "2026-06-30",
+      "player1": "Frances Tiafoe",
+      "player2": "Terence Atmane",
+      "selection": "Terence Atmane +5.0",
+      "market": "game_handicap",
+      "odds": 1.89,
+      "model_prob": 0.85385,
+      "edge": 0.3247494708994708,
+      "stake": 9.0,
+      "profit": -4.25,
+      "status": "lost",
+      "confidence": "MEDIUM"
+    },
+    {
       "id": 621,
       "date": "2026-06-30",
       "player1": "Dane Sweeny",
@@ -8273,6 +8318,36 @@
       "profit": -2.5,
       "status": "lost",
       "confidence": "HIGH"
+    },
+    {
+      "id": 620,
+      "date": "2026-06-30",
+      "player1": "Tallon Griekspoor",
+      "player2": "James Duckworth",
+      "selection": "O/U 47.5",
+      "market": "over_under",
+      "odds": 2.1,
+      "model_prob": 0.97,
+      "edge": 0.4938095238095238,
+      "stake": 10.0,
+      "profit": 4.49,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 619,
+      "date": "2026-06-30",
+      "player1": "Tallon Griekspoor",
+      "player2": "James Duckworth",
+      "selection": "Tallon Griekspoor +1.5",
+      "market": "game_handicap",
+      "odds": 2.23,
+      "model_prob": 0.62425,
+      "edge": 0.17581950672645735,
+      "stake": 3.5,
+      "profit": -4.21,
+      "status": "lost",
+      "confidence": "MEDIUM"
     },
     {
       "id": 618,
@@ -8596,16 +8671,25 @@
     },
     {
       "date": "2026-06-30",
-      "bankroll": 215.55,
-      "pnl": -9.5,
-      "staked": 9.5,
-      "bets": 4,
-      "wins": 0,
-      "losses": 4
+      "bankroll": 211.58,
+      "pnl": -13.47,
+      "staked": 42.0,
+      "bets": 8,
+      "wins": 1,
+      "losses": 6
+    },
+    {
+      "date": "2026-07-01",
+      "bankroll": 216.46,
+      "pnl": 4.88,
+      "staked": 2.0,
+      "bets": 1,
+      "wins": 1,
+      "losses": 0
     },
     {
       "date": "2026-07-02",
-      "bankroll": 210.61,
+      "bankroll": 211.52,
       "pnl": -4.95,
       "staked": 8.5,
       "bets": 4,
@@ -8614,7 +8698,7 @@
     },
     {
       "date": "2026-07-03",
-      "bankroll": 214.61,
+      "bankroll": 215.52,
       "pnl": 4.0,
       "staked": 4.5,
       "bets": 2,
@@ -8626,7 +8710,7 @@
   "log_entries": [
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8635,7 +8719,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8644,7 +8728,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8653,7 +8737,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8662,7 +8746,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8671,7 +8755,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -8680,7 +8764,7 @@
     },
     {
       "date": "2026-07-02",
-      "time": "13:18",
+      "time": "14:35",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
