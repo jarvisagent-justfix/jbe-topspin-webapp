@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T09:01:50.536971",
+  "generated_at": "2026-07-07T18:19:58.069706",
   "date": "2026-07-07",
   "matches": {
     "today": [],
@@ -1805,11 +1805,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 25.0,
+      "resolved": true,
+      "profit": 25.0,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 754,
@@ -1831,11 +1831,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 762,
@@ -1857,11 +1857,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Marcos Giron batte Quentin Halys 7-6(5), 6-3, 6-4"
     },
     {
       "id": 771,
@@ -1883,11 +1883,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 828,
@@ -1909,11 +1909,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 829,
@@ -1935,11 +1935,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 836,
@@ -1961,11 +1961,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 766,
@@ -1987,11 +1987,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 810,
@@ -2013,11 +2013,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 820,
@@ -2039,11 +2039,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 751,
@@ -2065,11 +2065,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 757,
@@ -2091,11 +2091,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 759,
@@ -2117,11 +2117,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Marcos Giron batte Quentin Halys 7-6(5), 6-3, 6-4"
     },
     {
       "id": 821,
@@ -2143,11 +2143,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 824,
@@ -2169,11 +2169,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 834,
@@ -2195,11 +2195,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 768,
@@ -2221,11 +2221,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 19.25,
+      "resolved": true,
+      "profit": 19.25,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 749,
@@ -2247,11 +2247,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 18.32,
+      "resolved": true,
+      "profit": 18.32,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 811,
@@ -2273,11 +2273,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 18.0,
+      "resolved": true,
+      "profit": 18.0,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 819,
@@ -2299,11 +2299,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 18.0,
+      "resolved": true,
+      "profit": 18.0,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 830,
@@ -2325,11 +2325,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 17.88,
+      "resolved": true,
+      "profit": 17.88,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 767,
@@ -2351,11 +2351,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 17.5,
+      "resolved": true,
+      "profit": 17.5,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 835,
@@ -2377,11 +2377,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.8,
+      "resolved": true,
+      "profit": 16.8,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 750,
@@ -2403,11 +2403,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 756,
@@ -2429,11 +2429,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 758,
@@ -2455,11 +2455,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Marcos Giron batte Quentin Halys 7-6(5), 6-3, 6-4"
     },
     {
       "id": 823,
@@ -2481,11 +2481,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 826,
@@ -2507,11 +2507,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 812,
@@ -2533,11 +2533,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.0,
+      "resolved": true,
+      "profit": 16.0,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 818,
@@ -2559,11 +2559,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.0,
+      "resolved": true,
+      "profit": 16.0,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 778,
@@ -2585,11 +2585,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.88,
+      "resolved": true,
+      "profit": 14.88,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 782,
@@ -2611,11 +2611,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.58,
+      "resolved": true,
+      "profit": 14.58,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 753,
@@ -2637,11 +2637,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.25,
+      "resolved": true,
+      "profit": 14.25,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 761,
@@ -2663,11 +2663,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.25,
+      "resolved": true,
+      "profit": 14.25,
+      "reason": "Wimbledon 2026: Marcos Giron batte Quentin Halys 7-6(5), 6-3, 6-4"
     },
     {
       "id": 822,
@@ -2689,11 +2689,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.25,
+      "resolved": true,
+      "profit": 14.25,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 827,
@@ -2715,11 +2715,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.25,
+      "resolved": true,
+      "profit": 14.25,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 633,
@@ -2741,11 +2741,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -1.0,
+      "resolved": true,
+      "profit": -1.0,
+      "reason": "Wimbledon 2026: Taylor Fritz batte Patrick Kypson 6-2, 6-2, 7-5"
     },
     {
       "id": 634,
@@ -2793,11 +2793,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.7,
+      "resolved": true,
+      "profit": 9.7,
+      "reason": "Wimbledon 2026: Arthur Fery batte Otto Virtanen 5-7, 7-6(3), 6-3, 6-3"
     },
     {
       "id": 638,
@@ -2819,11 +2819,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.7,
+      "resolved": true,
+      "profit": 9.7,
+      "reason": "Wimbledon 2026: Arthur Fery batte Otto Virtanen 5-7, 7-6(3), 6-3, 6-3"
     },
     {
       "id": 655,
@@ -2845,11 +2845,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.7,
+      "resolved": true,
+      "profit": 9.7,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 656,
@@ -2871,11 +2871,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -2.0,
+      "resolved": true,
+      "profit": -2.0,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 632,
@@ -2897,11 +2897,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.4,
+      "resolved": true,
+      "profit": 9.4,
+      "reason": "Wimbledon 2026: Lorenzo Sonego batte Gabriel Diallo 7-6(4), 4-6, 7-6(4), 6-7(6), 6-2"
     },
     {
       "id": 647,
@@ -2923,11 +2923,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 652,
@@ -2949,11 +2949,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Marcos Giron batte Quentin Halys 7-6(5), 6-3, 6-4"
     },
     {
       "id": 642,
@@ -2975,11 +2975,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.2,
+      "resolved": true,
+      "profit": 9.2,
+      "reason": "Wimbledon 2026: Zachary Svajda batte Kamil Majchrzak 2-6, 6-2, 6-7(5), 6-4, 6-3"
     },
     {
       "id": 645,
@@ -3001,11 +3001,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.1,
+      "resolved": true,
+      "profit": 9.1,
+      "reason": "Wimbledon 2026: Zizou Bergs batte Jaime Faria 7-6(6), 4-6, 6-2, 6-3"
     },
     {
       "id": 658,
@@ -3027,11 +3027,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.3,
+      "resolved": true,
+      "profit": 9.3,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 626,
@@ -3053,11 +3053,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "coolbet",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Adrian Mannarino 6-3, 6-2, 6-2"
     },
     {
       "id": 636,
@@ -3105,11 +3105,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Adrian Mannarino 6-3, 6-2, 6-2"
     },
     {
       "id": 657,
@@ -3157,11 +3157,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 637,
@@ -3183,11 +3183,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Adrian Mannarino 6-3, 6-2, 6-2"
     },
     {
       "id": 748,
@@ -3209,11 +3209,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 7.2,
+      "resolved": true,
+      "profit": 7.2,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 659,
@@ -3339,11 +3339,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.1,
+      "resolved": true,
+      "profit": 6.1,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 814,
@@ -3365,11 +3365,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.1,
+      "resolved": true,
+      "profit": 6.1,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 817,
@@ -3391,11 +3391,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.1,
+      "resolved": true,
+      "profit": 6.1,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 825,
@@ -3417,11 +3417,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.7,
+      "resolved": true,
+      "profit": 5.7,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 635,
@@ -3443,11 +3443,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -9.0,
+      "resolved": true,
+      "profit": -9.0,
+      "reason": "Wimbledon 2026: Taylor Fritz batte Patrick Kypson 6-2, 6-2, 7-5"
     },
     {
       "id": 672,
@@ -3495,11 +3495,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.3,
+      "resolved": true,
+      "profit": 5.3,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 631,
@@ -3521,11 +3521,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 7.49,
+      "resolved": true,
+      "profit": 7.49,
+      "reason": "Wimbledon 2026: Lorenzo Sonego batte Gabriel Diallo 7-6(4), 4-6, 7-6(4), 6-7(6), 6-2"
     },
     {
       "id": 650,
@@ -3573,11 +3573,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.0,
+      "resolved": true,
+      "profit": 5.0,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 760,
@@ -3599,11 +3599,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.0,
+      "resolved": true,
+      "profit": 5.0,
+      "reason": "Wimbledon 2026: Marcos Giron batte Quentin Halys 7-6(5), 6-3, 6-4"
     },
     {
       "id": 837,
@@ -3625,11 +3625,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.0,
+      "resolved": true,
+      "profit": 5.0,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 746,
@@ -3651,11 +3651,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 7.47,
+      "resolved": true,
+      "profit": 7.47,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 747,
@@ -3677,11 +3677,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 7.47,
+      "resolved": true,
+      "profit": 7.47,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 772,
@@ -3703,11 +3703,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.4,
+      "resolved": true,
+      "profit": 4.4,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 660,
@@ -3729,11 +3729,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -6.5,
+      "resolved": true,
+      "profit": -6.5,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 765,
@@ -3755,11 +3755,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -8.5,
+      "resolved": true,
+      "profit": -8.5,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 773,
@@ -3781,11 +3781,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 801,
@@ -3807,11 +3807,11 @@
       "tournament": "ATP Challenger Milan, Italy Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 654,
@@ -3859,11 +3859,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.5,
+      "resolved": true,
+      "profit": 6.5,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 775,
@@ -3885,11 +3885,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -3.0,
+      "resolved": true,
+      "profit": -3.0,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 671,
@@ -3911,11 +3911,11 @@
       "tournament": "ATP Challenger Cary, USA Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
+      "reason": "Wimbledon 2026: James Duckworth batte Tallon Griekspoor 6-4, 4-6, 7-5, 6-4"
     },
     {
       "id": 641,
@@ -3963,11 +3963,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -3.0,
+      "resolved": true,
+      "profit": -3.0,
+      "reason": "Wimbledon 2026: Zizou Bergs batte Jaime Faria 7-6(6), 4-6, 6-2, 6-3"
     },
     {
       "id": 644,
@@ -4015,11 +4015,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.4,
+      "resolved": true,
+      "profit": 4.4,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 777,
@@ -4041,11 +4041,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.32,
+      "resolved": true,
+      "profit": 4.32,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 624,
@@ -4067,11 +4067,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "coolbet",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.0,
+      "resolved": true,
+      "profit": 3.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Adrian Mannarino 6-3, 6-2, 6-2"
     },
     {
       "id": 805,
@@ -4093,11 +4093,11 @@
       "tournament": "ATP Challenger Quito, Ecuador Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.05,
+      "resolved": true,
+      "profit": 4.05,
+      "reason": "Wimbledon 2026: James Duckworth batte Tallon Griekspoor 6-4, 4-6, 7-5, 6-4"
     },
     {
       "id": 809,
@@ -4119,11 +4119,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.05,
+      "resolved": true,
+      "profit": 4.05,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 769,
@@ -4145,11 +4145,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.5,
+      "resolved": true,
+      "profit": 2.5,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 646,
@@ -4171,11 +4171,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.16,
+      "resolved": true,
+      "profit": 4.16,
+      "reason": "Wimbledon 2026: Karen Khachanov batte Yannick Hanfmann 6-3, 6-4, 6-4"
     },
     {
       "id": 781,
@@ -4197,11 +4197,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.05,
+      "resolved": true,
+      "profit": 4.05,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 752,
@@ -4223,11 +4223,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.2,
+      "resolved": true,
+      "profit": 2.2,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 763,
@@ -4249,11 +4249,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.5,
+      "resolved": true,
+      "profit": 3.5,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Valentin Royer 6-1, 6-3, 7-6(3)"
     },
     {
       "id": 779,
@@ -4275,11 +4275,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.75,
+      "resolved": true,
+      "profit": 3.75,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 806,
@@ -4301,11 +4301,11 @@
       "tournament": "ATP Challenger Quito, Ecuador Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -2.5,
+      "resolved": true,
+      "profit": -2.5,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 813,
@@ -4327,11 +4327,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.0,
+      "resolved": true,
+      "profit": 2.0,
+      "reason": "Wimbledon 2026: Frances Tiafoe batte Jan Choinski 4-6, 6-2, 7-5, 6-2"
     },
     {
       "id": 706,
@@ -4379,11 +4379,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.0,
+      "resolved": true,
+      "profit": -4.0,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 780,
@@ -4405,11 +4405,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.2,
+      "resolved": true,
+      "profit": 3.2,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Jakub Mensik 7-6(5), 4-6, 7-5, 6-3"
     },
     {
       "id": 774,
@@ -4431,11 +4431,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.15,
+      "resolved": true,
+      "profit": 3.15,
+      "reason": "Wimbledon 2026: Matteo Berrettini batte Arthur Fils 6-4, 7-5, 3-6, 6-3"
     },
     {
       "id": 648,
@@ -4483,11 +4483,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.8,
+      "resolved": true,
+      "profit": 1.8,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 651,
@@ -4509,11 +4509,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "Pinnacle",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -3.0,
+      "resolved": true,
+      "profit": -3.0,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 708,
@@ -4561,11 +4561,11 @@
       "tournament": "",
       "surface": "Hard",
       "bookmaker": "williamhill",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.0,
+      "resolved": true,
+      "profit": 3.0,
+      "reason": "Wimbledon 2026: Arthur Fery batte Otto Virtanen 5-7, 7-6(3), 6-3, 6-3"
     },
     {
       "id": 770,
@@ -4587,11 +4587,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -3.0,
+      "resolved": true,
+      "profit": -3.0,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte James Duckworth 7-6(4), 3-6, 7-6(3), 6-1"
     },
     {
       "id": 833,
@@ -4613,11 +4613,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.6,
+      "resolved": true,
+      "profit": 1.6,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Kyrian Jacquet 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 815,
@@ -4639,11 +4639,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.5,
+      "resolved": true,
+      "profit": 2.5,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Alex Molcan 6-3, 6-2, 6-4"
     },
     {
       "id": 681,
@@ -4743,11 +4743,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -1.5,
+      "resolved": true,
+      "profit": -1.5,
+      "reason": "Wimbledon 2026: Jaume Munar batte Jacob Fearnley 6-4, 7-6(3), 6-4"
     },
     {
       "id": 875,
@@ -4769,11 +4769,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 25.0,
+      "resolved": true,
+      "profit": 25.0,
+      "reason": "Wimbledon 2026: Shintaro Mochizuki batte Rafael Jodar 1-6, 7-6(5), 6-4, 6-4"
     },
     {
       "id": 797,
@@ -4795,11 +4795,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 717,
@@ -4821,11 +4821,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 27.0,
+      "resolved": true,
+      "profit": 27.0,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 740,
@@ -4847,11 +4847,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 725,
@@ -4873,11 +4873,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 862,
@@ -4899,11 +4899,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Hubert Hurkacz batte Tommy Paul 4-6, 7-6(5), 7-5, 6-2"
     },
     {
       "id": 712,
@@ -4925,11 +4925,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 849,
@@ -4951,11 +4951,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 705,
@@ -5107,11 +5107,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 686,
@@ -5185,11 +5185,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 22.5,
+      "resolved": true,
+      "profit": 22.5,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 847,
@@ -5211,11 +5211,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 22.5,
+      "resolved": true,
+      "profit": 22.5,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 853,
@@ -5237,11 +5237,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 22.5,
+      "resolved": true,
+      "profit": 22.5,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Michael Zheng 7-6(1), 6-2, 6-1"
     },
     {
       "id": 869,
@@ -5289,11 +5289,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 22.5,
+      "resolved": true,
+      "profit": 22.5,
+      "reason": "Wimbledon 2026: Jan-Lennard Struff batte Daniil Medvedev 7-6(4), 7-6(5), 7-5"
     },
     {
       "id": 720,
@@ -5315,11 +5315,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 742,
@@ -5341,11 +5341,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 695,
@@ -5393,11 +5393,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 19.25,
+      "resolved": true,
+      "profit": 19.25,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 799,
@@ -5419,11 +5419,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 19.25,
+      "resolved": true,
+      "profit": 19.25,
+      "reason": "Wimbledon 2026: Hubert Hurkacz batte Tommy Paul 4-6, 7-6(5), 7-5, 6-2"
     },
     {
       "id": 865,
@@ -5549,11 +5549,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 858,
@@ -5575,11 +5575,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 678,
@@ -5731,11 +5731,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 18.32,
+      "resolved": true,
+      "profit": 18.32,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 846,
@@ -5757,11 +5757,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 18.32,
+      "resolved": true,
+      "profit": 18.32,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 867,
@@ -5835,11 +5835,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 18.0,
+      "resolved": true,
+      "profit": 18.0,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 665,
@@ -5939,11 +5939,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 17.88,
+      "resolved": true,
+      "profit": 17.88,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Michael Zheng 7-6(1), 6-2, 6-1"
     },
     {
       "id": 710,
@@ -5965,11 +5965,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 17.5,
+      "resolved": true,
+      "profit": 17.5,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 793,
@@ -5991,11 +5991,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 17.5,
+      "resolved": true,
+      "profit": 17.5,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 841,
@@ -6017,11 +6017,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.8,
+      "resolved": true,
+      "profit": 16.8,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 844,
@@ -6043,11 +6043,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 863,
@@ -6069,11 +6069,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.88,
+      "resolved": true,
+      "profit": 16.88,
+      "reason": "Wimbledon 2026: Hubert Hurkacz batte Tommy Paul 4-6, 7-6(5), 7-5, 6-2"
     },
     {
       "id": 724,
@@ -6095,11 +6095,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 16.0,
+      "resolved": true,
+      "profit": 16.0,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 733,
@@ -6121,11 +6121,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.88,
+      "resolved": true,
+      "profit": 14.88,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 741,
@@ -6147,11 +6147,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.88,
+      "resolved": true,
+      "profit": 14.88,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 852,
@@ -6173,11 +6173,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.88,
+      "resolved": true,
+      "profit": 14.88,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Michael Zheng 7-6(1), 6-2, 6-1"
     },
     {
       "id": 714,
@@ -6199,11 +6199,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.58,
+      "resolved": true,
+      "profit": 14.58,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 716,
@@ -6225,11 +6225,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.58,
+      "resolved": true,
+      "profit": 14.58,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 786,
@@ -6251,11 +6251,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.58,
+      "resolved": true,
+      "profit": 14.58,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 848,
@@ -6277,11 +6277,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.58,
+      "resolved": true,
+      "profit": 14.58,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 800,
@@ -6303,11 +6303,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 14.25,
+      "resolved": true,
+      "profit": 14.25,
+      "reason": "Wimbledon 2026: Hubert Hurkacz batte Tommy Paul 4-6, 7-6(5), 7-5, 6-2"
     },
     {
       "id": 727,
@@ -6329,11 +6329,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 13.7,
+      "resolved": true,
+      "profit": 13.7,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 698,
@@ -6381,11 +6381,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 12.0,
+      "resolved": true,
+      "profit": 12.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 721,
@@ -6407,11 +6407,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 11.0,
+      "resolved": true,
+      "profit": 11.0,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 860,
@@ -6433,11 +6433,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 11.0,
+      "resolved": true,
+      "profit": 11.0,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 864,
@@ -6563,11 +6563,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 729,
@@ -6589,11 +6589,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 10.0,
+      "resolved": true,
+      "profit": 10.0,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 715,
@@ -6615,11 +6615,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.0,
+      "resolved": true,
+      "profit": 9.0,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 732,
@@ -6641,11 +6641,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 9.0,
+      "resolved": true,
+      "profit": 9.0,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 700,
@@ -6693,11 +6693,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 10.0,
+      "resolved": true,
+      "profit": 10.0,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 845,
@@ -6719,11 +6719,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 7.2,
+      "resolved": true,
+      "profit": 7.2,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 663,
@@ -6771,11 +6771,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.6,
+      "resolved": true,
+      "profit": 6.6,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Michael Zheng 7-6(1), 6-2, 6-1"
     },
     {
       "id": 840,
@@ -6797,11 +6797,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.6,
+      "resolved": true,
+      "profit": 6.6,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 734,
@@ -6823,11 +6823,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.1,
+      "resolved": true,
+      "profit": 6.1,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 711,
@@ -6849,11 +6849,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.7,
+      "resolved": true,
+      "profit": 5.7,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 785,
@@ -6875,11 +6875,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 874,
@@ -6901,11 +6901,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 8.0,
+      "resolved": true,
+      "profit": 8.0,
+      "reason": "Wimbledon 2026: Jan-Lennard Struff batte Daniil Medvedev 7-6(4), 7-6(5), 7-5"
     },
     {
       "id": 851,
@@ -6927,11 +6927,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.0,
+      "resolved": true,
+      "profit": 5.0,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 662,
@@ -7005,11 +7005,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -3.0,
+      "resolved": true,
+      "profit": -3.0,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Michael Zheng 7-6(1), 6-2, 6-1"
     },
     {
       "id": 694,
@@ -7057,11 +7057,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.4,
+      "resolved": true,
+      "profit": 4.4,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 861,
@@ -7083,11 +7083,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.4,
+      "resolved": true,
+      "profit": 4.4,
+      "reason": "Wimbledon 2026: Hubert Hurkacz batte Tommy Paul 4-6, 7-6(5), 7-5, 6-2"
     },
     {
       "id": 866,
@@ -7135,11 +7135,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 7.0,
+      "resolved": true,
+      "profit": 7.0,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 872,
@@ -7161,11 +7161,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.64,
+      "resolved": true,
+      "profit": 6.64,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 783,
@@ -7187,11 +7187,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -2.0,
+      "resolved": true,
+      "profit": -2.0,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 691,
@@ -7343,11 +7343,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.0,
+      "resolved": true,
+      "profit": 4.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 730,
@@ -7447,11 +7447,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.6,
+      "resolved": true,
+      "profit": 3.6,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 859,
@@ -7473,11 +7473,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.6,
+      "resolved": true,
+      "profit": 3.6,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 842,
@@ -7499,11 +7499,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 5.85,
+      "resolved": true,
+      "profit": 5.85,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 802,
@@ -7551,11 +7551,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 6.0,
+      "resolved": true,
+      "profit": 6.0,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 701,
@@ -7603,11 +7603,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.5,
+      "resolved": true,
+      "profit": -4.5,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 787,
@@ -7629,11 +7629,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.95,
+      "resolved": true,
+      "profit": 4.95,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 792,
@@ -7655,11 +7655,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.68,
+      "resolved": true,
+      "profit": 4.68,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 871,
@@ -7837,11 +7837,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.0,
+      "resolved": true,
+      "profit": 4.0,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 682,
@@ -7889,11 +7889,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.85,
+      "resolved": true,
+      "profit": 3.85,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 857,
@@ -7915,11 +7915,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.5,
+      "resolved": true,
+      "profit": -4.5,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Jenson Brooksby 6-4, 6-3, 6-4"
     },
     {
       "id": 843,
@@ -7941,11 +7941,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.2,
+      "resolved": true,
+      "profit": 2.2,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 674,
@@ -8019,11 +8019,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -3.5,
+      "resolved": true,
+      "profit": -3.5,
+      "reason": "Wimbledon 2026: Jakub Mensik batte Toby Samuel 5-7, 6-3, 6-3, 3-6, 7-6(7)"
     },
     {
       "id": 731,
@@ -8045,11 +8045,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.5,
+      "resolved": true,
+      "profit": 3.5,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 789,
@@ -8071,11 +8071,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.0,
+      "resolved": true,
+      "profit": -4.0,
+      "reason": "Wimbledon 2026: Alejandro Davidovich Fokina batte Marton Fucsovics 7-6(3), 6-2, 6-3"
     },
     {
       "id": 737,
@@ -8097,11 +8097,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.8,
+      "resolved": true,
+      "profit": 1.8,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 854,
@@ -8123,11 +8123,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.8,
+      "resolved": true,
+      "profit": 1.8,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Michael Zheng 7-6(1), 6-2, 6-1"
     },
     {
       "id": 790,
@@ -8149,11 +8149,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 3.24,
+      "resolved": true,
+      "profit": 3.24,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 743,
@@ -8175,11 +8175,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.91,
+      "resolved": true,
+      "profit": 2.91,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Roman Andres Burruchaga 7-6(5), 6-1, 6-0"
     },
     {
       "id": 693,
@@ -8253,11 +8253,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.6,
+      "resolved": true,
+      "profit": 1.6,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Arthur Rinderknech 7-5, 6-4, 1-6, 7-6(4)"
     },
     {
       "id": 718,
@@ -8279,11 +8279,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 2.4,
+      "resolved": true,
+      "profit": 2.4,
+      "reason": "Wimbledon 2026: Yannick Hanfmann batte Giovanni Mpetshi Perricard 6-7(6), 7-6(9), 6-2, 6-3"
     },
     {
       "id": 685,
@@ -8331,11 +8331,11 @@
       "tournament": "Wimbledon Men Doubles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.4,
+      "resolved": true,
+      "profit": 1.4,
+      "reason": "Wimbledon 2026: Kamil Majchrzak batte Alejandro Tabilo 6-3, 7-5, 7-5"
     },
     {
       "id": 850,
@@ -8357,11 +8357,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 1.4,
+      "resolved": true,
+      "profit": 1.4,
+      "reason": "Wimbledon 2026: Roman Safiullin batte Joao Fonseca 6-3, 6-3, 6-3"
     },
     {
       "id": 738,
@@ -8409,11 +8409,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Zachary Svajda 6-2, 5-7, 6-2, 6-4"
     },
     {
       "id": 885,
@@ -8435,11 +8435,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Matteo Berrettini 6-3, 6-4, 3-6, 5-7, 6-3"
     },
     {
       "id": 877,
@@ -8461,11 +8461,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Marcos Giron 6-2, 7-6(4), 6-4"
     },
     {
       "id": 881,
@@ -8487,11 +8487,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Taylor Fritz batte Lorenzo Sonego 4-6, 6-3, 6-4, 7-6(5)"
     },
     {
       "id": 882,
@@ -8513,11 +8513,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Alexander Bublik batte Frances Tiafoe 4-6, 7-6(5), 7-6(11), 4-6, 6-3"
     },
     {
       "id": 891,
@@ -8565,11 +8565,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Jaume Munar 6-4, 6-4, 4-6, 6-4"
     },
     {
       "id": 888,
@@ -8591,11 +8591,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte Karen Khachanov 0-6, 7-6(4), 6-7(5), 6-2, 6-2"
     },
     {
       "id": 899,
@@ -8695,11 +8695,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 20.0,
+      "resolved": true,
+      "profit": 20.0,
+      "reason": "Wimbledon 2026: Arthur Fery batte Zizou Bergs 2-6, 7-5, 2-6, 7-6(3), 7-6(5)"
     },
     {
       "id": 878,
@@ -8721,11 +8721,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 12.0,
+      "resolved": true,
+      "profit": 12.0,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Marcos Giron 6-2, 7-6(4), 6-4"
     },
     {
       "id": 901,
@@ -8773,11 +8773,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Grigor Dimitrov batte Matteo Berrettini 6-3, 6-4, 3-6, 5-7, 6-3"
     },
     {
       "id": 892,
@@ -8799,11 +8799,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.95,
+      "resolved": true,
+      "profit": 4.95,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Zachary Svajda 6-2, 5-7, 6-2, 6-4"
     },
     {
       "id": 884,
@@ -8825,11 +8825,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 4.95,
+      "resolved": true,
+      "profit": 4.95,
+      "reason": "Wimbledon 2026: Alex de Minaur batte Zachary Svajda 6-2, 5-7, 6-2, 6-4"
     },
     {
       "id": 880,
@@ -8851,11 +8851,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -4.0,
+      "resolved": true,
+      "profit": -4.0,
+      "reason": "Wimbledon 2026: Jiri Lehecka batte Jaume Munar 6-4, 6-4, 4-6, 6-4"
     },
     {
       "id": 896,
@@ -8877,11 +8877,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Jan-Lennard Struff batte Hubert Hurkacz 3-6, 6-7(5), 7-6(2), 7-5, 4-2 Ret."
     },
     {
       "id": 898,
@@ -8903,11 +8903,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 21.0,
+      "resolved": true,
+      "profit": 21.0,
+      "reason": "Wimbledon 2026: Felix Auger-Aliassime batte Alejandro Davidovich Fokina 6-7(4), 7-6(6), 6-3, 6-7(2), 6-1"
     },
     {
       "id": 893,
@@ -8929,11 +8929,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Jannik Sinner batte Shintaro Mochizuki 6-3, 7-6(0), 6-3"
     },
     {
       "id": 905,
@@ -9007,11 +9007,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 22.5,
+      "resolved": true,
+      "profit": 22.5,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Roman Safiullin 7-6(6), 6-3, 3-6, 6-3"
     },
     {
       "id": 903,
@@ -9059,11 +9059,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Roman Safiullin 7-6(6), 6-3, 3-6, 6-3"
     },
     {
       "id": 907,
@@ -9085,11 +9085,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 10.0,
+      "resolved": true,
+      "profit": 10.0,
+      "reason": "Wimbledon 2026: Novak Djokovic batte Roman Safiullin 7-6(6), 6-3, 3-6, 6-3"
     },
     {
       "id": 906,
@@ -9137,11 +9137,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -10.0,
+      "resolved": true,
+      "profit": -10.0,
+      "reason": "Wimbledon 2026: Jan-Lennard Struff batte Hubert Hurkacz 3-6, 6-7(5), 7-6(2), 7-5, 4-2 Ret."
     },
     {
       "id": 915,
@@ -9215,11 +9215,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 25.0,
+      "resolved": true,
+      "profit": 25.0,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte Alex de Minaur 7-5, 7-6(4), 6-3"
     },
     {
       "id": 940,
@@ -9319,11 +9319,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 27.0,
+      "resolved": true,
+      "profit": 27.0,
+      "reason": "Wimbledon 2026: Taylor Fritz batte Alexander Bublik 7-6(1), 6-4, 6-4"
     },
     {
       "id": 909,
@@ -9345,11 +9345,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Jiri Lehecka 6-4, 7-5, 3-6, 7-6(6)"
     },
     {
       "id": 942,
@@ -9423,11 +9423,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "won",
+      "result": 24.0,
+      "resolved": true,
+      "profit": 24.0,
+      "reason": "Wimbledon 2026: Arthur Fery batte Grigor Dimitrov 7-5, 3-6, 4-6, 6-4, 7-6(7)"
     },
     {
       "id": 968,
@@ -9657,11 +9657,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -9.0,
+      "resolved": true,
+      "profit": -9.0,
+      "reason": "Wimbledon 2026: Alexander Zverev batte Jiri Lehecka 6-4, 7-5, 3-6, 7-6(6)"
     },
     {
       "id": 969,
@@ -9787,11 +9787,11 @@
       "tournament": "Wimbledon Men Singles",
       "surface": "Hard",
       "bookmaker": "bet365",
-      "status": "pending",
-      "result": null,
-      "resolved": false,
-      "profit": null,
-      "reason": ""
+      "status": "lost",
+      "result": -9.0,
+      "resolved": true,
+      "profit": -9.0,
+      "reason": "Wimbledon 2026: Flavio Cobolli batte Alex de Minaur 7-5, 7-6(4), 6-3"
     },
     {
       "id": 936,
@@ -11407,497 +11407,767 @@
     }
   ],
   "bankroll": {
-    "current": 215.51,
-    "peak": 215.51,
+    "current": 2202.6,
+    "peak": 2202.6,
     "drawdown": 0.0,
     "consecutive_losses": 1,
-    "total_bets": 30,
-    "wins": 13,
-    "losses": 17,
-    "win_rate": 43.3,
-    "pnl_30d": 15.51,
-    "roi_30d": 9.5
+    "total_bets": 235,
+    "wins": 183,
+    "losses": 52,
+    "win_rate": 77.9,
+    "pnl_30d": 2002.6,
+    "roi_30d": 140.3
   },
   "bet_history": [
     {
-      "id": 738,
-      "date": "2026-07-03",
-      "player1": "de Jong J / Royer V",
-      "player2": "Golubev A / Nedovyesov A",
-      "selection": "Golubev A / Nedovyesov A",
+      "id": 913,
+      "date": "2026-07-06",
+      "player1": "Alex de Minaur",
+      "player2": "Flavio Cobolli",
+      "selection": "Alex de Minaur",
       "market": "match_winner",
-      "odds": 2.1,
-      "model_prob": 0.5590011636585306,
-      "edge": 0.08281068746805442,
-      "stake": 2.0,
-      "profit": -2.0,
-      "status": "lost",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 730,
-      "date": "2026-07-03",
-      "player1": "Heliovaara H / Patten H",
-      "player2": "Kiger M / Trhac P",
-      "selection": "Kiger M / Trhac P",
-      "market": "match_winner",
-      "odds": 3.4,
-      "model_prob": 0.5365005159638532,
-      "edge": 0.24238286890502964,
-      "stake": 2.5,
-      "profit": 6.0,
-      "status": "won",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 708,
-      "date": "2026-07-02",
-      "player1": "Burruchaga R A / Tirante T A",
-      "player2": "Collignon R / Prizmic D",
-      "selection": "Collignon R / Prizmic D",
-      "market": "match_winner",
-      "odds": 2.25,
-      "model_prob": 0.5546630641615791,
-      "edge": 0.11021861971713465,
-      "stake": 2.0,
-      "profit": -2.0,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 707,
-      "date": "2026-07-02",
-      "player1": "Arends S / Pel D",
-      "player2": "Griekspoor T / Van de Zandschulp B",
-      "selection": "Griekspoor T / Van de Zandschulp B",
-      "market": "match_winner",
-      "odds": 2.37,
-      "model_prob": 0.5171474425383223,
-      "edge": 0.0952065142682802,
-      "stake": 1.5,
-      "profit": 2.06,
-      "status": "won",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 706,
-      "date": "2026-07-02",
-      "player1": "Cash R / Tracy J",
-      "player2": "Barrientos N / Borges Nu",
-      "selection": "Barrientos N / Borges Nu",
-      "market": "match_winner",
-      "odds": 2.37,
-      "model_prob": 0.5567399358098655,
-      "edge": 0.13479900753982332,
-      "stake": 2.5,
-      "profit": -2.5,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 672,
-      "date": "2026-07-02",
-      "player1": "Reynolds F / Watt J",
-      "player2": "Ayeni A / Cook E",
-      "selection": "Ayeni A / Cook E",
-      "market": "match_winner",
-      "odds": 4.0,
-      "model_prob": 0.5730419515551943,
-      "edge": 0.32304195155519433,
-      "stake": 2.5,
-      "profit": -2.5,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 628,
-      "date": "2026-07-01",
-      "player1": "Rafael Jodar",
-      "player2": "Pablo Carreno Busta",
-      "selection": "Rafael Jodar",
-      "market": "match_winner",
-      "odds": 2.24,
-      "model_prob": 0.5493270949900266,
-      "edge": 0.10289852356145524,
-      "stake": 2.0,
-      "profit": 4.88,
-      "status": "won",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 623,
-      "date": "2026-06-30",
-      "player1": "Frances Tiafoe",
-      "player2": "Terence Atmane",
-      "selection": "O/U 40.0",
-      "market": "over_under",
-      "odds": 1.93,
-      "model_prob": 0.97,
-      "edge": 0.4518652849740932,
-      "stake": 10.0,
-      "profit": 0.0,
-      "status": "push",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 622,
-      "date": "2026-06-30",
-      "player1": "Frances Tiafoe",
-      "player2": "Terence Atmane",
-      "selection": "Terence Atmane +5.0",
-      "market": "game_handicap",
-      "odds": 1.89,
-      "model_prob": 0.85385,
-      "edge": 0.3247494708994708,
+      "odds": 1.25,
+      "model_prob": 0.8892393674187256,
+      "edge": 0.08923936741872551,
       "stake": 9.0,
-      "profit": -4.25,
+      "profit": -9.0,
       "status": "lost",
       "confidence": "MEDIUM"
     },
     {
-      "id": 621,
-      "date": "2026-06-30",
-      "player1": "Dane Sweeny",
-      "player2": "Grigor Dimitrov",
-      "selection": "Dane Sweeny",
-      "market": "match_winner",
-      "odds": 4.17,
-      "model_prob": 0.5670945452075202,
-      "edge": 0.327286391730302,
-      "stake": 2.5,
-      "profit": -2.5,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 620,
-      "date": "2026-06-30",
-      "player1": "Tallon Griekspoor",
-      "player2": "James Duckworth",
-      "selection": "O/U 47.5",
+      "id": 912,
+      "date": "2026-07-06",
+      "player1": "Alex de Minaur",
+      "player2": "Flavio Cobolli",
+      "selection": "O/U 6.5",
       "market": "over_under",
-      "odds": 2.1,
+      "odds": 26.0,
       "model_prob": 0.97,
-      "edge": 0.4938095238095238,
-      "stake": 10.0,
-      "profit": 4.49,
+      "edge": 0.9315384615384615,
+      "stake": 1.0,
+      "profit": 25.0,
       "status": "won",
       "confidence": "MEDIUM"
     },
     {
-      "id": 619,
-      "date": "2026-06-30",
-      "player1": "Tallon Griekspoor",
-      "player2": "James Duckworth",
-      "selection": "Tallon Griekspoor +1.5",
-      "market": "game_handicap",
-      "odds": 2.23,
-      "model_prob": 0.62425,
-      "edge": 0.17581950672645735,
-      "stake": 3.5,
-      "profit": -4.21,
-      "status": "lost",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 618,
-      "date": "2026-06-30",
-      "player1": "Tallon Griekspoor",
-      "player2": "James Duckworth",
-      "selection": "Tallon Griekspoor",
-      "market": "match_winner",
-      "odds": 2.8,
-      "model_prob": 0.5128129508225091,
-      "edge": 0.15567009367965196,
-      "stake": 2.0,
-      "profit": -2.0,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 617,
-      "date": "2026-06-30",
-      "player1": "Corentin Moutet",
-      "player2": "Marcos Giron",
-      "selection": "Corentin Moutet",
-      "market": "match_winner",
-      "odds": 3.99,
-      "model_prob": 0.5613127627770689,
-      "edge": 0.3106861963610288,
-      "stake": 2.5,
-      "profit": -2.5,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 616,
-      "date": "2026-06-30",
-      "player1": "Lorenzo Sonego",
-      "player2": "Tomas Martin Etcheverry",
-      "selection": "Tomas Martin Etcheverry",
-      "market": "match_winner",
-      "odds": 3.62,
-      "model_prob": 0.5613395309344812,
-      "edge": 0.28509643701182924,
-      "stake": 2.5,
-      "profit": -2.5,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 615,
-      "date": "2026-06-29",
-      "player1": "Brandon Nakashima",
-      "player2": "Jack Pinnington Jones",
-      "selection": "Jack Pinnington Jones",
-      "market": "match_winner",
-      "odds": 9.62,
-      "model_prob": 0.5919369540419909,
-      "edge": 0.4879868500918869,
+      "id": 911,
+      "date": "2026-07-06",
+      "player1": "Taylor Fritz",
+      "player2": "Alexander Bublik",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 19.0,
+      "model_prob": 0.97,
+      "edge": 0.9173684210526316,
       "stake": 1.5,
-      "profit": -1.5,
-      "status": "lost",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 614,
-      "date": "2026-06-29",
-      "player1": "Emilio Nava",
-      "player2": "Ignacio Buse",
-      "selection": "O/U 40.0",
-      "market": "over_under",
-      "odds": 1.92,
-      "model_prob": 0.97,
-      "edge": 0.4491666666666666,
-      "stake": 10.0,
-      "profit": 0.0,
-      "status": "push",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 613,
-      "date": "2026-06-29",
-      "player1": "Denis Shapovalov",
-      "player2": "Pablo Carreno Busta",
-      "selection": "O/U 38.5",
-      "market": "over_under",
-      "odds": 1.95,
-      "model_prob": 0.8810000000000009,
-      "edge": 0.368179487179488,
-      "stake": 9.5,
-      "profit": 9.03,
+      "profit": 27.0,
       "status": "won",
       "confidence": "MEDIUM"
     },
     {
-      "id": 612,
-      "date": "2026-06-29",
-      "player1": "Denis Shapovalov",
-      "player2": "Pablo Carreno Busta",
-      "selection": "Pablo Carreno Busta +5.0",
+      "id": 910,
+      "date": "2026-07-06",
+      "player1": "Jiri Lehecka",
+      "player2": "Alexander Zverev",
+      "selection": "Favorito -4.5 -4.5",
       "market": "game_handicap",
-      "odds": 1.89,
-      "model_prob": 0.80815,
-      "edge": 0.27904947089947085,
-      "stake": 8.0,
-      "profit": 7.12,
-      "status": "won",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 611,
-      "date": "2026-06-29",
-      "player1": "Denis Shapovalov",
-      "player2": "Pablo Carreno Busta",
-      "selection": "Pablo Carreno Busta",
-      "market": "match_winner",
-      "odds": 3.25,
-      "model_prob": 0.8142723777143404,
-      "edge": 0.5065800700220326,
-      "stake": 5.5,
-      "profit": 12.38,
-      "status": "won",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 610,
-      "date": "2026-06-29",
-      "player1": "Dalibor Svrcina",
-      "player2": "Learner Tien",
-      "selection": "O/U 31.5",
-      "market": "over_under",
-      "odds": 1.9,
-      "model_prob": 0.826,
-      "edge": 0.2996842105263158,
-      "stake": 8.5,
-      "profit": -8.5,
+      "odds": 2.0,
+      "model_prob": 0.85155,
+      "edge": 0.35155000000000003,
+      "stake": 9.0,
+      "profit": -9.0,
       "status": "lost",
       "confidence": "MEDIUM"
     },
     {
-      "id": 609,
-      "date": "2026-06-29",
-      "player1": "Andrey Rublev",
-      "player2": "Roman Safiullin",
-      "selection": "O/U 41.5",
+      "id": 909,
+      "date": "2026-07-06",
+      "player1": "Jiri Lehecka",
+      "player2": "Alexander Zverev",
+      "selection": "O/U 7.5",
       "market": "over_under",
-      "odds": 1.93,
+      "odds": 17.0,
       "model_prob": 0.97,
-      "edge": 0.4518652849740932,
+      "edge": 0.9111764705882353,
+      "stake": 1.5,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 908,
+      "date": "2026-07-06",
+      "player1": "Grigor Dimitrov",
+      "player2": "Arthur Fery",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 13.0,
+      "model_prob": 0.97,
+      "edge": 0.8930769230769231,
+      "stake": 2.0,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 907,
+      "date": "2026-07-05",
+      "player1": "Roman Safiullin",
+      "player2": "Novak Djokovic",
+      "selection": "Sfavorito +5.5 +5.5",
+      "market": "game_handicap",
+      "odds": 2.0,
+      "model_prob": 0.9285,
+      "edge": 0.4285,
+      "stake": 10.0,
+      "profit": 10.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 898,
+      "date": "2026-07-05",
+      "player1": "Felix Auger-Aliassime",
+      "player2": "Alejandro Davidovich Fokina",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 15.0,
+      "model_prob": 0.97,
+      "edge": 0.9033333333333333,
+      "stake": 1.5,
+      "profit": 21.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 897,
+      "date": "2026-07-05",
+      "player1": "Hubert Hurkacz",
+      "player2": "Jan-Lennard Struff",
+      "selection": "Hubert Hurkacz",
+      "market": "match_winner",
+      "odds": 1.4,
+      "model_prob": 0.9443637921146785,
+      "edge": 0.23007807782896417,
       "stake": 10.0,
       "profit": -10.0,
       "status": "lost",
       "confidence": "MEDIUM"
     },
     {
-      "id": 608,
-      "date": "2026-06-29",
-      "player1": "Andrey Rublev",
-      "player2": "Roman Safiullin",
-      "selection": "Roman Safiullin",
-      "market": "match_winner",
-      "odds": 2.72,
-      "model_prob": 0.6281201751418699,
-      "edge": 0.2604731163183405,
-      "stake": 4.0,
-      "profit": 6.88,
-      "status": "won",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 607,
-      "date": "2026-06-29",
-      "player1": "Aleksandar Vukic",
-      "player2": "Jenson Brooksby",
-      "selection": "O/U 38.5",
+      "id": 896,
+      "date": "2026-07-05",
+      "player1": "Hubert Hurkacz",
+      "player2": "Jan-Lennard Struff",
+      "selection": "O/U 7.5",
       "market": "over_under",
-      "odds": 1.93,
-      "model_prob": 0.8719999999999997,
-      "edge": 0.35386528497409286,
-      "stake": 9.5,
-      "profit": 8.84,
-      "status": "won",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 606,
-      "date": "2026-06-29",
-      "player1": "Aleksandar Vukic",
-      "player2": "Jenson Brooksby",
-      "selection": "Jenson Brooksby -4.0",
-      "market": "game_handicap",
-      "odds": 1.93,
-      "model_prob": 0.7264999999999999,
-      "edge": 0.20836528497409312,
-      "stake": 5.5,
-      "profit": 5.12,
-      "status": "won",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 605,
-      "date": "2026-06-29",
-      "player1": "Aleksandar Vukic",
-      "player2": "Jenson Brooksby",
-      "selection": "Jenson Brooksby",
-      "market": "match_winner",
-      "odds": 1.48,
-      "model_prob": 0.8792514747009723,
-      "edge": 0.20357579902529666,
-      "stake": 10.0,
-      "profit": 4.8,
-      "status": "won",
-      "confidence": "HIGH"
-    },
-    {
-      "id": 604,
-      "date": "2026-06-29",
-      "player1": "Aleksandar Kovacevic",
-      "player2": "Botic van de Zandschulp",
-      "selection": "O/U 42.0",
-      "market": "over_under",
-      "odds": 1.91,
+      "odds": 15.0,
       "model_prob": 0.97,
-      "edge": 0.4464397905759162,
-      "stake": 10.0,
-      "profit": 9.1,
+      "edge": 0.9033333333333333,
+      "stake": 1.5,
+      "profit": 21.0,
       "status": "won",
       "confidence": "MEDIUM"
     },
     {
-      "id": 376,
-      "date": "2026-06-25",
-      "player1": "Hugo Gaston",
-      "player2": "Moez Echargui",
-      "selection": "O/U 37.5",
-      "market": "over_under",
-      "odds": 1.91,
-      "model_prob": 0.9937,
-      "edge": 0.47013979057591626,
-      "stake": 8.0,
-      "profit": 7.28,
-      "status": "won",
-      "confidence": "MEDIUM"
-    },
-    {
-      "id": 375,
-      "date": "2026-06-25",
-      "player1": "Hugo Gaston",
-      "player2": "Moez Echargui",
-      "selection": "Moez Echargui +5.5",
+      "id": 895,
+      "date": "2026-07-05",
+      "player1": "Roman Safiullin",
+      "player2": "Novak Djokovic",
+      "selection": "Favorito -6.5 -6.5",
       "market": "game_handicap",
-      "odds": 1.91,
-      "model_prob": 0.96755,
-      "edge": 0.44398979057591625,
-      "stake": 8.0,
-      "profit": -8.0,
+      "odds": 2.0,
+      "model_prob": 0.95435,
+      "edge": 0.45435000000000003,
+      "stake": 10.0,
+      "profit": -10.0,
       "status": "lost",
       "confidence": "MEDIUM"
     },
     {
-      "id": 374,
-      "date": "2026-06-25",
-      "player1": "Hugo Gaston",
-      "player2": "Moez Echargui",
-      "selection": "Moez Echargui",
-      "market": "match_winner",
-      "odds": 3.58,
-      "model_prob": 0.9044104269879112,
-      "edge": 0.6250808180493637,
-      "stake": 6.0,
-      "profit": -6.0,
-      "status": "lost",
-      "confidence": "HIGH"
+      "id": 894,
+      "date": "2026-07-05",
+      "player1": "Roman Safiullin",
+      "player2": "Novak Djokovic",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 10.0,
+      "model_prob": 0.97,
+      "edge": 0.87,
+      "stake": 2.5,
+      "profit": 22.5,
+      "status": "won",
+      "confidence": "MEDIUM"
     },
     {
-      "id": 370,
-      "date": "2026-06-25",
-      "player1": "Jaime Faria",
-      "player2": "Rei Sakamoto",
-      "selection": "Rei Sakamoto",
+      "id": 893,
+      "date": "2026-07-05",
+      "player1": "Jannik Sinner",
+      "player2": "Shintaro Mochizuki",
+      "selection": "O/U 6.5",
+      "market": "over_under",
+      "odds": 13.0,
+      "model_prob": 0.97,
+      "edge": 0.8930769230769231,
+      "stake": 2.0,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 892,
+      "date": "2026-07-04",
+      "player1": "Alex de Minaur",
+      "player2": "Zachary Svajda",
+      "selection": "Favorito -6.5 -6.5",
+      "market": "game_handicap",
+      "odds": 1.9,
+      "model_prob": 0.7216,
+      "edge": 0.19528421052631584,
+      "stake": 5.5,
+      "profit": 4.95,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 888,
+      "date": "2026-07-04",
+      "player1": "Karen Khachanov",
+      "player2": "Flavio Cobolli",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 13.0,
+      "model_prob": 0.97,
+      "edge": 0.8930769230769231,
+      "stake": 2.0,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 887,
+      "date": "2026-07-04",
+      "player1": "Zizou Bergs",
+      "player2": "Arthur Fery",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 9.0,
+      "model_prob": 0.97,
+      "edge": 0.8588888888888888,
+      "stake": 2.5,
+      "profit": 20.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 886,
+      "date": "2026-07-04",
+      "player1": "Grigor Dimitrov",
+      "player2": "Matteo Berrettini",
+      "selection": "Matteo Berrettini",
       "market": "match_winner",
-      "odds": 4.58,
-      "model_prob": 0.7858215727715467,
-      "edge": 0.5674809614178349,
+      "odds": 1.72,
+      "model_prob": 0.8779580626148675,
+      "edge": 0.2965627137776582,
+      "stake": 10.0,
+      "profit": -10.0,
+      "status": "lost",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 885,
+      "date": "2026-07-04",
+      "player1": "Grigor Dimitrov",
+      "player2": "Matteo Berrettini",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 17.0,
+      "model_prob": 0.97,
+      "edge": 0.9111764705882353,
+      "stake": 1.5,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 884,
+      "date": "2026-07-04",
+      "player1": "Alex de Minaur",
+      "player2": "Zachary Svajda",
+      "selection": "Sfavorito 6.5 +6.5",
+      "market": "game_handicap",
+      "odds": 1.9,
+      "model_prob": 0.71765,
+      "edge": 0.19133421052631583,
+      "stake": 5.5,
+      "profit": 4.95,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 883,
+      "date": "2026-07-04",
+      "player1": "Alex de Minaur",
+      "player2": "Zachary Svajda",
+      "selection": "O/U 6.5",
+      "market": "over_under",
+      "odds": 21.0,
+      "model_prob": 0.97,
+      "edge": 0.9223809523809523,
+      "stake": 1.0,
+      "profit": 20.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 882,
+      "date": "2026-07-04",
+      "player1": "Frances Tiafoe",
+      "player2": "Alexander Bublik",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 15.0,
+      "model_prob": 0.97,
+      "edge": 0.9033333333333333,
+      "stake": 1.5,
+      "profit": 21.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 881,
+      "date": "2026-07-04",
+      "player1": "Taylor Fritz",
+      "player2": "Lorenzo Sonego",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 15.0,
+      "model_prob": 0.97,
+      "edge": 0.9033333333333333,
+      "stake": 1.5,
+      "profit": 21.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 880,
+      "date": "2026-07-04",
+      "player1": "Jiri Lehecka",
+      "player2": "Jaume Munar",
+      "selection": "Favorito -4.5 -4.5",
+      "market": "game_handicap",
+      "odds": 2.0,
+      "model_prob": 0.6607000000000001,
+      "edge": 0.16070000000000007,
       "stake": 4.0,
       "profit": -4.0,
       "status": "lost",
-      "confidence": "HIGH"
+      "confidence": "MEDIUM"
     },
     {
-      "id": 369,
-      "date": "2026-06-25",
-      "player1": "Dane Sweeny",
-      "player2": "Marcelo Tomas Barrios Vera",
-      "selection": "Marcelo Tomas Barrios Vera",
-      "market": "match_winner",
-      "odds": 2.3,
-      "model_prob": 0.817420546294998,
-      "edge": 0.38263793759934583,
-      "stake": 7.5,
-      "profit": -7.5,
+      "id": 879,
+      "date": "2026-07-04",
+      "player1": "Jiri Lehecka",
+      "player2": "Jaume Munar",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 13.0,
+      "model_prob": 0.97,
+      "edge": 0.8930769230769231,
+      "stake": 2.0,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 878,
+      "date": "2026-07-04",
+      "player1": "Marcos Giron",
+      "player2": "Alexander Zverev",
+      "selection": "Sfavorito +5.5 +5.5",
+      "market": "game_handicap",
+      "odds": 2.2,
+      "model_prob": 0.93815,
+      "edge": 0.4836045454545455,
+      "stake": 10.0,
+      "profit": 12.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 877,
+      "date": "2026-07-04",
+      "player1": "Marcos Giron",
+      "player2": "Alexander Zverev",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 15.0,
+      "model_prob": 0.97,
+      "edge": 0.9033333333333333,
+      "stake": 1.5,
+      "profit": 21.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 876,
+      "date": "2026-07-03",
+      "player1": "Arthur Rinderknech",
+      "player2": "Novak Djokovic",
+      "selection": "Favorito -6.5 -6.5",
+      "market": "game_handicap",
+      "odds": 2.0,
+      "model_prob": 0.935,
+      "edge": 0.43500000000000005,
+      "stake": 10.0,
+      "profit": -10.0,
       "status": "lost",
-      "confidence": "HIGH"
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 875,
+      "date": "2026-07-03",
+      "player1": "Rafael Jodar",
+      "player2": "Shintaro Mochizuki",
+      "selection": "O/U 6.5",
+      "market": "over_under",
+      "odds": 26.0,
+      "model_prob": 0.97,
+      "edge": 0.9315384615384615,
+      "stake": 1.0,
+      "profit": 25.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 874,
+      "date": "2026-07-03",
+      "player1": "Jan-Lennard Struff",
+      "player2": "Daniil Medvedev",
+      "selection": "Sfavorito +5.5 +5.5",
+      "market": "game_handicap",
+      "odds": 2.0,
+      "model_prob": 0.8116,
+      "edge": 0.3116,
+      "stake": 8.0,
+      "profit": 8.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 873,
+      "date": "2026-07-03",
+      "player1": "Jan-Lennard Struff",
+      "player2": "Daniil Medvedev",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 10.0,
+      "model_prob": 0.97,
+      "edge": 0.87,
+      "stake": 2.5,
+      "profit": 22.5,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 872,
+      "date": "2026-07-03",
+      "player1": "Roman Safiullin",
+      "player2": "Joao Fonseca",
+      "selection": "Sfavorito +4.5 +4.5",
+      "market": "game_handicap",
+      "odds": 1.83,
+      "model_prob": 0.81635,
+      "edge": 0.2699019125683061,
+      "stake": 8.0,
+      "profit": 6.64,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 863,
+      "date": "2026-07-03",
+      "player1": "Hubert Hurkacz",
+      "player2": "Tommy Paul",
+      "selection": "O/U 12.5",
+      "market": "over_under",
+      "odds": 3.25,
+      "model_prob": 0.97,
+      "edge": 0.6623076923076923,
+      "stake": 7.5,
+      "profit": 16.88,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 862,
+      "date": "2026-07-03",
+      "player1": "Hubert Hurkacz",
+      "player2": "Tommy Paul",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 15.0,
+      "model_prob": 0.97,
+      "edge": 0.9033333333333333,
+      "stake": 1.5,
+      "profit": 21.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 861,
+      "date": "2026-07-03",
+      "player1": "Hubert Hurkacz",
+      "player2": "Tommy Paul",
+      "selection": "O/U 9.5",
+      "market": "over_under",
+      "odds": 1.44,
+      "model_prob": 0.97,
+      "edge": 0.27555555555555555,
+      "stake": 10.0,
+      "profit": 4.4,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 860,
+      "date": "2026-07-03",
+      "player1": "Jannik Sinner",
+      "player2": "Jenson Brooksby",
+      "selection": "O/U 9.5",
+      "market": "over_under",
+      "odds": 2.1,
+      "model_prob": 0.97,
+      "edge": 0.4938095238095238,
+      "stake": 10.0,
+      "profit": 11.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 859,
+      "date": "2026-07-03",
+      "player1": "Jannik Sinner",
+      "player2": "Jenson Brooksby",
+      "selection": "O/U 8.5",
+      "market": "over_under",
+      "odds": 1.36,
+      "model_prob": 0.97,
+      "edge": 0.2347058823529412,
+      "stake": 10.0,
+      "profit": 3.6,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 858,
+      "date": "2026-07-03",
+      "player1": "Jannik Sinner",
+      "player2": "Jenson Brooksby",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 6.0,
+      "model_prob": 0.97,
+      "edge": 0.8033333333333333,
+      "stake": 4.0,
+      "profit": 20.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 857,
+      "date": "2026-07-03",
+      "player1": "Jannik Sinner",
+      "player2": "Jenson Brooksby",
+      "selection": "O/U 30.5",
+      "market": "over_under",
+      "odds": 1.9,
+      "model_prob": 0.6809000000000001,
+      "edge": 0.15458421052631588,
+      "stake": 4.5,
+      "profit": -4.5,
+      "status": "lost",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 856,
+      "date": "2026-07-03",
+      "player1": "Jannik Sinner",
+      "player2": "Jenson Brooksby",
+      "selection": "O/U 12.5",
+      "market": "over_under",
+      "odds": 6.0,
+      "model_prob": 0.97,
+      "edge": 0.8033333333333333,
+      "stake": 4.0,
+      "profit": 20.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 855,
+      "date": "2026-07-03",
+      "player1": "Felix Auger-Aliassime",
+      "player2": "Michael Zheng",
+      "selection": "O/U 12.5",
+      "market": "over_under",
+      "odds": 3.75,
+      "model_prob": 0.97,
+      "edge": 0.7033333333333334,
+      "stake": 6.5,
+      "profit": 17.88,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 854,
+      "date": "2026-07-03",
+      "player1": "Felix Auger-Aliassime",
+      "player2": "Michael Zheng",
+      "selection": "O/U 8.5",
+      "market": "over_under",
+      "odds": 1.18,
+      "model_prob": 0.97,
+      "edge": 0.12254237288135583,
+      "stake": 10.0,
+      "profit": 1.8,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 853,
+      "date": "2026-07-03",
+      "player1": "Felix Auger-Aliassime",
+      "player2": "Michael Zheng",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 10.0,
+      "model_prob": 0.97,
+      "edge": 0.87,
+      "stake": 2.5,
+      "profit": 22.5,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 852,
+      "date": "2026-07-03",
+      "player1": "Felix Auger-Aliassime",
+      "player2": "Michael Zheng",
+      "selection": "O/U 10.5",
+      "market": "over_under",
+      "odds": 2.75,
+      "model_prob": 0.97,
+      "edge": 0.6063636363636363,
+      "stake": 8.5,
+      "profit": 14.88,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 851,
+      "date": "2026-07-03",
+      "player1": "Roman Safiullin",
+      "player2": "Joao Fonseca",
+      "selection": "O/U 9.5",
+      "market": "over_under",
+      "odds": 1.5,
+      "model_prob": 0.97,
+      "edge": 0.30333333333333334,
+      "stake": 10.0,
+      "profit": 5.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 850,
+      "date": "2026-07-03",
+      "player1": "Roman Safiullin",
+      "player2": "Joao Fonseca",
+      "selection": "O/U 8.5",
+      "market": "over_under",
+      "odds": 1.14,
+      "model_prob": 0.97,
+      "edge": 0.09280701754385956,
+      "stake": 10.0,
+      "profit": 1.4,
+      "status": "won",
+      "confidence": "LOW"
+    },
+    {
+      "id": 849,
+      "date": "2026-07-03",
+      "player1": "Roman Safiullin",
+      "player2": "Joao Fonseca",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 13.0,
+      "model_prob": 0.97,
+      "edge": 0.8930769230769231,
+      "stake": 2.0,
+      "profit": 24.0,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 848,
+      "date": "2026-07-03",
+      "player1": "Roman Safiullin",
+      "player2": "Joao Fonseca",
+      "selection": "O/U 10.5",
+      "market": "over_under",
+      "odds": 2.62,
+      "model_prob": 0.97,
+      "edge": 0.5883206106870229,
+      "stake": 9.0,
+      "profit": 14.58,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 847,
+      "date": "2026-07-03",
+      "player1": "Alejandro Davidovich Fokina",
+      "player2": "Marton Fucsovics",
+      "selection": "O/U 7.5",
+      "market": "over_under",
+      "odds": 10.0,
+      "model_prob": 0.97,
+      "edge": 0.87,
+      "stake": 2.5,
+      "profit": 22.5,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 846,
+      "date": "2026-07-03",
+      "player1": "Alejandro Davidovich Fokina",
+      "player2": "Marton Fucsovics",
+      "selection": "O/U 12.5",
+      "market": "over_under",
+      "odds": 4.33,
+      "model_prob": 0.97,
+      "edge": 0.7390531177829099,
+      "stake": 5.5,
+      "profit": 18.32,
+      "status": "won",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": 845,
+      "date": "2026-07-03",
+      "player1": "Alejandro Davidovich Fokina",
+      "player2": "Marton Fucsovics",
+      "selection": "O/U 9.5",
+      "market": "over_under",
+      "odds": 1.72,
+      "model_prob": 0.97,
+      "edge": 0.38860465116279064,
+      "stake": 10.0,
+      "profit": 7.2,
+      "status": "won",
+      "confidence": "MEDIUM"
     }
   ],
   "bankroll_history": [
@@ -11939,28 +12209,55 @@
     },
     {
       "date": "2026-07-02",
-      "bankroll": 211.52,
-      "pnl": -4.95,
-      "staked": 8.5,
-      "bets": 4,
-      "wins": 1,
-      "losses": 3
+      "bankroll": 973.79,
+      "pnl": 757.33,
+      "staked": 623.5,
+      "bets": 100,
+      "wins": 76,
+      "losses": 24
     },
     {
       "date": "2026-07-03",
-      "bankroll": 215.52,
-      "pnl": 4.0,
-      "staked": 4.5,
-      "bets": 2,
-      "wins": 1,
-      "losses": 1
+      "bankroll": 1859.2,
+      "pnl": 885.41,
+      "staked": 544.0,
+      "bets": 85,
+      "wins": 76,
+      "losses": 9
+    },
+    {
+      "date": "2026-07-04",
+      "bankroll": 2042.1,
+      "pnl": 182.9,
+      "staked": 48.5,
+      "bets": 13,
+      "wins": 11,
+      "losses": 2
+    },
+    {
+      "date": "2026-07-05",
+      "bankroll": 2120.6,
+      "pnl": 78.5,
+      "staked": 37.5,
+      "bets": 7,
+      "wins": 5,
+      "losses": 2
+    },
+    {
+      "date": "2026-07-06",
+      "bankroll": 2202.6,
+      "pnl": 82.0,
+      "staked": 24.0,
+      "bets": 6,
+      "wins": 4,
+      "losses": 2
     }
   ],
   "last_report": "🎾 JBE TopSpin — Value Bets (07/07/2026)\n📡 Fonte: OddsPapi (Bet365/Pinnacle) | Match trovati: 89\n\n❌ Carlo Alberto Caniato vs Hugo Dellien — Giocatori non trovati nel DB\n❌ Pietro Orlando Fellin vs Francesco Passaro — Giocatori non trovati nel DB\n❌ Nikolas Sanchez Izquierdo vs Dylan Dietrich — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:20 | ATP Challenger Trieste, Italy Men Singles | 🏦 bet365\n   Maxim Mrva vs Gonzalo Villanueva\n   **O/U 6.5** @10.50\n  Modello: 97.0% | Implicita: 9.5% | Edge: 87.5%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: MEDIUM\n  Edge +87.5% @10.50\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 10:20 | ATP Challenger Trieste, Italy Men Singles | 🏦 bet365\n   Maxim Mrva vs Gonzalo Villanueva\n   **Favorito -3.5 -3.5** @1.83\n  Modello: 68.9% | Implicita: 54.6% | Edge: 14.3%\n  Stake: 4.50 EUR (2.2% bankroll) | Confidenza: MEDIUM\n  Edge +14.3% (handicap -3.5) @1.83\n\n❌ Oleg Prihodko vs Alex Barrena — Giocatori non trovati nel DB\n❌ Andrea Guerrieri vs Oriol Roca Batalla — Giocatori non trovati nel DB\n❌ Juan Cruz Martin Manzano vs Henry Bernet — Giocatori non trovati nel DB\n❌ Andrea Pellegrino vs Max Alcala Gurri — Giocatori non trovati nel DB\n❌ Federico Bondioli vs Joel Schwaerzler — Giocatori non trovati nel DB\n❌ Michele Ribecai vs Matej Dodig — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 09:10 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Jan Choinski vs Dimitar Kuzmanov\n   **O/U 6.5** @26.00\n  Modello: 97.0% | Implicita: 3.8% | Edge: 93.2%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +93.2% @26.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 09:10 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Jan Choinski vs Dimitar Kuzmanov\n   **Favorito -3.5 -3.5** @1.90\n  Modello: 68.8% | Implicita: 52.6% | Edge: 16.2%\n  Stake: 4.50 EUR (2.2% bankroll) | Confidenza: MEDIUM\n  Edge +16.2% (handicap -3.5) @1.90\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 09:10 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Thiago Seyboth Wild vs Dalibor Svrcina\n   **O/U 6.5** @19.00\n  Modello: 97.0% | Implicita: 5.3% | Edge: 91.7%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +91.7% @19.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 09:30 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Roman Andres Burruchaga vs Max Schoenhaus\n   **O/U 6.5** @21.00\n  Modello: 97.0% | Implicita: 4.8% | Edge: 92.2%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +92.2% @21.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 09:30 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Roman Andres Burruchaga vs Max Schoenhaus\n   **Favorito -3.5 -3.5** @1.83\n  Modello: 68.9% | Implicita: 54.6% | Edge: 14.3%\n  Stake: 4.50 EUR (2.2% bankroll) | Confidenza: MEDIUM\n  Edge +14.3% (handicap -3.5) @1.83\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:20 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Juan Carlos Prado Angelo vs Adolfo Daniel Vallejo\n   **O/U 6.5** @19.00\n  Modello: 97.0% | Implicita: 5.3% | Edge: 91.7%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +91.7% @19.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 10:20 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Juan Carlos Prado Angelo vs Adolfo Daniel Vallejo\n   **Sfavorito +3.5 +3.5** @2.00\n  Modello: 69.3% | Implicita: 50.0% | Edge: 19.3%\n  Stake: 5.00 EUR (2.5% bankroll) | Confidenza: MEDIUM\n  Edge +19.3% (handicap +3.5) @2.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:20 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Rudolf Molleker vs Facundo Diaz Acosta\n   **O/U 6.5** @19.00\n  Modello: 97.0% | Implicita: 5.3% | Edge: 91.7%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +91.7% @19.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 10:20 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Rudolf Molleker vs Facundo Diaz Acosta\n   **Sfavorito +4.5 +4.5** @2.00\n  Modello: 68.0% | Implicita: 50.0% | Edge: 18.0%\n  Stake: 4.50 EUR (2.2% bankroll) | Confidenza: MEDIUM\n  Edge +18.0% (handicap +4.5) @2.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:40 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Daniel Rincon vs Tom Gentzsch\n   **O/U 6.5** @26.00\n  Modello: 97.0% | Implicita: 3.8% | Edge: 93.2%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +93.2% @26.00\n\n❌ Martin Krumich vs Francisco Comesana — Giocatori non trovati nel DB\n❌ Hugo Gaston vs Andrey Chepelev — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 11:50 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Niels McDonald vs Keegan Smith\n   **O/U 7.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Match Winner)\n   2026-07-07 11:50 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Niels McDonald vs Keegan Smith\n   **Niels McDonald** @1.72\n  Modello: 76.8% | Implicita: 58.1% | Edge: 18.7%\n  Stake: 6.50 EUR (3.2% bankroll) | Confidenza: MEDIUM\n  Edge +18.7% @1.72 (bet365)\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 12:40 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Nikoloz Basilashvili vs Vilius Gaubas\n   **O/U 6.5** @26.00\n  Modello: 97.0% | Implicita: 3.8% | Edge: 93.2%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +93.2% @26.00\n\n❌ Timofey Skatov vs Mika Petkovic — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 13:00 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Marvin Moeller vs Benito Sanchez Martinez\n   **O/U 6.5** @19.00\n  Modello: 97.0% | Implicita: 5.3% | Edge: 91.7%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +91.7% @19.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 13:00 | ATP Challenger Braunschweig, Germany Men Singles | 🏦 bet365\n   Marvin Moeller vs Benito Sanchez Martinez\n   **Favorito -4.5 -4.5** @2.10\n  Modello: 79.2% | Implicita: 47.6% | Edge: 31.6%\n  Stake: 7.00 EUR (3.5% bankroll) | Confidenza: MEDIUM\n  Edge +31.6% (handicap -4.5) @2.10\n\n❌ Hynek Barton vs Sandro Kopp — Giocatori non trovati nel DB\n❌ Francesco Forti vs Jack Loge — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 09:00 | ATP Challenger Huy, Belgium Men Singles | 🏦 bet365\n   Matteo Martineau vs Philip Henning\n   **O/U 6.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n❌ Leo Raquillet vs Lorenzo Giustino — Giocatori non trovati nel DB\n❌ Buvaysar Gadamauri vs Luca Staeheli — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:10 | ATP Challenger Huy, Belgium Men Singles | 🏦 bet365\n   Federico Coria vs Geoffrey Blancaneaux\n   **O/U 6.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 11:20 | ATP Challenger Huy, Belgium Men Singles | 🏦 bet365\n   Pedro Boscardin Dias vs Daniel Michalski\n   **O/U 6.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n❌ Felix Balshaw vs Carlos Sanchez Jover — Giocatori non trovati nel DB\n❌ Kimmer Coppejans vs Ryan Nijboer — Giocatori non trovati nel DB\n⚪ 2026-07-07 12:30 — Tsung-Hao Huang vs Guy Den Ouden (confidenza bassa)\n\n❌ Florian Broska vs Kai Wehnelt — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 16:00 | ATP Challenger Huy, Belgium Men Singles | 🏦 bet365\n   Gauthier Onclin vs Gerard Campana Lee\n   **O/U 6.5** @9.00\n  Modello: 97.0% | Implicita: 11.1% | Edge: 85.9%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: MEDIUM\n  Edge +85.9% @9.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 16:00 | ATP Challenger Huy, Belgium Men Singles | 🏦 bet365\n   Gauthier Onclin vs Gerard Campana Lee\n   **Sfavorito 4.5 +4.5** @2.00\n  Modello: 78.4% | Implicita: 50.0% | Edge: 28.4%\n  Stake: 7.00 EUR (3.5% bankroll) | Confidenza: MEDIUM\n  Edge +28.4% (handicap +4.5) @2.00\n\n❌ Miguel Damas vs Gilles Arnaud Bailly — Giocatori non trovati nel DB\n❌ Mitsuki Wei Kang Leong vs Luca Castelnuovo — Giocatori non trovati nel DB\n❌ Filippo Romano vs Max Basing — Giocatori non trovati nel DB\n❌ Yi Zhou vs Robin Catry — Giocatori non trovati nel DB\n❌ Patrick Brady vs Herman Hoeyeraal — Giocatori non trovati nel DB\n❌ Ivan Ivanov vs Niels Visker — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 11:10 | ATP Challenger Nottingham 3, Great Britain Men Singles | 🏦 bet365\n   Patrick Zahraj vs Henry Searle\n   **O/U 6.5** @12.00\n  Modello: 97.0% | Implicita: 8.3% | Edge: 88.7%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +88.7% @12.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 11:10 | ATP Challenger Nottingham 3, Great Britain Men Singles | 🏦 bet365\n   Patrick Zahraj vs Henry Searle\n   **Sfavorito +4.5 +4.5** @2.00\n  Modello: 79.0% | Implicita: 50.0% | Edge: 29.0%\n  Stake: 7.00 EUR (3.5% bankroll) | Confidenza: MEDIUM\n  Edge +29.0% (handicap +4.5) @2.00\n\n❌ Marcus Walters vs Amit Vales — Giocatori non trovati nel DB\n❌ Arda Azkara vs Oliver Bonding — Giocatori non trovati nel DB\n❌ William Jansen vs Felix Gill — Giocatori non trovati nel DB\n❌ Johannus Monday vs Matthew Summers — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 13:30 | ATP Challenger Nottingham 3, Great Britain Men Singles | 🏦 bet365\n   Filip Jeff Planinsek vs Igor Marcondes\n   **O/U 6.5** @15.00\n  Modello: 97.0% | Implicita: 6.7% | Edge: 90.3%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +90.3% @15.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 13:30 | ATP Challenger Nottingham 3, Great Britain Men Singles | 🏦 bet365\n   Filip Jeff Planinsek vs Igor Marcondes\n   **Favorito -3.5 -3.5** @2.00\n  Modello: 69.5% | Implicita: 50.0% | Edge: 19.5%\n  Stake: 5.00 EUR (2.5% bankroll) | Confidenza: MEDIUM\n  Edge +19.5% (handicap -3.5) @2.00\n\n❌ Clement Chidekh vs Alberto Barroso Campos — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:30 | ATP Challenger Iasi, Romania Men Singles | 🏦 bet365\n   Pedro Martinez vs S D Prajwal Dev\n   **O/U 6.5** @13.00\n  Modello: 97.0% | Implicita: 7.7% | Edge: 89.3%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +89.3% @13.00\n\n❌ Marcelo Tomas Barrios Vera vs Ilia Simakin — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 10:30 | ATP Challenger Iasi, Romania Men Singles | 🏦 bet365\n   Zsombor Piros vs Gabriel Ghetu\n   **O/U 6.5** @15.00\n  Modello: 97.0% | Implicita: 6.7% | Edge: 90.3%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +90.3% @15.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 10:30 | ATP Challenger Iasi, Romania Men Singles | 🏦 bet365\n   Zsombor Piros vs Gabriel Ghetu\n   **Favorito -5.5 -5.5** @2.10\n  Modello: 86.7% | Implicita: 47.6% | Edge: 39.1%\n  Stake: 9.00 EUR (4.5% bankroll) | Confidenza: MEDIUM\n  Edge +39.1% (handicap -5.5) @2.10\n\n❌ Stefan Horia Haita vs Damir Dzumhur — Giocatori non trovati nel DB\n❌ David Poljak vs Gustavo Heide — Giocatori non trovati nel DB\n❌ Sascha Gueymard Wayenburg vs Alexander Donski — Giocatori non trovati nel DB\n❌ Samir Hamza Reguig vs Olle Wallin — Giocatori non trovati nel DB\n❌ Titouan Droguet vs Mathys Erhard — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 14:40 | ATP Challenger Iasi, Romania Men Singles | 🏦 bet365\n   Frederico Ferreira Silva vs Luka Pavlovic\n   **O/U 6.5** @26.00\n  Modello: 97.0% | Implicita: 3.8% | Edge: 93.2%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +93.2% @26.00\n\n❌ Alex Marti Pujolras vs Cezar (2001) Cretu — Giocatori non trovati nel DB\n❌ Valentin Royer vs Maximilian Neuchrist — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-08 10:30 | ATP Challenger Iasi, Romania Men Singles | 🏦 bet365\n   Taro Daniel vs Zdenek Kolar\n   **O/U 6.5** @23.00\n  Modello: 97.0% | Implicita: 4.3% | Edge: 92.7%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +92.7% @23.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 12:00 | Wimbledon Men Singles | 🏦 bet365\n   Jannik Sinner vs Jan-Lennard Struff\n   **O/U 6.5** @23.00\n  Modello: 97.0% | Implicita: 4.3% | Edge: 92.7%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +92.7% @23.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 12:00 | Wimbledon Men Singles | 🏦 bet365\n   Jannik Sinner vs Jan-Lennard Struff\n   **Sfavorito 7.5 +7.5** @2.10\n  Modello: 72.5% | Implicita: 47.6% | Edge: 24.9%\n  Stake: 5.50 EUR (2.8% bankroll) | Confidenza: MEDIUM\n  Edge +24.9% (handicap +7.5) @2.10\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 14:05 | Wimbledon Men Singles | 🏦 bet365\n   Felix Auger-Aliassime vs Novak Djokovic\n   **O/U 7.5** @15.00\n  Modello: 97.0% | Implicita: 6.7% | Edge: 90.3%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +90.3% @15.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-08 10:00 | Wimbledon Men Singles | 🏦 bet365\n   Flavio Cobolli vs Arthur Fery\n   **O/U 7.5** @10.00\n  Modello: 97.0% | Implicita: 10.0% | Edge: 87.0%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: MEDIUM\n  Edge +87.0% @10.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-08 10:00 | Wimbledon Men Singles | 🏦 bet365\n   Flavio Cobolli vs Arthur Fery\n   **Favorito -4.5 -4.5** @1.83\n  Modello: 77.9% | Implicita: 54.6% | Edge: 23.3%\n  Stake: 7.00 EUR (3.5% bankroll) | Confidenza: MEDIUM\n  Edge +23.3% (handicap -4.5) @1.83\n\n⚪ 2026-07-07 15:00 — Jason Jung vs Hiroki Moriya (confidenza bassa)\n\n❌ Ozan Baris vs Tyler Zink — Giocatori non trovati nel DB\n❌ Andre Ilagan vs Alex Rybakov — Giocatori non trovati nel DB\n⚪ 2026-07-07 15:00 — Stefan Kozlov vs Garrett Johns (confidenza bassa)\n\n❌ Patrick Maloney vs Hayato Matsuoka — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 17:20 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Mackenzie McDonald vs Adam Walton\n   **O/U 7.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 17:20 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Mackenzie McDonald vs Adam Walton\n   **Favorito -1.5 -1.5** @1.90\n  Modello: 67.3% | Implicita: 52.6% | Edge: 14.7%\n  Stake: 4.00 EUR (2.0% bankroll) | Confidenza: MEDIUM\n  Edge +14.7% (handicap -1.5) @1.90\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 17:20 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Daniil Glinka vs Yunchaokete Bu\n   **O/U 7.5** @9.00\n  Modello: 97.0% | Implicita: 11.1% | Edge: 85.9%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: MEDIUM\n  Edge +85.9% @9.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 17:20 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Daniil Glinka vs Yunchaokete Bu\n   **Favorito -4.5 -4.5** @2.10\n  Modello: 83.6% | Implicita: 47.6% | Edge: 36.0%\n  Stake: 8.00 EUR (4.0% bankroll) | Confidenza: MEDIUM\n  Edge +36.0% (handicap -4.5) @2.10\n\n❌ Bernard Tomic vs Braden Shick — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 18:30 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   August Holmgren vs Tristan Schoolkate\n   **O/U 7.5** @17.00\n  Modello: 97.0% | Implicita: 5.9% | Edge: 91.1%\n  Stake: 1.50 EUR (0.8% bankroll) | Confidenza: MEDIUM\n  Edge +91.1% @17.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 18:30 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Aleksandar Vukic vs Liam Broady\n   **O/U 7.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Adrian Mannarino vs Remy Bertola\n   **O/U 7.5** @10.00\n  Modello: 97.0% | Implicita: 10.0% | Edge: 87.0%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: MEDIUM\n  Edge +87.0% @10.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   James McCabe vs Rei Sakamoto\n   **O/U 7.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   James McCabe vs Rei Sakamoto\n   **Sfavorito +1.5 +1.5** @2.00\n  Modello: 62.4% | Implicita: 50.0% | Edge: 12.4%\n  Stake: 3.00 EUR (1.5% bankroll) | Confidenza: MEDIUM\n  Edge +12.4% (handicap +1.5) @2.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Murphy Cassone vs Darwin Blanch\n   **O/U 7.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Murphy Cassone vs Darwin Blanch\n   **Favorito -2.5 -2.5** @2.00\n  Modello: 68.2% | Implicita: 50.0% | Edge: 18.2%\n  Stake: 4.50 EUR (2.2% bankroll) | Confidenza: MEDIUM\n  Edge +18.2% (handicap -2.5) @2.00\n\n🟢 VALUE BET (Over Under)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Alexis Galarneau vs Juan Pablo Ficovich\n   **O/U 6.5** @26.00\n  Modello: 97.0% | Implicita: 3.8% | Edge: 93.2%\n  Stake: 1.00 EUR (0.5% bankroll) | Confidenza: MEDIUM\n  Edge +93.2% @26.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Alexis Galarneau vs Juan Pablo Ficovich\n   **Favorito -4.5 -4.5** @2.10\n  Modello: 80.1% | Implicita: 47.6% | Edge: 32.5%\n  Stake: 7.50 EUR (3.8% bankroll) | Confidenza: MEDIUM\n  Edge +32.5% (handicap -4.5) @2.10\n\n🟢 VALUE BET (Over Under)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Jacob Fearnley vs Mark Lajal\n   **O/U 7.5** @11.00\n  Modello: 97.0% | Implicita: 9.1% | Edge: 87.9%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +87.9% @11.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-08 14:00 | ATP Challenger Newport, USA Men Singles | 🏦 bet365\n   Jacob Fearnley vs Mark Lajal\n   **Favorito -2.5 -2.5** @1.90\n  Modello: 81.3% | Implicita: 52.6% | Edge: 28.7%\n  Stake: 8.00 EUR (4.0% bankroll) | Confidenza: MEDIUM\n  Edge +28.7% (handicap -2.5) @1.90\n\n❌ Lorenzo Claverie vs Samuel Heredia — Giocatori non trovati nel DB\n❌ Sergio Luis Hernandez Ramirez vs Luciano Emanuel Ambrogi — Giocatori non trovati nel DB\n❌ Juan Sebastian Osorio vs Matias Soto — Giocatori non trovati nel DB\n⚪ 2026-07-07 16:10 — Dmitry Popko vs Matheus Pucinelli de Almeida (confidenza bassa)\n\n🟢 VALUE BET (Over Under)\n   2026-07-07 16:10 | ATP Challenger Bogota, Colombia Men Singles | 🏦 bet365\n   Alex Hernandez vs Nick Hardt\n   **O/U 6.5** @9.00\n  Modello: 97.0% | Implicita: 11.1% | Edge: 85.9%\n  Stake: 2.50 EUR (1.2% bankroll) | Confidenza: MEDIUM\n  Edge +85.9% @9.00\n\n🟢 VALUE BET (Game Handicap)\n   2026-07-07 16:10 | ATP Challenger Bogota, Colombia Men Singles | 🏦 bet365\n   Alex Hernandez vs Nick Hardt\n   **Sfavorito +5.5 +5.5** @1.83\n  Modello: 86.8% | Implicita: 54.6% | Edge: 32.2%\n  Stake: 9.50 EUR (4.8% bankroll) | Confidenza: MEDIUM\n  Edge +32.2% (handicap +5.5) @1.83\n\n❌ Nicolas Mejia vs Fermin Tenti — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 17:20 | ATP Challenger Bogota, Colombia Men Singles | 🏦 bet365\n   Lorenzo Joaquin Rodriguez vs Lucas Andrade Da Silva\n   **O/U 6.5** @13.00\n  Modello: 97.0% | Implicita: 7.7% | Edge: 89.3%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +89.3% @13.00\n\n❌ Hernan Casanova vs Ignacio Monzon — Giocatori non trovati nel DB\n🟢 VALUE BET (Over Under)\n   2026-07-07 17:40 | ATP Challenger Bogota, Colombia Men Singles | 🏦 bet365\n   Rodrigo Pacheco Mendez vs Felipe Meligeni Alves\n   **O/U 6.5** @13.00\n  Modello: 97.0% | Implicita: 7.7% | Edge: 89.3%\n  Stake: 2.00 EUR (1.0% bankroll) | Confidenza: MEDIUM\n  Edge +89.3% @13.00\n\n❌ Tristan McCormick vs Pedro Sakamoto — Giocatori non trovati nel DB\n❌ Facundo Mena vs Alafia Ayeni — Giocatori non trovati nel DB\n❌ Juan Pablo Varillas vs Luis Carlos Alvarez Valdes — Giocatori non trovati nel DB\n📊 RIEPILOGO\n   Bookmaker: OddsPapi (Bet365/Pinnacle)\n   Match analizzati: 39\n   Value bets trovate: 55\n\n==================================================\n\n🎾 JBE TopSpin Report — 07/07/2026\n📊 Match analizzati: 0\n\n\n==================================================\n📈 RIEPILOGO\n==================================================\nMatch analizzati: 0\nValue Bets trovate: 0\n\n🔄 Self-Improvement:\n   Errori totali loggati: 371\n   Di cui risolti: 371 (accuracy: 91.1%)\n   In attesa risultato: 0\n\n📊 Copertura 2026:\n   Match con odds: 1147/1509 (76%)\n   Odds totali nel DB: 3908\n\n💼 Bankroll corrente: 200 EUR",
   "log_entries": [
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -11969,7 +12266,7 @@
     },
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -11978,7 +12275,7 @@
     },
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -11987,7 +12284,7 @@
     },
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -11996,7 +12293,7 @@
     },
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -12005,7 +12302,7 @@
     },
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
@@ -12014,12 +12311,12 @@
     },
     {
       "date": "2026-07-07",
-      "time": "09:01",
+      "time": "18:19",
       "icon": "🔄",
       "type": "pipeline",
       "title": "Pipeline eseguita",
       "desc": "📡 0 match analizzati",
-      "info": "📈 📊 Copertura 2026:\n🗄️ Odds totali nel DB: 3908\n💰 💼 Bankroll corrente: 200 EUR"
+      "info": "📈 📊 Copertura 2026:\n🗄️ Odds totali nel DB: 3908\n💰 💼 Bankroll corrente: 200 EUR\n🌐 Webapp data generato: /opt/data/jbe-topspin-webapp/docs/api/data.json"
     },
     {
       "date": "2026-07-07",
