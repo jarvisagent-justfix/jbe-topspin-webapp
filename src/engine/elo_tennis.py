@@ -1,9 +1,14 @@
 """
 JBE TopSpin — Strato 1: Surface-Specific ELO Dinamico
-
+======================================================
 Ogni giocatore ha 4 rating superficie-specifici + 1 rating overall.
 Il blended rating usa un peso dinamico basato sulla confidenza (n. match su superficie).
 Include decay temporale e K-factor dinamico per assenze.
+
+Perché superficie-specifico:
+  Nel tennis, le superfici cambiano radicalmente le probabilità.
+  Un giocatore come Nadal ha rating terra molto più alto del rating erba.
+  Un singolo rating overall appiattirebbe queste differenze.
 """
 import math
 from datetime import datetime, date
@@ -34,14 +39,13 @@ class ELORating:
         self.matches_clay = matches_clay
         self.matches_grass = matches_grass
         self.matches_carpet = matches_carpet
-        # Normalizza last_date: stringa -> date object
         if isinstance(last_date, str):
             try:
                 self.last_date = date.fromisoformat(last_date)
             except (ValueError, TypeError):
                 self.last_date = None
         else:
-            self.last_date = last_date  # Data ultimo match
+            self.last_date = last_date
 
     def get_surface_rating(self, surface: str) -> float:
         """Ritorna il rating per una specifica superficie."""
@@ -67,27 +71,37 @@ class ELORating:
         """
         Rating blended: combina overall + superficie con peso dinamico.
         
-        Se un giocatore ha pochi match su una superficie, il blend 
-        si sposta verso l'overall. Con match a sufficienza, diventa 50/50.
+        Perché blending:
+          Un giocatore con 5 match sull'erba non ha abbastanza dati per
+          un rating erba affidabile. Il blended rating usa l'overall come
+          base e si sposta verso il rating superficie-specifico solo quando
+          ci sono abbastanza match su quella superficie.
+        
+        Formula:
+          confidence = min(match_su_superficie / 100, 0.5)
+          peso_overall = 1.0 - confidence
+          blend = overall * peso_overall + superficie * confidence
+          
+          Con 0 match: tutto overall
+          Con 50+ match: 50/50
         """
         surface_rating = self.get_surface_rating(surface)
         n_matches = self.get_surface_matches(surface)
-
-        # Confidence: da 0 a 0.5 in base ai match su superficie
         confidence = min(n_matches / (2 * ELO_SURFACE_MIN_CONF), 0.5)
-        
-        # Peso dell'overall: 1 - confidence (invece del classico 0.5)
-        # Se confidence=0 (nessun match), blend = overall puro
-        # Se confidence=0.5 (50+ match), blend = 50/50
         weight_overall = 1.0 - confidence
-        
         return weight_overall * self.overall + confidence * surface_rating
 
     def get_k_factor(self, months_since_last_match: int = 0) -> float:
         """
         K-factor dinamico: aumenta dopo assenze prolungate.
-        Base = ELO_K_FACTOR (default 32).
-        +10% per ogni mese di assenza oltre il primo.
+        
+        Perché dinamico:
+          Un giocatore che torna dopo un infortunio è più "incerto" —
+          il suo vero livello potrebbe essere cambiato. Un K-factor più alto
+          permette al rating di adattarsi più velocemente.
+          
+          Base = ELO_K_FACTOR (default 16).
+          +10% per ogni mese di assenza oltre il primo.
         """
         k = ELO_K_FACTOR
         if months_since_last_match > 3:
@@ -97,7 +111,7 @@ class ELORating:
 
     def expected_score(self, opponent_rating: float) -> float:
         """
-        Probabilita' di vittoria basata sulla differenza ELO.
+        Probabilità di vittoria basata sulla differenza ELO.
         Formula standard: 1 / (1 + 10^((R_opp - R_self) / 400))
         """
         return 1.0 / (1.0 + math.pow(10, (opponent_rating - self.overall) / 400))
@@ -108,52 +122,37 @@ class ELORating:
         """
         Aggiorna il rating dopo un match.
         
-        Args:
-            opponent_rating: Rating ELO dell'avversario (blended)
-            score: 1.0 per vittoria, 0.0 per sconfitta
-            surface: Superficie del match
-            match_date: Data del match
-            is_best_of_5: Flag per match Bo5
-            games_won: Game vinti (per MoV)
-            games_lost: Game persi (per MoV)
+        Perché Margin of Victory (MoV):
+          Una vittoria 6-0 6-0 è più dominante di 7-6 7-6.
+          Il MoV adjustment penalizza le vittorie nette e penalizza
+          ancora di più le sconfitte nette (fattore 1.5x).
+          Questo rende il rating più sensibile alla qualità della prestazione.
         """
-        # Calcola mesi dall'ultimo match
         months_since = 0
         if self.last_date and match_date:
             delta = (match_date - self.last_date).days
             months_since = delta // 30
 
         k = self.get_k_factor(months_since)
-
-        # Expected score con blended rating
         expected = self.expected_score(opponent_rating)
 
-        # MoV (Margin of Victory) adjustment
-        # Una vittoria 6-0 6-0 conta di piu' di 7-6 7-6
         mov_factor = 1.0
         if score == 1.0 and games_lost > 0:
             mov_factor = math.log(max(games_won, 1) / max(games_lost, 1) + 1)
             k_mov = k * mov_factor
         elif score == 0.0 and games_won > 0:
             mov_factor = math.log(max(games_lost, 1) / max(games_won, 1) + 1)
-            k_mov = k * mov_factor * 1.5  # Penalta' maggiore per sconfitte nette
+            k_mov = k * mov_factor * 1.5
         else:
             k_mov = k
 
-        # Bo5 adjustment: i favoriti vincono piu' spesso in Bo5
         if is_best_of_5 and score == 1.0:
-            # Il favorito vince piu' spesso in Bo5
-            # Aumentiamo leggermente l'aggiornamento per vittorie in Bo5
             k_mov *= 1.1
 
-        # Aggiornamento standard ELO
         delta = k_mov * (score - expected)
-
         self.overall += delta
-        # Mov rating update (Margin of Victory adjusted)
         self.mov += delta * min(max(mov_factor, 1.0), 2.0)
 
-        # Aggiornamento superficie-specifico
         surface_attr_map = {
             "Hard": "hard",
             "Clay": "clay", 
@@ -163,7 +162,6 @@ class ELORating:
         surface_attr = surface_attr_map.get(surface)
         if surface_attr:
             setattr(self, surface_attr, getattr(self, surface_attr) + delta)
-            # Aggiorna contatore match per superficie
             match_attr = f"matches_{surface.lower()}"
             setattr(self, match_attr, getattr(self, match_attr) + 1)
 
@@ -173,17 +171,21 @@ class ELORating:
     def apply_decay(self, current_date: date):
         """
         Decay temporale: riduce rating per giocatori inattivi.
-        Dopo ELO_DECAY_DAYS giorni, il rating decade verso ELO_DEFAULT_RATING.
+        
+        Perché decay:
+          Un giocatore che non gioca da 2 anni non è più lo stesso
+          giocatore che aveva quel rating. Il decay spinge gradualmente
+          il rating verso il default (1500).
+          
+          Dopo 270gg di inattività: inizia decay
+          Dopo 540gg (2x): ~50% del rating perso verso default
         """
         if not self.last_date or not current_date:
             return
         days_inactive = (current_date - self.last_date).days
         if days_inactive <= ELO_DECAY_DAYS:
             return
-        
-        # Decay: dopo 2x giorni di inattività, perde fino al 50% verso default
         decay_ratio = min(days_inactive / (ELO_DECAY_DAYS * 2), 0.5)
-        
         for attr in ['overall', 'hard', 'clay', 'grass', 'carpet', 'mov']:
             current = getattr(self, attr)
             decayed = current - (current - ELO_DEFAULT_RATING) * decay_ratio
@@ -198,33 +200,28 @@ class SurfaceELOEngine:
 
     def __init__(self, db):
         self.db = db
-        self.ratings = {}  # {player_id: ELORating}
+        self.ratings = {}
 
     def predict_winner(self, player1_id: int, player2_id: int, 
                        surface: str, is_best_of_5: bool = False) -> dict:
         """
-        Predice il vincitore e calcola le probabilita'.
+        Predice il vincitore e calcola le probabilità.
         
-        Returns:
-            dict con: prob_player1, prob_player2, elo_diff, blended_diff
+        Perché Bo5 adjustment:
+          Nei match al meglio dei 5 set, il giocatore più forte ha
+          un vantaggio statistico maggiore (più set = più chance
+          che la qualità emerga). Aggiungiamo un +5% al favorito.
         """
         r1 = self._get_or_create_rating(player1_id)
         r2 = self._get_or_create_rating(player2_id)
-
         blended1 = r1.get_blended_rating(surface)
         blended2 = r2.get_blended_rating(surface)
-
-        # Probabilita' base (ELO standard)
         prob1 = 1.0 / (1.0 + math.pow(10, (blended2 - blended1) / 400))
-
-        # Bo5 adjustment
         if is_best_of_5:
-            # Il favorito (prob > 0.5) guadagna ~5% in Bo5
             if prob1 > 0.5:
                 prob1 = min(prob1 + ELO_BO5_FACTOR, 0.95)
             else:
                 prob1 = max(prob1 - ELO_BO5_FACTOR, 0.05)
-
         return {
             "prob_player1": prob1,
             "prob_player2": 1.0 - prob1,
@@ -235,19 +232,13 @@ class SurfaceELOEngine:
     def record_match(self, winner_id: int, loser_id: int, surface: str,
                      match_date: date, is_best_of_5: bool = False,
                      winner_games: int = 0, loser_games: int = 0):
-        """
-        Registra un match e aggiorna i rating.
-        """
+        """Registra un match e aggiorna i rating."""
         r_winner = self._get_or_create_rating(winner_id)
         r_loser = self._get_or_create_rating(loser_id)
-
         r_winner.apply_decay(match_date)
         r_loser.apply_decay(match_date)
-
-        # Rating blended dell'avversario per l'update
         loser_blended = r_loser.get_blended_rating(surface)
         winner_blended = r_winner.get_blended_rating(surface)
-
         r_winner.update(
             opponent_rating=loser_blended, score=1.0,
             surface=surface, match_date=match_date,
@@ -264,7 +255,6 @@ class SurfaceELOEngine:
     def _get_or_create_rating(self, player_id: int) -> ELORating:
         """Recupera o crea un rating per un giocatore."""
         if player_id not in self.ratings:
-            # Prova a caricare dal DB
             row = self.db.get_latest_elo(player_id)
             if row:
                 self.ratings[player_id] = ELORating(
@@ -283,7 +273,6 @@ class SurfaceELOEngine:
                 )
             else:
                 self.ratings[player_id] = ELORating()
-
         return self.ratings[player_id]
 
     def save_ratings(self, match_id: int, match_date: date):

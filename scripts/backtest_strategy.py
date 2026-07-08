@@ -9,7 +9,7 @@ import sys, os, json, math, random
 import numpy as np
 from datetime import date, datetime
 
-sys.path.insert(0, "/opt/data/jbe-tennis/src")
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from database import TennisDatabase
 from config import DB_PATH, MODEL_DIR, KELLY_FRACTION, MAX_STAKE_PCT, MIN_CONFIDENCE, MIN_EDGE
 from engine.elo_tennis import SurfaceELOEngine

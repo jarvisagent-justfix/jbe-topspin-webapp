@@ -44,16 +44,22 @@ BOOKMAKERS = ["bet365", "pinnacle"]
 
 # Market types che ci interessano
 RELEVANT_MARKET_TYPES = {"moneyline", "totals-games", "spreads-games"}
-
 # --- Key rotation (6 chiavi OddsPapi) ---
 ODDSPAPI_KEYS = [
+    "f5c78387-2025-4fab-b48e-3abbba7ca9e7",  # Chiave #4 (prioritaria — funzionante)
     "0f8c6e9a-23d9-49df-934e-3222a2566559",
     "dd7cc9b0-84c4-4ce9-9dd7-0939bacce0de",
     "160e7dc6-9667-4d8d-8a7a-70201929c9f5",
-    "f5c78387-2025-4fab-b48e-3abbba7ca9e7",
     "3fa463d1-4802-426f-8c6c-f6d8507d2266",
     "ecd8c19a-eb02-42db-bd50-39d91e6bd365",
 ]
+
+# Tracking chiavi morte per tutta la run (module-level)
+# Se una chiave dà rate-limit / timeout / errore, viene marcata morta
+# e saltata automaticamente per tutte le chiamate successive.
+_dead_keys: set = set()
+_key_fail_count: dict = {}
+
 
 def get_oddspapi_key() -> list:
     """Legge chiavi OddsPapi da .env (se presenti) con fallback alle hardcoded."""
@@ -82,14 +88,26 @@ def odds_api_request(endpoint: str, params: dict = None, key_idx: int = 0) -> Op
     """
     Chiamata a OddsPapi con rotazione automatica chiavi.
     Ritorna il JSON response o None se tutte le chiavi falliscono.
+    
+    Key rotation intelligente:
+    - 429 (rate limit) → chiave marcata morta per questa run, salta subito
+    - 401 (key invalida) → chiave marcata morta
+    - 403/5xx → chiave marcata morta
+    - Timeout/errore rete → dopo 2 fallimenti consecutivi, chiave marcata morta
+    - 404 su odds-by-tournaments NON marca la chiave morta (è il torneo senza quote)
     """
+    global _dead_keys, _key_fail_count
     api_keys = get_oddspapi_key()
     if not api_keys:
         log("[ERRORE] Nessuna chiave OddsPapi configurata.")
         return None
 
     for attempt in range(len(api_keys)):
+        if attempt in _dead_keys:
+            continue
         idx = (key_idx + attempt) % len(api_keys)
+        if idx in _dead_keys:
+            continue
         api_key = api_keys[idx]
         url = f"{BASE_URL}/{endpoint}?apiKey={api_key}"
         if params:
@@ -97,28 +115,56 @@ def odds_api_request(endpoint: str, params: dict = None, key_idx: int = 0) -> Op
                 url += f"&{k}={urllib.parse.quote(str(v))}"
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "JBE-TopSpin/1.0"})
-            with urllib.request.urlopen(req, timeout=20) as resp:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                _key_fail_count[idx] = 0
                 return json.loads(resp.read().decode())
         except urllib.error.HTTPError as e:
-            body = e.read().decode()
+            body = e.read().decode()[:200]
             if e.code == 429:
-                log(f"  [RATE LIMIT] Chiave {idx+1}/{len(api_keys)} — provo prossima...")
-                time.sleep(1)
+                log(f"  [RATE LIMIT] Chiave {idx+1} — marcata morta per questa run")
+                _dead_keys.add(idx)
                 continue
             elif e.code == 401:
-                log(f"  [KEY INVALIDA] Chiave {idx+1}/{len(api_keys)} — provo prossima...")
+                log(f"  [KEY INVALIDA] Chiave {idx+1} — marcata morta")
+                _dead_keys.add(idx)
                 continue
             elif e.code == 400:
-                log(f"  [BAD REQUEST] {endpoint}: {body[:100]}")
+                log(f"  [BAD REQUEST] {endpoint}: {body}")
                 return None
-            else:
-                log(f"  [ERRORE HTTP {e.code}] Chiave {idx+1}/{len(api_keys)}: {body[:100]}")
+            elif e.code == 404:
+                log(f"  [404] Chiave {idx+1}: {body}")
+                if "odds-by-tournaments" in endpoint:
+                    return None  # torneo senza quote, non chiave morta
+                _dead_keys.add(idx)
                 continue
+            elif e.code in (403,) or e.code >= 500:
+                log(f"  [ERRORE {e.code}] Chiave {idx+1} — marcata morta")
+                _dead_keys.add(idx)
+                continue
+            else:
+                log(f"  [ERRORE HTTP {e.code}] Chiave {idx+1}: {body}")
+                _dead_keys.add(idx)
+                continue
+        except urllib.error.URLError as e:
+            log(f"  [TIMEOUT] Chiave {idx+1}: {e.reason}")
+            _key_fail_count[idx] = _key_fail_count.get(idx, 0) + 1
+            if _key_fail_count[idx] >= 2:
+                log(f"  -> Chiave {idx+1} morta dopo {_key_fail_count[idx]} timeout")
+                _dead_keys.add(idx)
+            continue
+        except TimeoutError:
+            log(f"  [TIMEOUT] Chiave {idx+1}: timeout 10s")
+            _key_fail_count[idx] = _key_fail_count.get(idx, 0) + 1
+            if _key_fail_count[idx] >= 2:
+                log(f"  -> Chiave {idx+1} morta dopo {_key_fail_count[idx]} timeout")
+                _dead_keys.add(idx)
+            continue
         except Exception as e:
-            log(f"  [ERRORE] Chiave {idx+1}/{len(api_keys)}: {e}")
+            log(f"  [ERRORE] Chiave {idx+1}: {e}")
+            _dead_keys.add(idx)
             continue
 
-    log("  -> Tutte le chiavi OddsPapi esaurite o non funzionanti.")
+    log(f"  -> Tutte le {len(api_keys)} chiavi esaurite ({len(_dead_keys)} marcate morte).")
     return None
 
 
@@ -591,15 +637,21 @@ def predict_and_find_value(db, engine, match):
         for outcome in odds_data["totals"]:
             threshold = outcome["point"]
             odds_val = outcome["odds"]
+            name = outcome.get("name", "").upper()
             if odds_val <= 1.0:
                 continue
-            model_prob_ou = clamp_model_prob(markov_pred["markov_p_over_threshold"](threshold))
+            # Distingue Over da Under dal nome
+            is_over = "OVER" in name
+            if is_over:
+                model_prob_ou = clamp_model_prob(markov_pred["markov_p_over_threshold"](threshold))
+            else:
+                model_prob_ou = clamp_model_prob(1 - markov_pred["markov_p_over_threshold"](threshold))
             implied_ou = 1.0 / odds_val
             edge_ou = model_prob_ou - implied_ou
             if model_prob_ou >= 0.40 and edge_ou >= 0.08:
                 stake_ou = kc.calculate_stake(edge_ou, odds_val)
                 if stake_ou >= 0.5:
-                    ou_label = f"O/U {threshold}"
+                    ou_label = name  # Es. "Over 23.5" o "Under 23.5"
                     bets.append(ValueBet(
                         match_id=0, market="over_under",
                         selection=ou_label, odds=odds_val,
@@ -608,34 +660,36 @@ def predict_and_find_value(db, engine, match):
                         reason=f"Edge +{edge_ou:.1%} @{odds_val:.2f}"
                     ))
 
-    # === STRATEGIA FINALE: massimo 2 bet per match ===
-    # Regole basate su analisi dati reali (32 bet risolte + backtest 1135 match)
+    # === STRATEGIA: Solo Match Winner + Under sono giocabili ===
+    # Over e Handicap sono tenuti come candidate solo informative
+    # Max 2 bet per match, mercati diversi (MW + Under)
     
-    # 1. Blocca match_winner su odds >= 2.0 (WR 33% vs 75% su odds < 2.0)
-    # 2. game_handicap solo se edge > 12% E odds < 2.5
-    # 3. over_under edge minimo 8%
-    # 4. Confidence: HIGH su match_winner → MEDIUM (WR 31% vs 57%)
+    playable = []    # → paper_portfolio
+    candidates = []  # → value_candidates
     
-    filtered = []
     for b in bets:
-        if b.market == "match_winner" and b.odds >= 2.0:
-            continue
-        if b.market == "game_handicap" and (b.edge < 0.12 or b.odds >= 2.5):
-            continue
-        if b.market == "over_under" and b.edge < 0.08:
-            continue
-        # Downgrade confidence su match_winner
-        if b.market == "match_winner" and b.confidence == "HIGH":
-            b.confidence = "MEDIUM"
-        filtered.append(b)
+        is_under = b.market == "over_under" and b.selection.upper().startswith("UNDER")
+        
+        if b.market == "match_winner":
+            if b.odds >= 2.0:
+                candidates.append(b)
+                continue
+            if b.confidence == "HIGH":
+                b.confidence = "MEDIUM"
+            playable.append(b)
+        elif is_under:
+            if b.edge >= 0.08:
+                playable.append(b)
+            else:
+                candidates.append(b)
+        else:
+            # Over e Handicap → solo candidati informativi
+            candidates.append(b)
     
-    # Ordina: over_under > match_winner > game_handicap, poi per edge
-    priority = {"over_under": 0, "match_winner": 1, "game_handicap": 2}
-    filtered.sort(key=lambda b: (priority.get(b.market, 9), -b.edge))
-    
-    # Seleziona fino a 2 (mercati diversi: massimo 1 per tipo)
+    # Seleziona max 2 playable, mercati diversi
+    playable.sort(key=lambda b: -b.edge)
     best = []
-    for b in filtered:
+    for b in playable:
         if len(best) >= 2:
             break
         same_market = [x for x in best if x.market == b.market]
@@ -651,6 +705,7 @@ def predict_and_find_value(db, engine, match):
         "p1_id": p1_id, "p2_id": p2_id,
         "surface": surface, "match_date": match_date,
         "pred": pred, "odds": odds_data, "bets": bets,
+        "candidates": candidates,  # Over e Handicap non giocati
         "prob_p1": prob_p1, "prob_p2": prob_p2,
     }
 
@@ -697,12 +752,15 @@ def generate_odds_report(target_date: date = None) -> str:
 
             if result["bets"]:
                 value_bets_found += len(result["bets"])
-                for bet in result["bets"]:
-                    report_lines.append(f"🟢 VALUE BET ({bet.market.replace('_', ' ').title()})")
-                    report_lines.append(f"   {ct_display} | {match.get('tournament', 'ATP')} | 🏦 {bm_name}")
-                    report_lines.append(f"   {result['p1_name']} vs {result['p2_name']}")
-                    report_lines.append(f"   {bet.to_discord_message(200)}")
-                    report_lines.append("")
+                for bet in result.get("bets", []):
+                    try:
+                        report_lines.append(f"🟢 VALUE BET ({bet.market.replace('_', ' ').title()})")
+                        report_lines.append(f"   {ct_display} | {match.get('tournament', 'ATP')} | 🏦 {bm_name}")
+                        report_lines.append(f"   {result['p1_name']} vs {result['p2_name']}")
+                        report_lines.append(f"   {bet.to_discord_message(200)}")
+                        report_lines.append("")
+                    except Exception as e_rep:
+                        log(f"  [WARN] Report line: {e_rep}")
 
                     try:
                         ct = match.get("commence_time", "")
@@ -735,6 +793,35 @@ def generate_odds_report(target_date: date = None) -> str:
                     except Exception as e_bet:
                         log(f"  [WARN] Portfolio log: {e_bet}")
 
+                # --- Salva candidate non giocate (Over, Handicap) in value_candidates ---
+                for cbet in result.get("candidates", []):
+                    try:
+                        existing_c = db.conn.execute("""
+                            SELECT id FROM value_candidates
+                            WHERE player1 = ? AND player2 = ? AND market = ? AND selection = ?
+                            LIMIT 1
+                        """, (result["p1_name"], result["p2_name"], cbet.market, cbet.selection)).fetchone()
+                        if existing_c:
+                            continue
+                        db.conn.execute("""
+                            INSERT INTO value_candidates
+                                (match_date, tournament, surface, player1, player2,
+                                 market, selection, odds, model_prob, edge, stake,
+                                 reason, bookmaker, status)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'candidate')
+                        """, (
+                            result["match_date"].isoformat() if hasattr(result["match_date"], 'isoformat') else str(result["match_date"]),
+                            match.get("tournament", ""),
+                            result.get("surface", ""),
+                            result["p1_name"], result["p2_name"],
+                            cbet.market, cbet.selection, cbet.odds, cbet.model_prob, cbet.edge, cbet.stake,
+                            cbet.reason,
+                            bm_name,
+                        ))
+                    except Exception as e_c:
+                        log(f"  [WARN] Candidate save: {e_c}")
+                db.conn.commit()
+
             else:
                 fav_name = result["p1_name"] if result["prob_p1"] >= 0.5 else result["p2_name"]
                 fav_prob = max(result["prob_p1"], result["prob_p2"])
@@ -755,7 +842,7 @@ def generate_odds_report(target_date: date = None) -> str:
     report_lines.append("📊 RIEPILOGO")
     report_lines.append(f"   Bookmaker: {fonte}")
     report_lines.append(f"   Match analizzati: {matches_analyzed}")
-    report_lines.append(f"   Value bets trovate: {value_bets_found}")
+    report_lines.append(f"   Value bets giocate (MW + Under): {value_bets_found}")
 
     db.close()
     return "\n".join(report_lines)

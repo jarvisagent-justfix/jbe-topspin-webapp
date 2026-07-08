@@ -206,6 +206,46 @@ def load_value_bets(db):
     return bets
 
 
+def load_value_candidates(db):
+    """Carica le value candidate non giocate (Over, Handicap) da value_candidates."""
+    rows = db.conn.execute("""
+        SELECT * FROM value_candidates
+        ORDER BY match_date ASC, edge DESC
+    """).fetchall()
+
+    candidates = []
+    for r in rows:
+        market_label = {
+            "match_winner": "Vincitore",
+            "game_handicap": "Handicap Game",
+            "over_under": "Totale Game",
+        }.get(r["market"], r["market"] or "")
+
+        selection = r["selection"] or ""
+        if r["market"] == "over_under" and selection:
+            selection = selection.replace("Over", "Oltre").replace("Under", "Sotto")
+
+        candidates.append({
+            "id": r["id"],
+            "match_date": r["match_date"],
+            "player1": r["player1"],
+            "player2": r["player2"],
+            "selection": selection,
+            "odds": r["odds"],
+            "model_prob": r["model_prob"],
+            "edge": r["edge"],
+            "edge_pct": round(r["edge"] * 100, 1),
+            "stake": r["stake"],
+            "market": r["market"],
+            "market_label": market_label,
+            "tournament": r["tournament"] or "",
+            "surface": r["surface"] or "",
+            "bookmaker": r["bookmaker"] or "",
+            "reason": r["reason"] or "",
+        })
+    return candidates
+
+
 def load_bankroll_stats(db):
     """Statistiche bankroll calcolate dal paper portfolio."""
     today = date.today()
@@ -245,8 +285,8 @@ def load_bankroll_stats(db):
         SELECT COUNT(*) as total,
                SUM(CASE WHEN result > 0 THEN 1 ELSE 0 END) as wins,
                SUM(CASE WHEN result < 0 THEN 1 ELSE 0 END) as losses,
-               SUM(result) as pnl,
-               SUM(stake) as total_staked
+               COALESCE(SUM(result), 0) as pnl,
+               COALESCE(SUM(stake), 0) as total_staked
         FROM paper_portfolio
         WHERE result IS NOT NULL AND status IN ('won','lost') AND match_date >= ?
     """, ((today - timedelta(days=30)).isoformat(),)).fetchone()
@@ -594,6 +634,7 @@ def build_data():
             "upcoming": merged_upcoming,
         },
         "value_bets": load_value_bets(db),
+        "value_candidates": load_value_candidates(db),
         "bankroll": load_bankroll_stats(db),
         "bet_history": load_bet_history(db, limit=50),
         "bankroll_history": load_bankroll_history(db),

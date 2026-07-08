@@ -63,7 +63,7 @@ def add_bet(db, match_id, match_date, tournament, surface,
             player1, player2, selection, odds, model_prob, edge,
             stake, bankroll_before, market="match_winner",
             bookmaker="OddsAPI", confidence="MEDIUM", source="odds_api",
-            match_datetime=None, odds_source=None):
+            match_datetime=None, odds_source=None, notes=None):
     """Registra una nuova bet nel portfolio."""
     bankroll_after = bankroll_before - stake  # Sottratto fino al settlement
     
@@ -72,9 +72,9 @@ def add_bet(db, match_id, match_date, tournament, surface,
         (match_id, match_date, match_datetime, tournament, surface,
          player1, player2, selection, market, odds, model_prob, edge,
          stake, bankroll_before, bankroll_after, status,
-         bookmaker, odds_source, source, confidence)
+         bookmaker, odds_source, source, confidence, notes)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending',
-                ?, ?, ?, ?)
+                ?, ?, ?, ?, ?)
     """, (
         match_id,
         match_date.isoformat() if hasattr(match_date, 'isoformat') else str(match_date),
@@ -83,7 +83,7 @@ def add_bet(db, match_id, match_date, tournament, surface,
         player1, player2, selection, market,
         float(odds), float(model_prob), float(edge),
         float(stake), float(bankroll_before), float(bankroll_after),
-        bookmaker, odds_source, source, confidence,
+        bookmaker, odds_source, source, confidence, notes,
     ))
     db.conn.commit()
 

@@ -11,7 +11,6 @@ Tre modelli separati:
 """
 import os
 import json
-import pickle
 import numpy as np
 from datetime import date, timedelta
 from typing import Optional, List, Dict

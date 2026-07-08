@@ -32,6 +32,8 @@ from database import TennisDatabase
 from engine.xgboost_tennis import TopSpinEngine
 from engine.value_detector import ValueDetector
 from config import DB_PATH, MODEL_DIR, MIN_EDGE, MIN_CONFIDENCE
+from odds_api import generate_odds_report as odds_report
+from self_improvement import run_self_improvement
 
 BASE_URL = "http://www.tennis-data.co.uk"
 
@@ -337,7 +339,28 @@ def generate_report(target_date: date = None) -> str:
         ORDER BY m.match_date DESC
     """, (lookback.isoformat(), target_date.isoformat())).fetchall()
 
-    print(f"\n[INFO] {len(candidate_matches)} match con odds negli ultimi 3 giorni")
+    print(f"\\n[INFO] {len(candidate_matches)} match con odds negli ultimi 3 giorni")
+
+    # Pre-fetch TUTTE le odds in un'unica query (evita N+1)
+    match_ids = [m["id"] for m in candidate_matches]
+    odds_map = {}
+    if match_ids:
+        placeholders = ",".join("?" * len(match_ids))
+        odds_rows = db.conn.execute(f"""
+            SELECT match_id, bookmaker, odds_winner, odds_loser
+            FROM tennis_odds
+            WHERE match_id IN ({placeholders})
+              AND bookmaker IN ('Pinnacle', 'Bet365')
+            ORDER BY CASE bookmaker WHEN 'Pinnacle' THEN 0 ELSE 1 END
+        """, match_ids).fetchall()
+        for row in odds_rows:
+            mid = row["match_id"]
+            if mid not in odds_map:
+                odds_map[mid] = {}  # {bookmaker: {odds_winner, odds_loser}}
+            odds_map[mid][row["bookmaker"]] = {
+                "odds_winner": row["odds_winner"],
+                "odds_loser": row["odds_loser"],
+            }
 
     # === FASE 4: Predict + Value Detection ===
     report_lines = []
@@ -399,24 +422,18 @@ def generate_report(target_date: date = None) -> str:
             bookmaker_logged = "N/A"
             odds_w = None
             if is_completed:
-                # Get best odds
-                odds_w = db.conn.execute(
-                    "SELECT odds_winner, odds_loser FROM tennis_odds WHERE match_id=? AND bookmaker='Pinnacle' LIMIT 1",
-                    (m["id"],)
-                ).fetchone()
-                bookmaker_logged = "Pinnacle"
-                if not odds_w:
-                    odds_w = db.conn.execute(
-                        "SELECT odds_winner, odds_loser FROM tennis_odds WHERE match_id=? AND bookmaker='Bet365' LIMIT 1",
-                        (m["id"],)
-                    ).fetchone()
-                    bookmaker_logged = "Bet365"
-
+                # Lookup odds from pre-fetched dict (single query, non N+1)
+                match_odds = odds_map.get(m["id"], {})
+                for bm in ["Pinnacle", "Bet365"]:
+                    if bm in match_odds:
+                        odds_w = (match_odds[bm]["odds_winner"], match_odds[bm]["odds_loser"])
+                        bookmaker_logged = bm
+                        break
                 if odds_w:
                     log_prediction_error(
                         db, m["id"], fav_id, fav_prob,
-                        float(odds_w["odds_winner"] or 0), float(odds_w["odds_loser"] or 0),
-                        abs(prob_p1 - 1/odds_w["odds_winner"]) if odds_w["odds_winner"] else 0,
+                        float(odds_w[0] or 0), float(odds_w[1] or 0),
+                        abs(prob_p1 - 1/odds_w[0]) if odds_w[0] else 0,
                         m["surface"], m["tour_level"], m["round"],
                         m["best_of"], m["winner_id"], m["loser_id"]
                     )
@@ -510,7 +527,6 @@ def generate_report(target_date: date = None) -> str:
     
     # Also try Odds API for upcoming matches (if configured)
     try:
-        from odds_api import generate_odds_report as odds_report
         odds_part = odds_report(target_date)
         if "⚠️ **The Odds API non configurata" not in odds_part and "Nessun match ATP" not in odds_part:
             report_text = odds_part + "\n\n" + "=" * 50 + "\n\n" + report_text
@@ -520,7 +536,6 @@ def generate_report(target_date: date = None) -> str:
     
     # Run self-improvement analysis after predictions
     try:
-        from self_improvement import run_self_improvement
         run_self_improvement(db, do_retrain_if_needed=True)
     except Exception as e:
         print(f"  [WARN] Self-improvement error: {e}")

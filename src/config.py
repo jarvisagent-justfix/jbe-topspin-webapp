@@ -32,7 +32,6 @@ XGB_RETRAIN_EVERY = 100     # Retrain ogni 100 prediction errors
 MIN_EDGE = 0.05             # Edge minimo 5%
 CONSENSUS_THRESHOLD = 0.10  # Se quota > 10% da media, edge dimezzato
 MIN_CONFIDENCE = 0.50       # Confidenza minima modello
-MIN_PLAYER_MATCHES = 10     # Match minimi per giocatore
 
 # --- Kelly ---
 KELLY_FRACTION = 0.125      # 12.5%

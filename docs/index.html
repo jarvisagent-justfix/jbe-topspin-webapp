@@ -410,6 +410,10 @@
     </div>
     <div class="bet-list" id="betList"></div>
   </div>
+  <div class="panel" id="panel-candidates">
+    <div class="candidates-stats" id="candStats" style="margin:0;padding:0;width:100%"></div>
+    <div class="candidates-list" id="candList"></div>
+  </div>
   <div class="panel" id="panel-history">
     <div class="sub-tabs">
       <button class="sub-tab active" data-sub="giocate">\u{1f3b1} Giocate</button>
@@ -452,6 +456,10 @@
     <button class="nav-item" data-tab="bets">
       <span class="nav-icon">&#x1f48e;</span>
       <span>Value</span>
+    </button>
+    <button class="nav-item" data-tab="candidates">
+      <span class="nav-icon">&#x1f4ca;</span>
+      <span>Candidate</span>
     </button>
     <button class="nav-item" data-tab="history">
       <span class="nav-icon">&#x1f4b0;</span>
@@ -503,6 +511,7 @@
       renderApiAlert(data);
       renderMatches(data);
       renderBets(data);
+      renderCandidates(data);
       renderHistory(data);
       renderReport(data);
     }
@@ -943,6 +952,75 @@
       const toggler = body.previousElementSibling;
       body.classList.toggle("open");
       toggler.classList.toggle("open");
+    }
+
+    // ──────────────────────────────────────────────
+    //  CANDIDATES PAGE (Over, Handicap non giocati)
+    // ──────────────────────────────────────────────
+    function renderCandidates(d) {
+      const cands = d.value_candidates || [];
+      const statsEl = document.getElementById("candStats");
+      const listEl = document.getElementById("candList");
+
+      if (!cands.length) {
+        listEl.innerHTML = '<div class="empty" style="padding:40px var(--pad);text-align:center">\\u{1f50d} Nessuna candidate disponibile</div>';
+        statsEl.innerHTML = "";
+        return;
+      }
+
+      const overCount = cands.filter(c => c.market === "over_under" && c.selection.toUpperCase().includes("OLTRE")).length;
+      const underCount = cands.filter(c => c.market === "over_under" && c.selection.toUpperCase().includes("SOTTO")).length;
+      const ghCount = cands.filter(c => c.market === "game_handicap").length;
+      const avgEdge = cands.reduce((s, c) => s + c.edge, 0) / cands.length;
+
+      statsEl.innerHTML = `
+        <div class="page-stats" style="padding:10px var(--pad);margin:0">
+          <div class="stat-card"><div class="val gray">${cands.length}</div><div class="lbl">Candidate</div></div>
+          <div class="stat-card"><div class="val amber">${overCount}</div><div class="lbl">Over</div></div>
+          <div class="stat-card"><div class="val green">${underCount}</div><div class="lbl">Under</div></div>
+          <div class="stat-card"><div class="val blue">${ghCount}</div><div class="lbl">Handicap</div></div>
+        </div>
+        <div style="padding:4px 16px 8px;font-size:12px;color:var(--dim);text-align:center">Edge medio candidate: <strong style="color:var(--amber)">+${(avgEdge*100).toFixed(1)}%</strong></div>
+      `;
+
+      const grouped = {};
+      cands.forEach(c => {
+        const key = c.match_date || "?";
+        if (!grouped[key]) grouped[key] = [];
+        grouped[key].push(c);
+      });
+
+      let html = "";
+      Object.entries(grouped).sort((a, b) => b[0].localeCompare(a[0])).forEach(([date, dayCands]) => {
+        html += `<div class="day-header"><span>\\u{1f4c5} ${date}</span><span class="count">${dayCands.length} candidate</span></div>`;
+        html += '<div class="match-list" style="padding:0 var(--pad);display:flex;flex-direction:column;gap:12px">';
+        dayCands.forEach(c => {
+          const marketEmoji = c.market === "over_under" ? "\\u{1f4c8}" : "\\u{2696}\\ufe0f";
+          const edgePct = (c.edge_pct || 0).toFixed(1);
+          html += `
+            <div class="match-card" style="opacity:0.75">
+              <div class="mc-accent gray"></div>
+              <div class="mc-players" style="padding:10px 14px 4px">
+                <div class="mc-player left"><div class="name" style="font-size:13px">${c.player1 || "?"}</div></div>
+                <div class="mc-vs" style="font-size:11px">vs</div>
+                <div class="mc-player right"><div class="name" style="font-size:13px">${c.player2 || "?"}</div></div>
+              </div>
+              <div style="padding:2px 14px 8px;display:flex;align-items:center;gap:8px;font-size:12px">
+                <span>${marketEmoji} ${c.market_label || c.market}</span>
+                <span style="color:var(--dim)">\\u2022</span>
+                <span>${c.selection || "?"}</span>
+                <span style="color:var(--dim)">\\u2022</span>
+                <span style="color:var(--amber)">+${edgePct}%</span>
+                <span style="color:var(--dim)">\\u2022</span>
+                <span>@${c.odds?.toFixed(2) || "?"}</span>
+              </div>
+              ${c.reason ? `<div style="padding:0 14px 10px;font-size:11px;color:var(--dim);font-style:italic">${c.reason}</div>` : ""}
+            </div>`;
+        });
+        html += '</div>';
+      });
+
+      listEl.innerHTML = html;
     }
 
     // ──────────────────────────────────────────────

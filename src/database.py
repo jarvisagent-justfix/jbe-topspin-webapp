@@ -27,6 +27,7 @@ class TennisDatabase:
             hand TEXT CHECK(hand IN ('R','L','A')),
             height_cm INTEGER,
             turned_pro INTEGER,
+            birth_date DATE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
@@ -274,7 +275,19 @@ class TennisDatabase:
         return cur.fetchall()
 
     def get_prediction_errors_since(self, since_date, slice_type=None, slice_value=None):
-        """Ritorna errori di predizione per analisi self-improvement."""
+        """Ritorna errori di predizione per analisi self-improvement.
+        
+        Perché whitelist su slice_type:
+          slice_type viene usato come nome di colonna nella query SQL.
+          Per prevenire SQL injection, solo valori pre-autorizzati sono accettati.
+          La whitelist è definita qui (non in self_improvement.py) perché
+          è una responsabilità del database layer, non del chiamante.
+        """
+        # Whitelist: solo colonne pre-autorizzate possono essere usate come slice
+        ALLOWED_SLICE_TYPES = {"surface", "tour_level", "round", "best_of", "market"}
+        if slice_type and slice_type not in ALLOWED_SLICE_TYPES:
+            raise ValueError(f"slice_type '{slice_type}' non autorizzato. Usa: {ALLOWED_SLICE_TYPES}")
+        
         if slice_type and slice_value:
             cur = self.conn.execute(
                 f"SELECT * FROM prediction_errors WHERE created_at>=? AND {slice_type}=?",

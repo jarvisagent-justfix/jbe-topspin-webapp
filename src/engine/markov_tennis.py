@@ -131,10 +131,6 @@ def p_win_set(p_serve_A: float, p_serve_B: float,
     # Per calcolare P_set, usiamo la formula completa:
     # Dobbiamo simulare tutti i percorsi possibili
     
-    def _p_score_to(to, from_g):
-        """Prob. di passare da (gA, gB) = gA a (gA + to) in N game."""
-        pass
-    
     # Implementazione pratica: simulazione Markov 12x12
     # Stati: (game_vinti_A, game_vinti_B) per 0..6 ciascuno
     # La matrice di transizione ha dimensione 7x7 = 49 stati
@@ -203,7 +199,21 @@ class MarkovMatchModel:
     """
     Modello Markoviano completo per un match di tennis.
     Calcola probabilita' per tutti i mercati.
+    
+    Perché Monte Carlo (20k simulazioni) invece di formula chiusa:
+      La distribuzione dei game totali in un match di tennis non ha
+      una formula chiusa semplice a causa dell'alternanza del servizio
+      e del tiebreak. La simulazione Monte Carlo è più accurata e
+      ci permette di calcolare probabilita' per qualsiasi linea O/U
+      o handicap senza dover derivare formule specifiche.
+    
+    Perché caching dei risultati:
+      Due match con gli stessi parametri (p_serve_A, p_serve_B, best_of)
+      produrranno la stessa distribuzione di game. Il caching evita
+      di ricalcolare 20k simulazioni per match identici.
     """
+
+    _cache = {}  # {(pA, pB, best_of): result} — cache dei risultati Monte Carlo
 
     def __init__(self, p_serve_A: float, p_serve_B: float, surface: str,
                  best_of: int = 3):
@@ -223,19 +233,14 @@ class MarkovMatchModel:
         """
         Calcola tutte le probabilita' per il match.
         
-        Returns:
-            dict con:
-            - p_win_match_A: Prob. A di vincere il match
-            - p_win_set_A: Prob. A di vincere un set
-            - p_win_game_A_serve: Prob. A di vincere un game al servizio
-            - p_win_game_B_serve: Prob. B di vincere un game al servizio
-            - p_2_0_A, p_2_1_A: Set betting probabilites (Bo3)
-            - p_3_0_A, p_3_1_A, p_3_2_A: Set betting (Bo5)
-            - expected_games_A, expected_games_B: Game attesi
-            - expected_total_games: Game totali attesi
-            - p_over_x_game[x]: Prob. over x.5 game
-            - p_handicap_A[x]: Prob. A copre handicap x.5
+        Usa caching: se già calcolato per questa combinazione (p_serve, best_of),
+        restituisce il risultato cached invece di ricalcolare 20k simulazioni.
         """
+        # Cache check
+        cache_key = (round(self.p_serve_A, 4), round(self.p_serve_B, 4), self.best_of)
+        if cache_key in MarkovMatchModel._cache:
+            return MarkovMatchModel._cache[cache_key]
+        
         p_game_A = p_win_game(self.p_serve_A)
         p_game_B = p_win_game(self.p_serve_B)
         p_return_A = 1 - p_game_B  # A vince game in risposta
@@ -275,7 +280,7 @@ class MarkovMatchModel:
         # Game distribution via Monte Carlo
         game_dist = self._simulate_game_distribution(n_simulations=20000)
 
-        return {
+        result = {
             "p_win_match": p_match_A,
             "p_loss_match": p_match_B,
             "p_win_set": p_set_A,
@@ -290,6 +295,9 @@ class MarkovMatchModel:
             "p_over_threshold": game_dist["p_over_threshold"],
             "p_under_threshold": game_dist["p_under_threshold"],
         }
+        # Salva in cache per futuri match con stessi parametri
+        MarkovMatchModel._cache[cache_key] = result
+        return result
 
     def _simulate_game_distribution(self, n_simulations: int = 20000) -> dict:
         """
